@@ -1,0 +1,41 @@
+.root {
+    -fx-background-color: #f0f0f0;
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333;
+}
+
+.button {
+    -fx-background-color: #8e44ad;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+}
+
+.text-field {
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 3px;
+}
+
+.date-picker {
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 3px;
+}
+
+.output-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #4CAF50;
+}
+
+.button:hover {
+    -fx-background-color: #6c3483;
+}
