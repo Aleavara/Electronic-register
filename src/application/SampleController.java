@@ -7,11 +7,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
+import scuola.Professore;
+import scuola.Segreteria;
 import scuola.Studente;
 
 public class SampleController {
@@ -29,6 +32,7 @@ public class SampleController {
     private TextField impegnoTextField;
     
     private Studente studente;
+
     
     public void setStudente(Studente studente) {
         this.studente = studente;
@@ -85,4 +89,8 @@ public class SampleController {
             outputLabel.setText("Seleziona una data e inserisci un impegno.");
         }
     }
+    
+
+    
+
 }
