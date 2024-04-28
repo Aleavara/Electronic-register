@@ -43,15 +43,15 @@ public class Studente extends Persona {
 	
 	 public Professore prossimoProfessore(Classe classe) {
 	        LocalDateTime now = LocalDateTime.now();
-	        int giorno = now.getDayOfWeek().getValue() - 1; // Lunedì = 1, ... Domenica = 7
+	        int giorno = now.getDayOfWeek().getValue() - 1; 
 	        int ora = now.getHour();
 	        
-	        // Verifica se è già iniziata l'ora corrente
-	        if (ora < 8) { // Supponendo che la scuola inizi alle 8:00
-	            ora = 8; // Se l'ora corrente è prima delle 8:00, considera l'inizio della prima ora
+	      
+	        if (ora < 8) { 
+	            ora = 8; 
 	        }
 	        
-	        return classe.getOrarioProf()[giorno][ora - 8]; // Sottrai 8 per adattare all'indice dell'orario
+	        return classe.getOrarioProf()[giorno][ora - 8]; 
 	    }
 
 	

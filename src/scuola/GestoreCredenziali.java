@@ -41,7 +41,7 @@ public class GestoreCredenziali {
                 return studente;
             }
         }
-        return null; // Se non viene trovato uno studente con le credenziali specificate
+        return null; 
     }
 
     public void setCredenzialiProfessore(Professore professore, String username, String password) {
@@ -71,7 +71,7 @@ public class GestoreCredenziali {
                 return professore;
             }
         }
-        return null; // Se non viene trovato un professore con le credenziali specificate
+        return null; 
     }
 
     public void setCredenzialiSegreteria(Segreteria segreteria, String username, String password) {
@@ -101,6 +101,6 @@ public class GestoreCredenziali {
                 return segreteria;
             }
         }
-        return null; // Se non viene trovata una segreteria con le credenziali specificate
+        return null; 
     }
 }

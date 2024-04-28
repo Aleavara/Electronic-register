@@ -23,13 +23,13 @@ public class Professore extends Persona{
 		this.materia = materia;
 	}
 	
-    // Metodo per aggiungere un voto allo studente
+    
     public void aggiungiVoto(Studente studente, LocalDate data, Double voto) {
-        // Verifica se lo studente ha già voti per quella data
+
         Map<String, List<Voto>> voti = studente.getVoti();
         List<Voto> votiData = voti.getOrDefault(data.toString(), null);
         if (votiData != null) {
-            // Verifica se il professore ha già inserito un voto per quella data
+          
             for (Voto v : votiData) {
                 if (v.getProfInserente().equals(this)) {
                     System.out.println("Il professore ha già inserito un voto per questa data.");
@@ -37,12 +37,12 @@ public class Professore extends Persona{
                 }
             }
         } else {
-            // Se non ci sono voti per quella data, crea una nuova lista
+       
             votiData = new ArrayList<>();
             voti.put(data.toString(), votiData);
         }
 
-        // Aggiungi il nuovo voto
+
         votiData.add(new Voto(data, voto, this));
         System.out.println("Voto aggiunto con successo per lo studente " + studente.getNome() + " " + studente.getCognome());
     }

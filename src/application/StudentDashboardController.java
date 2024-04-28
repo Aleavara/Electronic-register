@@ -29,7 +29,7 @@ public class StudentDashboardController {
     public void setStudente(Studente studente) {
         this.studente = studente;
         
-        // Imposta i dati dello studente nei rispettivi campi della dashboard
+        
         nameLabel.setText(studente.getNome());
         surnameLabel.setText(studente.getCognome());
         addressLabel.setText(studente.getIndirizzo());

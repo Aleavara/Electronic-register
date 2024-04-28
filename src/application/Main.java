@@ -23,7 +23,7 @@ public class Main extends Application {
     
     private Stage primaryStage;
     private Scene loginScene, studentScene, professorScene, secretaryScene;
-    private Segreteria segreteria; // Istanza della segreteria (per semplicità assume un'unica istanza)
+    private Segreteria segreteria;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -34,10 +34,10 @@ public class Main extends Application {
 
         root.setStyle("-fx-background-color: #E0EAf0;");
 
-        // Creazione della scena di login
+       
         createLoginScene();
 
-        // Mostra la scena di login all'avvio dell'applicazione
+   
         primaryStage.setScene(loginScene);
         primaryStage.setTitle("Login");
         primaryStage.show();
@@ -94,7 +94,7 @@ public class Main extends Application {
 
             // Effettua l'autenticazione
             if (authenticate(username, password)) {
-                // Mostra la scena corretta in base al tipo di utente
+               
                 showSceneForUser(username);
             } else {
                 showAlert(Alert.AlertType.ERROR, "Errore di autenticazione", "Credenziali non valide.");
@@ -111,7 +111,7 @@ public class Main extends Application {
     }
 
     private boolean authenticate(String username, String password) {
-        // Implementa la logica di autenticazione qui
+
         // Per ora restituisce true se l'username è non vuoto e la password è "password"
         return !username.isEmpty() && password.equals("password");
     }
