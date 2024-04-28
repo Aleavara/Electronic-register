@@ -13,13 +13,13 @@ public class Studente extends Persona {
     private Map<String,List<Voto>> voti;
     private Double mediaGenerale;
     private Classe classe;
-    private String password;
-    private String username;
+ 
+    
     
     public Studente(String nome, String cognome, String indirizzo, String codiceFiscale, LocalDate dataNascita,Classe classe) {
         super(nome, cognome, indirizzo, codiceFiscale, dataNascita,classe);
        
-    }
+    } 
 
 
 	public Double getMediaGenerale() {
@@ -54,25 +54,6 @@ public class Studente extends Persona {
 	        return classe.getOrarioProf()[giorno][ora - 8]; // Sottrai 8 per adattare all'indice dell'orario
 	    }
 
-
-	public String getPassword() {
-		return password;
-	}
-
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-
-	public String getUsername() {
-		return username;
-	}
-
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
 	
 	
 	

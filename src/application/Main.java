@@ -58,6 +58,23 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+    
+    private void showStudentDashboard(Studente studente) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/student_dashboard.fxml"));
+            Parent root = loader.load();
+
+            StudentDashboardController controller = loader.getController();
+            controller.setStudente(studente);
+
+            Scene studentScene = new Scene(root);
+            primaryStage.setScene(studentScene);
+            primaryStage.setTitle("Dashboard Studente");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void createLoginScene() {
         GridPane loginGrid = new GridPane();
@@ -101,12 +118,13 @@ public class Main extends Application {
 
     private void showSceneForUser(String username) {
         if (username.startsWith("S")) { // Studente
-            primaryStage.setScene(studentScene);
-            primaryStage.setTitle("Dashboard Studente");
+        	Studente studente = new Studente("Nome", "Cognome", "Indirizzo", "CodiceFiscale", LocalDate.now(), new Classe("Classe"));
+          
+           showStudentDashboard(studente);
         } else if (username.startsWith("P")) { // Professore
         	Professore professore = new Professore("Nome", "Cognome", "Indirizzo", "CodiceFiscale", LocalDate.now(), new Classe("Classe"));
             showProfessorDashboard(professore);
-        } else if (username.startsWith("Sec")) { // Segreteria
+        } else if (username.startsWith("Seg")) { // Segreteria
             primaryStage.setScene(secretaryScene);
             primaryStage.setTitle("Dashboard Segreteria");
         } else {

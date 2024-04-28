@@ -7,8 +7,7 @@ import java.util.Map;
 
 public class Professore extends Persona{
 	private String materia;
-	private String password;
-	private String username;
+
 	
 	public Professore(String nome, String cognome, String indirizzo, String codiceFiscale, LocalDate dataNascita,
 			Classe classe) {
@@ -48,21 +47,7 @@ public class Professore extends Persona{
         System.out.println("Voto aggiunto con successo per lo studente " + studente.getNome() + " " + studente.getCognome());
     }
 
-	public String getPassword() {
-		return password;
-	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
 
 
 	

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="application.StudentDashboardController">
+    
+    <Label text="Nome:"/>
+    <Label fx:id="nameLabel"/>
+    
+    <Label text="Cognome:"/>
+    <Label fx:id="surnameLabel"/>
+    
+    <Label text="Indirizzo:"/>
+    <Label fx:id="addressLabel"/>
+    
+    <Label text="Codice Fiscale:"/>
+    <Label fx:id="codiceFiscaleLabel"/>
+    
+    <Label text="Data di nascita:"/>
+    <Label fx:id="birthDateLabel"/>
+    
+    <Label text="Classe:"/>
+    <Label fx:id="classLabel"/>
+    
+</VBox>
