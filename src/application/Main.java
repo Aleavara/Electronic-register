@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import scuola.Classe;
+import scuola.GestoreCredenziali;
 import scuola.Professore;
 import scuola.Segreteria;
 import scuola.Studente;
@@ -27,12 +28,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        primaryStage = stage;
+       primaryStage = stage;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/sample.fxml"));
-        Parent root = loader.load();
 
-        root.setStyle("-fx-background-color: #E0EAf0;");
+      
 
        
         createLoginScene();
@@ -59,13 +58,36 @@ public class Main extends Application {
         }
     }
     
+    private void showSegreteriaDashboard(Segreteria segreteria) {
+        try {
+        	
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/segreteria1_dashboard.fxml"));
+           
+            Parent root = loader.load();
+        	
+            SegreteriaDashboardController controller = loader.getController();
+        
+           controller.setSegreteria(segreteria);
+           controller.faccioIo();
+    
+            Scene SegreteriaScene = new Scene(root);
+            primaryStage.setScene(SegreteriaScene);
+            primaryStage.setTitle("Dashboard Segrete");
+            primaryStage.show();
+         
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void showStudentDashboard(Studente studente) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/student_dashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Studen.fxml"));
             Parent root = loader.load();
 
             StudentDashboardController controller = loader.getController();
-            controller.setStudente(studente);
+            StudenteService student = new StudenteService(studente);
+          controller.setStudenteService(student);
 
             Scene studentScene = new Scene(root);
             primaryStage.setScene(studentScene);
@@ -118,15 +140,24 @@ public class Main extends Application {
 
     private void showSceneForUser(String username) {
         if (username.startsWith("S")) { // Studente
-        	Studente studente = new Studente("Nome", "Cognome", "Indirizzo", "CodiceFiscale", LocalDate.now(), new Classe("Classe"));
+        	Classe classec=new Classe("5EF");
+        	Studente studente = new Studente("Nome", "Cognome", "Indirizzo", "CodiceFiscale", LocalDate.now(), classec);
+        	
+        	classec.aggiungiCompito(LocalDate.now(), "dormi");
+        	LocalDate data=  LocalDate.of(2024,05,07);
+        	classec.aggiungiCompito(data, "uagliù");
+        	studente.setMediaGenerale(7.5);
           
            showStudentDashboard(studente);
         } else if (username.startsWith("P")) { // Professore
         	Professore professore = new Professore("Nome", "Cognome", "Indirizzo", "CodiceFiscale", LocalDate.now(), new Classe("Classe"));
             showProfessorDashboard(professore);
-        } else if (username.startsWith("Seg")) { // Segreteria
-            primaryStage.setScene(secretaryScene);
-            primaryStage.setTitle("Dashboard Segreteria");
+        } else if (username.startsWith("xdvr")) { // Segreteria
+        
+            Segreteria seg= new Segreteria();
+            Classe classeg = new Classe("4c");
+           
+           showSegreteriaDashboard(seg);
         } else {
             showAlert(Alert.AlertType.ERROR, "Errore", "Tipo di utente non riconosciuto.");
         }

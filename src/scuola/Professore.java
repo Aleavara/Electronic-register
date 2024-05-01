@@ -12,6 +12,7 @@ public class Professore extends Persona{
 	public Professore(String nome, String cognome, String indirizzo, String codiceFiscale, LocalDate dataNascita,
 			Classe classe) {
 		super(nome, cognome, indirizzo, codiceFiscale, dataNascita, classe);
+		classe.aggiungiProfessore(this);
 		
 	}
 

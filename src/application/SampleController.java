@@ -31,26 +31,19 @@ public class SampleController {
     @FXML
     private TextField impegnoTextField;
     
-    private Studente studente;
+    private StudenteService studenteService;
 
     
-    public void setStudente(Studente studente) {
-        this.studente = studente;
+    public void setStudenteService(StudenteService studenteService) {
+        this.studenteService = studenteService;
     }
+
     
     @FXML
     private void initialize() {
-    	outputLabel.setText(""); 
-        
-    
+        outputLabel.setText("");
+
         if (gridPane != null) {
-         
-            ColumnConstraints columnConstraints = new ColumnConstraints();
-            columnConstraints.setMinWidth(100);
-            columnConstraints.setHgrow(Priority.ALWAYS);
-            gridPane.getColumnConstraints().add(columnConstraints);
-            
-         
             RowConstraints rowConstraints = new RowConstraints();
             rowConstraints.setMinHeight(100);
             rowConstraints.setVgrow(Priority.ALWAYS);
@@ -60,6 +53,7 @@ public class SampleController {
     
     @FXML
     private void visualizzaImpegni() {
+    	Studente studente = studenteService.getStudente();
         LocalDate data = dataPicker.getValue();
         if (data != null) {
             List<String> impegni = studente.getImpegni(data);
@@ -80,6 +74,7 @@ public class SampleController {
     
     @FXML
     private void aggiungiImpegno() {
+    	Studente studente = studenteService.getStudente();
         LocalDate data = dataPicker.getValue();
         String impegno = impegnoTextField.getText();
         if (data != null && !impegno.isEmpty()) {

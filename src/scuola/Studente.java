@@ -12,13 +12,14 @@ public class Studente extends Persona {
     
     private Map<String,List<Voto>> voti;
     private Double mediaGenerale;
-    private Classe classe;
+  
  
     
     
     public Studente(String nome, String cognome, String indirizzo, String codiceFiscale, LocalDate dataNascita,Classe classe) {
         super(nome, cognome, indirizzo, codiceFiscale, dataNascita,classe);
-       
+        this.voti = new HashMap<>();
+        classe.aggiungiStudente(this);
     } 
 
 
