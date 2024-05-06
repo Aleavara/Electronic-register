@@ -113,4 +113,16 @@ public int getnMatricola() {
 public void setnMatricola(int nMatricola) {
 	this.nMatricola = nMatricola;
 }
+
+public void setCalendario(LocalDate data) {
+    // Ottieni il numero di giorni nel mese specificato dalla data
+    int giorniMese = data.lengthOfMonth();
+
+    // Popola il calendario con i giorni del mese e aggiorna gli impegni esistenti
+    for (int giorno = 1; giorno <= giorniMese; giorno++) {
+        LocalDate dataGiorno = LocalDate.of(data.getYear(), data.getMonth(), giorno);
+        List<String> impegniGiorno = calendario.getOrDefault(dataGiorno, new ArrayList<>());
+        calendario.put(dataGiorno, impegniGiorno);
+    }
+}
 }

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StudentDashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StudentDashboardController" stylesheets="application/student_dashboard.css">
    <children>
       <Text layoutX="31.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La tua Media: " wrappingWidth="112.21630859375">
          <font>
@@ -29,15 +29,14 @@
          </font>
       </Text>
       <!-- TextArea per visualizzare i prossimi compiti assegnati -->
-      <TextArea fx:id="compitiAssegnatiTextArea" layoutX="31.0" layoutY="100.0" prefHeight="200.0" prefWidth="250.0" wrapText="true" />
-      <!-- Etichetta per i prossimi impegni -->
+<TextArea fx:id="compitiAssegnatiTextArea" layoutX="31.0" layoutY="100.0" prefHeight="200.0" prefWidth="250.0" wrapText="true" styleClass="text-area-rounded" />      <!-- Etichetta per i prossimi impegni -->
       <Text layoutX="321.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prossimi impegni:">
          <font>
             <Font name="Cochin" size="13.0" />
          </font>
       </Text>
       <!-- TextArea per visualizzare i prossimi impegni -->
-      <TextArea fx:id="impegniTextArea" editable="false" layoutX="321.0" layoutY="100.0" prefHeight="200.0" prefWidth="250.0" wrapText="true" />
+<TextArea fx:id="impegniTextArea" editable="false" layoutX="321.0" layoutY="100.0" prefHeight="200.0" prefWidth="250.0" wrapText="true" styleClass="text-area-rounded" />
       <!-- Bottone per passare alla nuova scena -->
       <Button fx:id="button" layoutX="418.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="27.0" prefWidth="152.0" text="Visualizza e aggiungi" textFill="#8a2727">
          <font>

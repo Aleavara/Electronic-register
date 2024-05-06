@@ -122,6 +122,22 @@ public class Classe {
 	public String toString() {
 		return this.getSezione();
 	}
+	
+	public void impostaOraProfessore(int giorno, int ora, Professore professore) {
+	    if (giorno >= 0 && giorno < 6 && ora >= 0 && ora < 10) {
+	        this.orarioProf[giorno][ora] = professore;
+	    } else {
+	        System.out.println("Giorno o ora non validi.");
+	    }
+	}
+	
+    public String[][] getOrarioMaterie() {
+        return orarioMaterie;
+    }
+
+    public void setOrarioMaterie(String[][] orarioMaterie) {
+        this.orarioMaterie = orarioMaterie;
+    }
 
  
 }

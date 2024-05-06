@@ -1,0 +1,22 @@
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalendarioStudController">
+    <!-- Intestazione con nome del mese -->
+    <HBox GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="CENTER">
+        <Button text="a" onAction="#mostraMesePrecedente" />
+        <Label fx:id="lblNomeMese" text="NomeMese" />
+        <Button text=">" onAction="#mostraMeseSuccessivo" />
+    </HBox>
+    <!-- Griglia per visualizzare i giorni del mese -->
+    <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="CENTER">
+        <GridPane fx:id="gridCalendario" hgap="5" vgap="5">
+            <!-- Qui verranno inseriti i giorni del mese -->
+        </GridPane>
+    </VBox>
+</GridPane>

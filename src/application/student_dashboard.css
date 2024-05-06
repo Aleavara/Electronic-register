@@ -1,0 +1,12 @@
+.text-area-rounded {
+    -fx-background-radius: 10px; /* Riduci il raggio per un effetto di stondamento meno pronunciato */
+    -fx-border-radius: 10px; /* Aggiungi anche il bordo stondato */
+    -fx-border-color: #e0cc55; /* Colore del bordo blu */
+    -fx-border-width: 1px; /* Spessore del bordo */
+}
+.anchor-pane {
+    -fx-background-color: #0000FF; /* Colore blu */
+}
+.root {
+    -fx-background-color: linear-gradient(to bottom, #0000FF, #FFFFFF); /* Sfondo sfumato da blu a bianco */
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ClasseViewController">
+    <top>
+        <Label fx:id="classeLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    </top>
+    <center>
+        <VBox spacing="10">
+            <BorderPane>
+                <top>
+                    <Label fx:id="bachecaLabel" text="Bacheca" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                </top>
+                <center>
+                    <VBox fx:id="bachecaVBox" />
+                </center>
+            </BorderPane>
+            <BorderPane>
+                <top>
+                    <Label fx:id="compitiLabel" text="Compiti Assegnati" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                </top>
+                <center>
+                    <VBox fx:id="compitiVBox" />
+                </center>
+            </BorderPane>
+            <BorderPane>
+                <top>
+                    <Label fx:id="promemoriaLabel" text="Promemoria" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                </top>
+                <center>
+                    <VBox fx:id="promemoriaVBox" />
+                </center>
+            </BorderPane>
+        </VBox>
+    </center>
+</BorderPane>

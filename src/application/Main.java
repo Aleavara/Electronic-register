@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import scuola.Classe;
 import scuola.GestoreCredenziali;
@@ -29,10 +31,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
        primaryStage = stage;
-
-
-      
-
        
         createLoginScene();
 
@@ -61,14 +59,15 @@ public class Main extends Application {
     private void showSegreteriaDashboard(Segreteria segreteria) {
         try {
         	
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/segreteria1_dashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/segreteria_dashboardIniziale.fxml"));
            
             Parent root = loader.load();
         	
-            SegreteriaDashboardController controller = loader.getController();
+            //SegreteriaDashboardController controller = loader.getController();
         
-           controller.setSegreteria(segreteria);
-           controller.faccioIo();
+            SegreteriaDashboardControllerIniziale controller = loader.getController();
+        //   controller.setSegreteria(segreteria);
+        //   controller.faccioIo();
     
             Scene SegreteriaScene = new Scene(root);
             primaryStage.setScene(SegreteriaScene);
@@ -97,40 +96,77 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+    private void showClasseDashboard(Classe classe) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/class_dashboard.fxml"));
+            Parent root = loader.load();
+
+            ClasseViewController controller = loader.getController();
+            controller.setClasse(classe); // Imposta la classe nel controller
+          
+            controller.updateLabels(); // Aggiorna le etichette con i dati della classe
+
+            Scene classeScene = new Scene(root);
+            primaryStage.setScene(classeScene);
+            primaryStage.setTitle("Dashboard Classe");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }	
+    }
 
     private void createLoginScene() {
         GridPane loginGrid = new GridPane();
         loginGrid.setHgap(10);
         loginGrid.setVgap(10);
-
+        loginGrid.setStyle("-fx-background-color: linear-gradient(#e0cc55, #e0b055); -fx-padding: 20px;");
+        
         TextField usernameField = new TextField();
         PasswordField passwordField = new PasswordField();
 
         Label usernameLabel = new Label("Username:");
+        usernameLabel.setStyle("-fx-font-weight: bold;");
+
         Label passwordLabel = new Label("Password:");
+        passwordLabel.setStyle("-fx-font-weight: bold;");
+        Font comicSansFont = Font.font("Comic Sans MS", 12);
+        usernameField.setFont(comicSansFont);
+        passwordField.setFont(comicSansFont);
+        usernameLabel.setFont(comicSansFont); // Correzione qui
+        passwordLabel.setFont(comicSansFont); // Correzione qui
 
         Button loginButton = new Button("Login");
+        loginButton.setStyle("-fx-background-color: #c28823; -fx-text-fill: white; -fx-font-weight: bold;");
         loginButton.setOnAction(e -> {
             String username = usernameField.getText();
             String password = passwordField.getText();
 
             // Effettua l'autenticazione
             if (authenticate(username, password)) {
-               
                 showSceneForUser(username);
             } else {
                 showAlert(Alert.AlertType.ERROR, "Errore di autenticazione", "Credenziali non valide.");
             }
         });
 
+        // Applica lo stile per arrotondare i bordi direttamente nel codice
+        usernameField.setStyle("-fx-background-radius: 10px;");
+        passwordField.setStyle("-fx-background-radius: 10px;");
+
         loginGrid.add(usernameLabel, 0, 0);
         loginGrid.add(usernameField, 1, 0);
         loginGrid.add(passwordLabel, 0, 1);
         loginGrid.add(passwordField, 1, 1);
         loginGrid.add(loginButton, 1, 2);
+        
+        // Centra il pulsante nel GridPane
+        loginGrid.setHalignment(loginButton, HPos.CENTER);
 
-        loginScene = new Scene(loginGrid, 300, 200);
+        loginScene = new Scene(loginGrid, 300, 150);
+        primaryStage.setResizable(false);
     }
+
+
 
     private boolean authenticate(String username, String password) {
 
@@ -150,7 +186,7 @@ public class Main extends Application {
           
            showStudentDashboard(studente);
         } else if (username.startsWith("P")) { // Professore
-        	Professore professore = new Professore("Nome", "Cognome", "Indirizzo", "CodiceFiscale", LocalDate.now(), new Classe("Classe"));
+        	Professore professore = new Professore("Nome", "Cognome", "Indirizzo", "CodiceFiscale", LocalDate.now(), new Classe("Classe"),"storia");
             showProfessorDashboard(professore);
         } else if (username.startsWith("xdvr")) { // Segreteria
         
@@ -158,7 +194,17 @@ public class Main extends Application {
             Classe classeg = new Classe("4c");
            
            showSegreteriaDashboard(seg);
-        } else {
+        }
+        else if(username.startsWith("ir")){
+        	Classe classe = new Classe("4AIF");
+        	LocalDate dta=  LocalDate.of(2024,05,07);
+        	classe.aggiungiCompito(dta, "studiare mate");
+        	classe.aggiungiInBacheca(dta, "soijdbg");
+        	classe.aggiungiInBacheca(dta, "dhft");
+        	showClasseDashboard(classe);
+        }
+        		
+        		else {
             showAlert(Alert.AlertType.ERROR, "Errore", "Tipo di utente non riconosciuto.");
         }
     }

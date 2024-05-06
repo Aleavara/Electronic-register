@@ -10,9 +10,11 @@ public class Professore extends Persona{
 
 	
 	public Professore(String nome, String cognome, String indirizzo, String codiceFiscale, LocalDate dataNascita,
-			Classe classe) {
+			Classe classe,String materia) {
 		super(nome, cognome, indirizzo, codiceFiscale, dataNascita, classe);
+		this.materia=materia;
 		classe.aggiungiProfessore(this);
+		
 		
 	}
 

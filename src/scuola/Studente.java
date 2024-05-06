@@ -54,6 +54,8 @@ public class Studente extends Persona {
 	        
 	        return classe.getOrarioProf()[giorno][ora - 8]; 
 	    }
+	 
+	 
 
 	
 	
