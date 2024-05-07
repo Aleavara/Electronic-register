@@ -113,8 +113,16 @@ public class StudentDashboardController {
     private void handleButtonClick(ActionEvent event) {
         try {
             // Carica la nuova scena dal file FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/sample.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/calendarioAmm.fxml"));
             Parent root = loader.load();
+            
+            // Ottieni il controller della nuova scena
+            CalendarController controller = loader.getController();
+            LocalDate date = LocalDate.of(2024, 5, 10);
+            this.studenteService.getStudente().aggiungiImpegno(date, "uagliò");
+            // Passa lo studente al controller
+            controller.setStudente(studenteService.getStudente());
+            controller.drawCalendar();
             
             // Crea una nuova finestra per la nuova scena
             Stage stage = new Stage();

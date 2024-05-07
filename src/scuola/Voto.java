@@ -36,4 +36,10 @@ public void setProfInserente(Professore profInserente) {
 	this.profInserente = profInserente;
 }
 
+public boolean equals(Voto v) {
+	if(this.voto.equals(v.getVoto())&&this.dataInserimento.equals(v.dataInserimento))
+		return true;
+	return false;
+}
+
 }

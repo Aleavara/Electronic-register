@@ -1,48 +1,75 @@
 package application;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import scuola.Classe;
+import scuola.OrarioRow;
 import scuola.Professore;
 
 public class ProfessorDashboardController {
-    
     @FXML
-    private Label nameLabel;
-    
+    private Label welcomeLabel;
+
     @FXML
-    private Label surnameLabel;
-    
+    private Label matricolaLabel;
+
     @FXML
-    private Label addressLabel;
-    
+    private TableView<OrarioRow> orarioTable;
+
     @FXML
-    private Label codiceFiscaleLabel;
-    
+    private TableColumn<OrarioRow, String> lunediColumn;
+
     @FXML
-    private Label birthDateLabel;
-    
+    private TableColumn<OrarioRow, String> martediColumn;
+
     @FXML
-    private Label materiaLabel;
-    
+    private TableColumn<OrarioRow, String> mercolediColumn;
+
     @FXML
-    private Label usernameLabel;
+    private TableColumn<OrarioRow, String> giovediColumn;
+
+    @FXML
+    private TableColumn<OrarioRow, String> venerdiColumn;
+
+    @FXML
+    private TableColumn<OrarioRow, String> sabatoColumn;
 
     private Professore professore;
-    
-    public ProfessorDashboardController() {
-        // Costruttore vuoto richiesto da FXMLLoader
+
+    public void setProfessore(Professore professore) {
+        this.professore = professore;
+        updateView();
     }
 
-    //public void setProfessore(Professore professore) {
-     //   this.professore = professore;
-        // Mostra i dati del professore nella dashboard
-     //   nameLabel.setText(professore.getNome());
-      //  surnameLabel.setText(professore.getCognome());
-      //  addressLabel.setText(professore.getIndirizzo());
-      //  codiceFiscaleLabel.setText(professore.getCodiceFiscale());
-      //  birthDateLabel.setText(professore.getDataNascita().toString());
-     //   materiaLabel.setText(professore.getMateria());
-     //   usernameLabel.setText(professore.getUsername());
-   // }
-}
+    private void updateView() {
+        welcomeLabel.setText("Bentornato Prof " + professore.getNome() + "!");
+        matricolaLabel.setText("Numero Matricola: " + professore.getnMatricola());
 
+        Classe[][] orarioSettimanale = professore.getOrarioSettimanale();
+        ObservableList<OrarioRow> data = FXCollections.observableArrayList();
+
+        for (int ora = 0; ora < 6; ora++) {
+            OrarioRow row = new OrarioRow();
+            for (int giorno = 0; giorno < 7; giorno++) {
+                Classe classe = orarioSettimanale[giorno][ora];
+                if (classe != null) {
+                    row.setGiorno(giorno, classe.getSezione());
+                }
+            }
+            data.add(row);
+        }
+
+        lunediColumn.setCellValueFactory(cellData -> cellData.getValue().giornoProperty(0));
+        martediColumn.setCellValueFactory(cellData -> cellData.getValue().giornoProperty(1));
+        mercolediColumn.setCellValueFactory(cellData -> cellData.getValue().giornoProperty(2));
+        giovediColumn.setCellValueFactory(cellData -> cellData.getValue().giornoProperty(3));
+        venerdiColumn.setCellValueFactory(cellData -> cellData.getValue().giornoProperty(4));
+        sabatoColumn.setCellValueFactory(cellData -> cellData.getValue().giornoProperty(5));
+
+        orarioTable.setItems(data);
+    }
+}

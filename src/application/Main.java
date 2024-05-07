@@ -2,6 +2,8 @@ package application;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -45,7 +47,7 @@ public class Main extends Application {
             Parent root = loader.load();
 
             ProfessorDashboardController controller = loader.getController();
-           // controller.setProfessore(professore);
+       controller.setProfessore(professore);
 
             Scene professorScene = new Scene(root);
             primaryStage.setScene(professorScene);
@@ -186,7 +188,16 @@ public class Main extends Application {
           
            showStudentDashboard(studente);
         } else if (username.startsWith("P")) { // Professore
-        	Professore professore = new Professore("Nome", "Cognome", "Indirizzo", "CodiceFiscale", LocalDate.now(), new Classe("Classe"),"storia");
+            Classe classe1 = new Classe("1A" );
+            Classe classe2 = new Classe("2B");
+            Classe classe3 = new Classe("3C");
+
+            // Aggiunta delle classi all'ArrayList
+            List<Classe> listaClassi = new ArrayList<>();
+            listaClassi.add(classe1);
+            listaClassi.add(classe2);
+            listaClassi.add(classe3);
+        	Professore professore = new Professore("Nome", "Cognome", "Indirizzo", "CodiceFiscale", LocalDate.now(),"Storia",listaClassi );
             showProfessorDashboard(professore);
         } else if (username.startsWith("xdvr")) { // Segreteria
         

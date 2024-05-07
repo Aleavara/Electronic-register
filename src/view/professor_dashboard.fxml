@@ -1,11 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="application.ProfessorDashboardController">
+    <Label fx:id="welcomeLabel" layoutX="20" layoutY="20" />
+    <Label fx:id="matricolaLabel" layoutX="20" layoutY="60" />
+    <TableView fx:id="orarioTable" layoutX="20" layoutY="100">
+        <columns>
+            <TableColumn fx:id="lunediColumn" text="Lunedì">
+                <cellValueFactory>
+                    <PropertyValueFactory property="lunedi" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="martediColumn" text="Martedì">
+                <cellValueFactory>
+                    <PropertyValueFactory property="martedi" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="mercolediColumn" text="Mercoledì">
+                <cellValueFactory>
+                    <PropertyValueFactory property="mercoledi" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="giovediColumn" text="Giovedì">
+                <cellValueFactory>
+                    <PropertyValueFactory property="giovedi" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="venerdiColumn" text="Venerdì">
+                <cellValueFactory>
+                    <PropertyValueFactory property="venerdi" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="sabatoColumn" text="Sabato">
+                <cellValueFactory>
+                    <PropertyValueFactory property="sabato" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+</AnchorPane>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProfessorDashboardController">
-   <children>
-      <Label layoutX="171.0" layoutY="127.0" text="abbelli" />
-   </children>
-</Pane>
+
+
+
+
+
+

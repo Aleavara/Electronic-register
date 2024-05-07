@@ -7,16 +7,34 @@ import java.util.Map;
 
 public class Professore extends Persona{
 	private String materia;
+	private List<Classe> classi;
+    private Classe[][] orarioSettimanale; // Matrice 7x6 per gestire le classi durante la settimana
 
 	
-	public Professore(String nome, String cognome, String indirizzo, String codiceFiscale, LocalDate dataNascita,
-			Classe classe,String materia) {
-		super(nome, cognome, indirizzo, codiceFiscale, dataNascita, classe);
-		this.materia=materia;
-		classe.aggiungiProfessore(this);
-		
-		
-	}
+    public Professore(String nome, String cognome, String indirizzo, String codiceFiscale, LocalDate dataNascita,
+            String materia, List<Classe> classi) {
+super(nome, cognome, indirizzo, codiceFiscale, dataNascita);
+this.materia = materia;
+this.classi = classi;
+this.orarioSettimanale = new Classe[7][6];
+orarioSettimanale[1][2]=new Classe("f");
+
+}
+    public void aggiungiClasse(int giorno, int ora, Classe classe) {
+        if (giorno < 0 || giorno > 6 || ora < 0 || ora > 5) {
+            System.out.println("Giorno o ora non validi.");
+            return;
+        }
+        orarioSettimanale[giorno][ora] = classe;
+    }
+
+    public void rimuoviClasse(int giorno, int ora) {
+        if (giorno < 0 || giorno > 6 || ora < 0 || ora > 5) {
+            System.out.println("Giorno o ora non validi.");
+            return;
+        }
+        orarioSettimanale[giorno][ora] = null;
+    }
 
 	public String getMateria() {
 		return materia;
@@ -48,6 +66,18 @@ public class Professore extends Persona{
 
         votiData.add(new Voto(data, voto, this));
         System.out.println("Voto aggiunto con successo per lo studente " + studente.getNome() + " " + studente.getCognome());
+    }
+
+	public List<Classe> getClassi() {
+		return classi;
+	}
+
+	public void setClassi(List<Classe> classi) {
+		this.classi = classi;
+	}
+	
+	public Classe[][] getOrarioSettimanale() {
+        return orarioSettimanale;
     }
 
 

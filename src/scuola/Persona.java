@@ -1,6 +1,8 @@
 package scuola;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,17 +14,16 @@ private String cognome;
 private String indirizzo;
 private String codiceFiscale;
 private LocalDate dataNascita;
-private Classe classe;
+
 private static int numMatricola = 0;
 private int nMatricola;
 private Map<LocalDate, List<String>> calendario;
-public Persona(String nome,String cognome,String indirizzo,String codiceFiscale,LocalDate dataNascita,Classe classe) {
+public Persona(String nome,String cognome,String indirizzo,String codiceFiscale,LocalDate dataNascita) {
 	this.setNome(nome);
 	this.setCognome(cognome);
 	this.setIndirizzo(indirizzo);
 	this.setCodiceFiscale(codiceFiscale);
 	this.setDataNascita(dataNascita);
-	this.setClasse(classe);
 	this.setnMatricola(numMatricola);
 	numMatricola++;
 	this.calendario = new HashMap<>();
@@ -95,14 +96,7 @@ public void setDataNascita(LocalDate dataNascita) {
 }
 
 
-public Classe getClasse() {
-	return classe;
-}
 
-
-public void setClasse(Classe classe) {
-	this.classe = classe;
-}
 
 
 public int getnMatricola() {
@@ -124,5 +118,19 @@ public void setCalendario(LocalDate data) {
         List<String> impegniGiorno = calendario.getOrDefault(dataGiorno, new ArrayList<>());
         calendario.put(dataGiorno, impegniGiorno);
     }
+}
+
+public void aggiungiImpegno(int giornoSettimana, String impegno) {
+    // Ottieni la data corrente
+    LocalDate dataCorrente = LocalDate.now();
+
+    // Trova il giorno della settimana corrispondente a quello specificato
+    LocalDate prossimoGiorno = dataCorrente.with(TemporalAdjusters.nextOrSame(DayOfWeek.of(giornoSettimana)));
+
+    // Aggiungi l'impegno per il prossimo giorno corrispondente
+    aggiungiImpegno(prossimoGiorno, impegno);
+}
+public Map<LocalDate, List<String>> getCalendario() {
+    return calendario;
 }
 }
