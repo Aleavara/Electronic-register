@@ -42,4 +42,6 @@ public class Segreteria {
 	public String toString() {
 		return "ciao sono la segreteria";
 	}
+	
+	
 }

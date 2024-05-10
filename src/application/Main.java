@@ -212,7 +212,23 @@ public class Main extends Application {
         	classe.aggiungiCompito(dta, "studiare mate");
         	classe.aggiungiInBacheca(dta, "soijdbg");
         	classe.aggiungiInBacheca(dta, "dhft");
-        	showClasseDashboard(classe);
+        	
+        	Classe classe1 = new Classe("1A" );
+            Classe classe2 = new Classe("2B");
+            Classe classe3 = new Classe("3C");
+
+            // Aggiunta delle classi all'ArrayList
+            List<Classe> listaClassi = new ArrayList<>();
+            listaClassi.add(classe1);
+            listaClassi.add(classe2);
+            listaClassi.add(classe3);
+        	Professore professore = new Professore("Nome", "Cognome", "Indirizzo", "CodiceFiscale", LocalDate.now(),"Storia",listaClassi );
+            classe.aggiungiProfessore(professore);
+            classe.aggiungiPromemoria(dta, "jrevod");
+
+            // Imposta il professore alla prima ora del martedì
+            classe.impostaOraProfessore(1, 0, professore);
+            showClasseDashboard(classe);
         }
         		
         		else {

@@ -1,9 +1,21 @@
 package application;
-
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import scuola.Classe;
+import scuola.Professore;
+import scuola.Studente;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
 
 public class ClasseViewController {
     @FXML
@@ -16,81 +28,122 @@ public class ClasseViewController {
     private VBox promemoriaVBox;
 
     @FXML
+    private ChoiceBox<String> categoryChoiceBox;
+
+    @FXML
+    private DatePicker datePicker;
+
+    @FXML
+    private TextField inputTextField;
+
+    @FXML
     private Label classeLabel;
+    @FXML
+    private VBox studentiVBox;
 
     @FXML
-    private Label bachecaLabel;
-
-    @FXML
-    private Label compitiLabel;
-
-    @FXML
-    private Label promemoriaLabel;
-
-   // @FXML
-   // private Label orarioLabel;
+    private VBox professoriVBox;
 
     private Classe classe;
 
     public void initialize() {
-        // Vuoto
+        // Imposta le opzioni per la scelta della categoria
+        categoryChoiceBox.setItems(FXCollections.observableArrayList("bacheca", "compiti assegnati", "promemoria"));
     }
 
     public void setClasse(Classe classe) {
         this.classe = classe;
-    }
-
-    public void faccioIo(Classe classe) {
-        if (this.classe == null) {
-            System.out.println("era vuota");
-            this.classe = classe;
-        }
-        System.out.println(this.classe);
+        updateLabels();
     }
 
     public void updateLabels() {
-        if (this.classe != null)
-            System.out.println("non è nulla");
-        // Visualizza il nome della classe
-        classeLabel.setText("Classe: " + classe.getSezione());
+        if (this.classe != null) {
+            // Visualizza il nome della classe
+            classeLabel.setText("Classe: " + classe.getSezione());
 
-        // Visualizza la bacheca
-        StringBuilder bachecaText = new StringBuilder("Bacheca:\n");
-        classe.getBacheca().forEach((data, note) -> {
-            bachecaText.append(data.toString()).append(":\n");
-            note.forEach(nota -> bachecaText.append("- ").append(nota).append("\n"));
-        });
-        bachecaLabel.setText(bachecaText.toString());
+            // Popola la bacheca
+            populateItemsWithDeleteButton(bachecaVBox, classe.getBacheca());
 
-        // Visualizza i compiti assegnati
-        StringBuilder compitiText = new StringBuilder("Compiti Assegnati:\n");
-        classe.getCompitiAssegnati().forEach((data, compiti) -> {
-            compitiText.append(data.toString()).append(":\n");
-            compiti.forEach(compito -> compitiText.append("- ").append(compito).append("\n"));
-        });
-        compitiLabel.setText(compitiText.toString());
+            // Popola i compiti assegnati
+            populateItemsWithDeleteButton(compitiVBox, classe.getCompitiAssegnati());
 
-        // Visualizza i promemoria
-        StringBuilder promemoriaText = new StringBuilder("Promemoria:\n");
-        classe.getPromemoria().forEach((data, promemorie) -> {
-            promemoriaText.append(data.toString()).append(":\n");
-            promemorie.forEach(promemoria -> promemoriaText.append("- ").append(promemoria).append("\n"));
-        });
-        promemoriaLabel.setText(promemoriaText.toString());
+            // Popola i promemoria
+            populateItemsWithDeleteButton(promemoriaVBox, classe.getPromemoria());
 
-        // Visualizza l'orario della classe
-        // Nota: Assumo che l'orario della classe sia memorizzato in una struttura di dati adeguata, ad esempio una matrice
-        // di stringhe o un'altra classe dedicata.
-        // In questo esempio, supponiamo che l'orario sia memorizzato nella variabile orarioMaterie della classe Classe.
-        StringBuilder orarioText = new StringBuilder("Orario:\n");
-        for (int giorno = 0; giorno < 6; giorno++) {
-            for (int ora = 0; ora < 10; ora++) {
-                if (classe.getOrarioMaterie()[giorno][ora] != null) {
-                    orarioText.append("Giorno ").append(giorno).append(", Ora ").append(ora).append(": ")
-                            .append(classe.getOrarioMaterie()[giorno][ora]).append("\n");
-                }
-            }
+            // Popola la lista dei professori
+            populateProfessoriList();
+
+            // Popola la lista degli studenti
+            populateStudentiList();
         }
-      //  orarioLabel.setText(orarioText.toString());
+    }
+
+    private void populateItemsWithDeleteButton(VBox container, Map<LocalDate, List<String>> items) {
+        container.getChildren().clear();
+        items.forEach((data, list) -> {
+            VBox entryBox = new VBox();
+            Label dateLabel = new Label(data.toString());
+            entryBox.getChildren().add(dateLabel);
+            list.forEach(item -> {
+                HBox itemBox = new HBox();
+                Label itemLabel = new Label(item);
+                Button deleteButton = new Button("Elimina");
+                deleteButton.setOnAction(event -> {
+                    // Rimuovi l'elemento dalla mappa
+                    list.remove(item);
+                    // Rimuovi la data se la lista è vuota
+                    if (list.isEmpty()) {
+                        container.getChildren().remove(entryBox);
+                    }
+                    // Aggiorna l'interfaccia utente
+                    updateLabels();
+                });
+                itemBox.getChildren().addAll(itemLabel, deleteButton);
+                entryBox.getChildren().add(itemBox);
+            });
+            container.getChildren().add(entryBox);
+        });
+    }
+
+    @FXML
+    private void populateProfessoriList() {
+        professoriVBox.getChildren().clear();
+        List<Professore> professori = classe.getProfessori();
+        professori.forEach(professore -> {
+            Label professoreLabel = new Label(professore.getNome() + " " + professore.getCognome());
+            professoriVBox.getChildren().add(professoreLabel);
+        });
+    }
+    @FXML
+    private void populateStudentiList() {
+        studentiVBox.getChildren().clear();
+        List<Studente> studenti = classe.getStudenti();
+        studenti.forEach(studente -> {
+            Label studenteLabel = new Label(studente.getNome() + " " + studente.getCognome());
+            studentiVBox.getChildren().add(studenteLabel);
+        });
+    }
+
+    @FXML
+    private void aggiungiElemento(ActionEvent event) {
+        LocalDate selectedDate = datePicker.getValue();
+        String category = categoryChoiceBox.getValue();
+        String element = inputTextField.getText();
+        
+        if (selectedDate != null && category != null && !element.isEmpty()) {
+            switch (category) {
+                case "bacheca":
+                    classe.aggiungiInBacheca(selectedDate, element);
+                    break;
+                case "compiti assegnati":
+                    classe.aggiungiCompito(selectedDate, element);
+                    break;
+                case "promemoria":
+                    classe.aggiungiPromemoria(selectedDate, element);
+                    break;
+            }
+            updateLabels(); // Aggiorna l'interfaccia utente dopo l'aggiunta
+        }
     }
 }
+

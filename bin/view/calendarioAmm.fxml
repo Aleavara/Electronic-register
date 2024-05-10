@@ -24,6 +24,8 @@
             </font>
          </Text>
          <Button mnemonicParsing="false" onAction="#forwardOneMonth" text="&gt;" />
+         <!-- Aggiungi il pulsante "Aggiungi impegni" -->
+         <Button text="Aggiungi impegni" onAction="#aggiungiImpegni" />
       </children>
    </HBox>
    <HBox alignment="CENTER" layoutX="14.0" layoutY="78.0" prefHeight="44.0" prefWidth="716.0" spacing="88.75">
