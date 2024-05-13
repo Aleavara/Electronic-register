@@ -1,11 +1,14 @@
 package scuola;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Voto {
+public class Voto implements Serializable{
 private LocalDate dataInserimento;
 private Double voto;
 private Professore profInserente;
+private static final long serialVersionUID = 1;
+
 public Voto(LocalDate data,Double v,Professore prof) {
 	this.setDataInserimento(data);
 	this.setVoto(v);

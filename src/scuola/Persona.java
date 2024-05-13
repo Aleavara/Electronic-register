@@ -1,5 +1,6 @@
 package scuola;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
@@ -8,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Persona {
+public class Persona implements Serializable{
 private String nome;
 private String cognome;
 private String indirizzo;
@@ -18,13 +19,17 @@ private LocalDate dataNascita;
 private static int numMatricola = 0;
 private int nMatricola;
 private Map<LocalDate, List<String>> calendario;
+private static final long serialVersionUID = 1;
+public Persona() {
+
+}
 public Persona(String nome,String cognome,String indirizzo,String codiceFiscale,LocalDate dataNascita) {
 	this.setNome(nome);
 	this.setCognome(cognome);
 	this.setIndirizzo(indirizzo);
 	this.setCodiceFiscale(codiceFiscale);
 	this.setDataNascita(dataNascita);
-	this.setnMatricola(numMatricola);
+	this.setnMatricola();
 	numMatricola++;
 	this.calendario = new HashMap<>();
 }
@@ -104,8 +109,9 @@ public int getnMatricola() {
 }
 
 
-public void setnMatricola(int nMatricola) {
+public void setnMatricola() {
 	this.nMatricola = nMatricola;
+	nMatricola++;
 }
 
 public void setCalendario(LocalDate data) {

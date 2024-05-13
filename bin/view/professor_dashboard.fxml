@@ -5,12 +5,11 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-    xmlns:fx="http://javafx.com/fxml"
-    fx:controller="application.ProfessorDashboardController">
+
+<AnchorPane prefHeight="397.0" prefWidth="504.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProfessorDashboardController">
     <Label fx:id="welcomeLabel" layoutX="20" layoutY="20" />
     <Label fx:id="matricolaLabel" layoutX="20" layoutY="60" />
-    <TableView fx:id="orarioTable" layoutX="20" layoutY="100">
+    <TableView fx:id="orarioTable" layoutX="20" layoutY="100" prefHeight="400.0" prefWidth="484.0">
         <columns>
             <TableColumn fx:id="lunediColumn" text="Lunedì">
                 <cellValueFactory>
@@ -45,11 +44,3 @@
         </columns>
     </TableView>
 </AnchorPane>
-
-
-
-
-
-
-
-

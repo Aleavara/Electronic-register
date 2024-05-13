@@ -46,7 +46,7 @@ public class ProfessorDashboardController {
     }
 
     private void updateView() {
-        welcomeLabel.setText("Bentornato Prof " + professore.getNome() + "!");
+        welcomeLabel.setText("Docente: " + professore.getNome() + professore.getCognome());
         matricolaLabel.setText("Numero Matricola: " + professore.getnMatricola());
 
         Classe[][] orarioSettimanale = professore.getOrarioSettimanale();

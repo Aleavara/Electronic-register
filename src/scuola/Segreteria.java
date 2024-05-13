@@ -1,16 +1,20 @@
 package scuola;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Segreteria {
+public class Segreteria implements Serializable{
 
     private static GestoreCredenziali gestoreCredenziali=new GestoreCredenziali();
     private static List<Classe> listaClassi = new ArrayList<>();
+    private static final long serialVersionUID = 1;
 
     public Segreteria() {
-    	
+        listaClassi = new ArrayList<>(Segreteria.getListaClassi());
+        GestoreCredenziali.aggiungiSegreteria(this);
+
 	}
     public Segreteria(Segreteria segreteriaOriginale) {
         listaClassi = new ArrayList<>(Segreteria.getListaClassi());

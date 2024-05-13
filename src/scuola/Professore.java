@@ -1,14 +1,16 @@
 package scuola;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Professore extends Persona{
+public class Professore extends Persona implements Serializable{
 	private String materia;
 	private List<Classe> classi;
     private Classe[][] orarioSettimanale; // Matrice 7x6 per gestire le classi durante la settimana
+    private static final long serialVersionUID = 1;
 
 	
     public Professore(String nome, String cognome, String indirizzo, String codiceFiscale, LocalDate dataNascita,
@@ -18,6 +20,8 @@ this.materia = materia;
 this.classi = classi;
 this.orarioSettimanale = new Classe[7][6];
 orarioSettimanale[1][2]=new Classe("f");
+orarioSettimanale[2][1]= new Classe("3b");
+GestoreCredenziali.aggiungiProfessore(this);
 
 }
     public void aggiungiClasse(int giorno, int ora, Classe classe) {
@@ -79,6 +83,10 @@ orarioSettimanale[1][2]=new Classe("f");
 	public Classe[][] getOrarioSettimanale() {
         return orarioSettimanale;
     }
+	
+	public String toString() {
+		return "nome" + this.getNome();
+	}
 
 
 

@@ -1,18 +1,19 @@
 package scuola;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Classe {
+public class Classe implements Serializable{
     private String sezione;
     private Map<LocalDate, List<String>> bacheca;
     private Map<LocalDate, List<String>> compitiAssegnati;
     private Map<LocalDate, List<String>> promemoria;
     private List<Studente> studenti;
     private List<Professore> professori;
-
+    private static final long serialVersionUID = 1;
     private String[][] orarioMaterie;
     private Professore[][] orarioProf;
 

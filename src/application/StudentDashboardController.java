@@ -69,6 +69,7 @@ public class StudentDashboardController {
     // Metodo per aggiornare il riempimento della barra in base alla media generale dello studente
     private void aggiornaRiempimentoBarra() {
         Studente studente = studenteService.getStudente();
+        
         if (studente != null && studente.getMediaGenerale() != null) {
             double media = studente.getMediaGenerale();
             fillBar.setProgress(media / 10.0);
@@ -121,7 +122,7 @@ public class StudentDashboardController {
             LocalDate date = LocalDate.of(2024, 5, 10);
             this.studenteService.getStudente().aggiungiImpegno(date, "uagliò");
             // Passa lo studente al controller
-            controller.setStudente(studenteService.getStudente());
+            controller.setStudente(this.studenteService.getStudente());
             controller.drawCalendar();
             
             // Crea una nuova finestra per la nuova scena

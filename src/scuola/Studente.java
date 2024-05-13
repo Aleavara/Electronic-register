@@ -1,5 +1,6 @@
 package scuola;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -7,21 +8,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Studente extends Persona {
+public class Studente extends Persona implements Serializable {
     
     
     private Map<String,List<Voto>> voti;
     private Double mediaGenerale;
     private Classe classe;
+    private static final long serialVersionUID = 1;
   
  
     
-    
+    public Studente() {
+        this.setnMatricola();
+    }
     public Studente(String nome, String cognome, String indirizzo, String codiceFiscale, LocalDate dataNascita,Classe classe) {
         super(nome, cognome, indirizzo, codiceFiscale, dataNascita);
         this.classe=classe;
         this.voti = new HashMap<>();
         classe.aggiungiStudente(this);
+        GestoreCredenziali.aggiungiStudente(this);
     } 
 
     public Classe getClasse() {
@@ -64,6 +69,10 @@ public class Studente extends Persona {
 	        
 	        return classe.getOrarioProf()[giorno][ora - 8]; 
 	    }
+	 
+	 public String toString() {
+		 return "il mio nome è" + this.getNome();
+	 }
 	 
 	 
 

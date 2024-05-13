@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StudentDashboardController">
+   <children>
+      <Text layoutX="31.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Media" wrappingWidth="44.21630859375" />
+      <!-- Barra di riempimento per la media dello studente -->
+      <ProgressBar fx:id="fillBar" layoutX="31.0" layoutY="50.0" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+      <!-- Etichetta per i prossimi compiti assegnati -->
+      <Text layoutX="31.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prossimi compiti assegnati:" />
+      <!-- TextArea per visualizzare i prossimi compiti assegnati -->
+      <TextArea fx:id="compitiAssegnatiTextArea" layoutX="31.0" layoutY="100.0" prefHeight="200.0" prefWidth="500.0" wrapText="true" />
+      <Button layoutX="237.0" layoutY="207.0" mnemonicParsing="false" text="Button" />
+   </children>
+</AnchorPane>
