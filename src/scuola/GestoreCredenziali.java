@@ -9,17 +9,41 @@ import java.util.Map.Entry;
 public class GestoreCredenziali implements Serializable{
     private static Map<Studente, Credenziali> credenzialiStudenti;
     private static Map<Professore, Credenziali> credenzialiProf;
-    private static Map<Segreteria, Credenziali> credenzialiSegreteria;
+    private Credenziali credenzialiSeg;
     private  Map<Studente, Credenziali> credenzialiStudent=credenzialiStudenti;
     private  Map<Professore, Credenziali> credenzialProf=credenzialiProf;
-    private static Map<Segreteria, Credenziali> credenzialSegreteria= credenzialiSegreteria;
+ 
     private static final long serialVersionUID = 1;
 
     public GestoreCredenziali() {
         credenzialiStudenti = new HashMap<>();
         credenzialiProf = new HashMap<>();
-        credenzialiSegreteria = new HashMap<>();
+ 
+       
     }
+    public void setCredenzialiSegreteria(String username, String password) {
+        if (this.credenzialiSeg == null) {
+            this.credenzialiSeg = new Credenziali("xd" + username, password);
+        } else {
+            this.credenzialiSeg.setUsername("xd" +username);
+            this.credenzialiSeg.setPassword(password);
+        }
+    }
+
+
+    public Credenziali getCredenzialiSegreteria() {
+        return credenzialiSeg;
+    }
+
+    public boolean validaCredenzialiSegreteria(String username,String pw) {
+    	if(this.credenzialiSeg.getUsername().equals(username)&&this.credenzialiSeg.getPassword().equals(pw))
+    		return true;
+    				return false;
+    }
+    
+    
+
+
     
     public List<Credenziali> getCredenzialiStudent() {
         List<Credenziali> credenzialiStudentList = new ArrayList<>();
@@ -28,21 +52,20 @@ public class GestoreCredenziali implements Serializable{
         }
         return credenzialiStudentList;
     }
-
-    public static void setCredenzialiStudente(Studente studente, String username, String password) {
-        boolean credenzialiDuplicati = false;
-        for (Credenziali credenziali : credenzialiStudenti.values()) {
-            if (credenziali.getUsername().equals("s" + username) && credenziali.getPassword().equals(password)) {
-                credenzialiDuplicati = true;
-                break;
+    
+    public Professore validaCredenzialProf(String username, String password) {
+        for (Entry<Professore, Credenziali> entry : credenzialProf.entrySet()) {
+            Professore professore = entry.getKey();
+            Credenziali credenziali = entry.getValue();
+            if (credenziali.getUsername().equals(username) && credenziali.getPassword().equals(password)) {
+                return professore;
             }
         }
-        if (!credenzialiDuplicati) {
-            credenzialiStudenti.put(studente, new Credenziali("s" + username, password));
-        } else {
-            System.out.println("Credenziali duplicate: username e password già utilizzati.");
-        }
+        return null; 
     }
+
+
+
     
     public void setCredenzialiStudent(Studente studente, String username, String password) {
         boolean credenzialiDuplicati = false;
@@ -117,6 +140,8 @@ public class GestoreCredenziali implements Serializable{
         }
     }
 
+
+
     public static Credenziali getCredenzialiProfessore(Professore professore) {
         return credenzialiProf.get(professore);
     }
@@ -132,35 +157,10 @@ public class GestoreCredenziali implements Serializable{
         return null; 
     }
 
-    public static void setCredenzialiSegreteria(Segreteria segreteria, String username, String password) {
-        boolean credenzialiDuplicati = false;
-        for (Credenziali credenziali : credenzialiSegreteria.values()) {
-            if (credenziali.getUsername().equals("seg" + username) && credenziali.getPassword().equals(password)) {
-                credenzialiDuplicati = true;
-                break;
-            }
-        }
-        if (!credenzialiDuplicati) {
-            credenzialiSegreteria.put(segreteria, new Credenziali("xd" + username, password));
-        } else {
-            System.out.println("Credenziali duplicate: username e password già utilizzati.");
-        }
-    }
 
-    public static Credenziali getCredenzialiSegreteria(Segreteria segreteria) {
-        return credenzialiSegreteria.get(segreteria);
-    }
 
-    public static Segreteria validaCredenzialiSegreteria(String username, String password) {
-        for (Map.Entry<Segreteria, Credenziali> entry : credenzialiSegreteria.entrySet()) {
-            Segreteria segreteria = (Segreteria) entry.getKey();
-            Credenziali credenziali = entry.getValue();
-            if (credenziali.getUsername().equals(username) && credenziali.getPassword().equals(password)) {
-                return segreteria;
-            }
-        }
-        return null; 
-    }
+
+
     public static void aggiungiStudente(Studente studente) {
         if (credenzialiStudenti != null) {
             credenzialiStudenti.put(studente, new Credenziali("", "")); // Inizializza le credenziali con valori vuoti
@@ -177,13 +177,7 @@ public class GestoreCredenziali implements Serializable{
         }
     }
 
-    public static void aggiungiSegreteria(Segreteria segreteria) {
-        if (credenzialiSegreteria != null) {
-            credenzialiSegreteria.put(segreteria, new Credenziali("", "")); // Inizializza le credenziali con valori vuoti
-        } else {
-            System.err.println("La mappa credenzialiSegreteria non è stata inizializzata.");
-        }
-    }
+
     
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -208,6 +202,23 @@ public class GestoreCredenziali implements Serializable{
                          .append("\n");
         }
         
+       stringBuilder.append("\nCredenziali segreteria:\n");
+        stringBuilder.append("username: ").append(credenzialiSeg.getUsername()).append("\n password: ").append(credenzialiSeg.getPassword());        
+  
+        
         return stringBuilder.toString();
     }
+
+
+
+	public Credenziali getCredenzialiSeg() {
+		return credenzialiSeg;
+	}
+
+
+
+	public void setCredenzialiSeg(Credenziali credenzialiSeg) {
+		this.credenzialiSeg = credenzialiSeg;
+	}
+
 }

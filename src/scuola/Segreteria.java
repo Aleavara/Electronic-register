@@ -7,40 +7,52 @@ import java.util.List;
 
 public class Segreteria implements Serializable{
 
-    private static GestoreCredenziali gestoreCredenziali=new GestoreCredenziali();
-    private static List<Classe> listaClassi = new ArrayList<>();
-    private static final long serialVersionUID = 1;
+    private GestoreCredenziali gestoreCredenziali=new GestoreCredenziali();
+    private List<Classe> listaClassi = new ArrayList<>();
+    private  final long serialVersionUID = 1;
 
     public Segreteria() {
-        listaClassi = new ArrayList<>(Segreteria.getListaClassi());
-        GestoreCredenziali.aggiungiSegreteria(this);
+        listaClassi = new ArrayList<>(getListaClassi());
+        
 
 	}
     public Segreteria(Segreteria segreteriaOriginale) {
-        listaClassi = new ArrayList<>(Segreteria.getListaClassi());
+        listaClassi = new ArrayList<>(getListaClassi());
     }
 
 	public void creaStudente(String nome, String cognome, String indirizzo, String codiceFiscale, LocalDate dataNascita, Classe classe, String username, String password) {
-        // Crea un nuovo studente
+     
         Studente studente = new Studente(nome, cognome, indirizzo, codiceFiscale, dataNascita, classe);
         
-        gestoreCredenziali.setCredenzialiStudente(studente, username, password);
+        gestoreCredenziali.setCredenzialiStudent(studente, username, password);
     }
 
-	public static List<Classe> getListaClassi() {
-		return Segreteria.listaClassi;
+
+		public void aggiungiProfessore(String nome, String cognome, String indirizzo, String codiceFiscale, LocalDate dataNascita, String materia,List<Classe> classi, String username, String password) {
+	      
+	        Professore prof = new Professore(nome, cognome, indirizzo, codiceFiscale, dataNascita,materia, classi);
+	        
+	        gestoreCredenziali.setCredenzialProf(prof, username, password);
+	        for(Classe c : classi) {
+	        	System.out.println(c.getProfessori());
+	        }
+	    }
+	
+
+	public  List<Classe> getListaClassi() {
+		return listaClassi;
 	}
 
 	public void setListaClassi(List<Classe> listaClassi) {
-		Segreteria.listaClassi = listaClassi;
+		listaClassi = listaClassi;
 	}
 	
-	public static void aggiungiClasse(Classe c) {
-		Segreteria.listaClassi.add(c);
+	public  void aggiungiClasse(Classe c) {
+		listaClassi.add(c);
 	}
 	
-	public static void rimuoviClasse(Classe c) {
-		Segreteria.listaClassi.remove(c);
+	public  void rimuoviClasse(Classe c) {
+		listaClassi.remove(c);
 	}
 	
 	public String toString() {

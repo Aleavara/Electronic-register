@@ -74,6 +74,9 @@
             </ChoiceBox>
             <TextField fx:id="inputTextField" promptText="Inserisci elemento" />
             <Button text="Aggiungi" onAction="#aggiungiElemento" />
+            
+            <Button text="Aggiungi studente" onAction="#aggiungiStudenteButtonClicked" />
+            
         </VBox>
     </right>
 </BorderPane>

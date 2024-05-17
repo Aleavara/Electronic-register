@@ -28,7 +28,7 @@ public class Classe implements Serializable{
         this.orarioProf = new Professore[6][10];
         this.setStudenti(new ArrayList<>());
         this.setProfessori(new ArrayList<>());
-        Segreteria.aggiungiClasse(this);
+     
     }
 
     public void aggiungiStudente(Studente studente) {

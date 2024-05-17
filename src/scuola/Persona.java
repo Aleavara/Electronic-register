@@ -35,6 +35,7 @@ public Persona(String nome,String cognome,String indirizzo,String codiceFiscale,
 }
 
 
+
 public void aggiungiImpegno(LocalDate data, String impegno) {
 
     if (calendario.containsKey(data)) {
@@ -139,4 +140,5 @@ public void aggiungiImpegno(int giornoSettimana, String impegno) {
 public Map<LocalDate, List<String>> getCalendario() {
     return calendario;
 }
+
 }

@@ -2,6 +2,9 @@ package application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -9,10 +12,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import scuola.Classe;
 import scuola.Professore;
 import scuola.Studente;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -89,13 +94,13 @@ public class ClasseViewController {
                 Label itemLabel = new Label(item);
                 Button deleteButton = new Button("Elimina");
                 deleteButton.setOnAction(event -> {
-                    // Rimuovi l'elemento dalla mappa
+                
                     list.remove(item);
-                    // Rimuovi la data se la lista è vuota
+                   
                     if (list.isEmpty()) {
                         container.getChildren().remove(entryBox);
                     }
-                    // Aggiorna l'interfaccia utente
+                
                     updateLabels();
                 });
                 itemBox.getChildren().addAll(itemLabel, deleteButton);
@@ -107,6 +112,7 @@ public class ClasseViewController {
 
     @FXML
     private void populateProfessoriList() {
+    //	System.out.print("\nclasse: "+ this.classe+ "\nprofessori: " + this.classe.getProfessori());
         professoriVBox.getChildren().clear();
         List<Professore> professori = classe.getProfessori();
         professori.forEach(professore -> {
@@ -145,5 +151,19 @@ public class ClasseViewController {
             updateLabels(); // Aggiorna l'interfaccia utente dopo l'aggiunta
         }
     }
+    
+    @FXML
+    private void aggiungiStudenteButtonClicked(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/segreteria1_dashboard.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 

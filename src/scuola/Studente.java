@@ -15,6 +15,7 @@ public class Studente extends Persona implements Serializable {
     private Double mediaGenerale;
     private Classe classe;
     private static final long serialVersionUID = 1;
+    
   
  
     
@@ -73,7 +74,7 @@ public class Studente extends Persona implements Serializable {
 	 public String toString() {
 		 return "il mio nome è" + this.getNome();
 	 }
-	 
+
 	 
 
 	

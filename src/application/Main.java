@@ -47,8 +47,8 @@ public class Main extends Application {
         
 
        
-    	List<Object> data = loadData("data.dat");
-        
+    	List<Object> data =loadData("data.dat");
+       
     	
     	//for(Object dato : data)
     	//	System.out.println(dato);
@@ -68,31 +68,49 @@ public class Main extends Application {
                 case "GestoreCredenziali":
                     gestoreCredenziali = (GestoreCredenziali) obj;
                    
-                    System.out.println("ciao "+ (GestoreCredenziali)obj);
+                   System.out.println("ciao "+ (GestoreCredenziali)obj);
                     break;
                 case "Classe":
+                	
                     classi.add((Classe) obj);
+                    segreteria.aggiungiClasse((Classe) obj);
+                    System.out.println((Classe) obj);
                     break;
                 case "Voto":
                     voti.add((Voto) obj);
                     break;         
+                case "Segreteria":
+                	segreteria = ((Segreteria) obj);
+                	System.out.println("sono lse segretria");
+                	
+                	break;
                 default:
                     
                     break;
             }
         }
      
-  /*   List<Classe> listaClassi = new ArrayList<>();
+     
+     
+     Segreteria seg = new Segreteria();
      Classe classe1 = new Classe("1A" );
      Classe classe2 = new Classe("2B");
      Classe classe3 = new Classe("3C");
-     listaClassi.add(classe1);
-     listaClassi.add(classe2);
-     listaClassi.add(classe3);
+     seg.aggiungiClasse(classe3);
+     gestoreCredenziali.setCredenzialiSegreteria("se", "se");
+     data.add(seg);
+     data.add(gestoreCredenziali);
+    List<Classe> listaClassi = new ArrayList<>();
+     Classe classe4 = new Classe("1A" );
+     Classe classe5 = new Classe("2B");
+     Classe classe6 = new Classe("3C");
+     listaClassi.add(classe4);
+     listaClassi.add(classe5);
+     listaClassi.add(classe6);
  	Professore professore = new Professore("Alessandro", "Baroni", "I", "Abroa1949j", LocalDate.now(),"Storia",listaClassi );
  	data.add(professore);
  	gestoreCredenziali.setCredenzialProf(professore, "dsd", "dsd");
- 	data.add(gestoreCredenziali);*/
+ 	data.add(gestoreCredenziali);
      
   /*	Classe classec=new Classe("5EF");
 
@@ -152,12 +170,16 @@ public class Main extends Application {
     }
     private void showProfessorDashboard(Professore professore) {
         try {
+        	
+        	   if(professore!=null)
+               	System.out.println("non sono null");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/professor_dashboard.fxml"));
             Parent root = loader.load();
-
+         
             ProfessorDashboardController controller = loader.getController();
-       controller.setProfessore(professore);
-
+          
+            controller.setProfessore(professore);
+            controller.updateView();
             Scene professorScene = new Scene(root,400,300);
             primaryStage.setScene(professorScene);
             primaryStage.setTitle("Dashboard Professore");
@@ -177,8 +199,11 @@ public class Main extends Application {
             //SegreteriaDashboardController controller = loader.getController();
         
             SegreteriaDashboardControllerIniziale controller = loader.getController();
+            controller.setSegreteria(segreteria);
+            controller.updateLabels();
         //   controller.setSegreteria(segreteria);
         //   controller.faccioIo();
+            
     
             Scene SegreteriaScene = new Scene(root);
             primaryStage.setScene(SegreteriaScene);
@@ -257,9 +282,9 @@ public class Main extends Application {
             	if(username.startsWith("s"))
             	showStudentDashboard(gestoreCredenziali.validaCredenzialiStudent(username,password));
             	if(username.startsWith("p"))
-            		showProfessorDashboard(GestoreCredenziali.validaCredenzialiProfessore(username,password));
+            		showProfessorDashboard(gestoreCredenziali.validaCredenzialProf(username,password));
             	if(username.startsWith("xd"))
-            		showSegreteriaDashboard(GestoreCredenziali.validaCredenzialiSegreteria(username,password));
+            		showSegreteriaDashboard(segreteria);
             } else {
                 showAlert(Alert.AlertType.ERROR, "Errore di autenticazione", "Credenziali non valide.");
             }
@@ -289,10 +314,10 @@ public class Main extends Application {
        if(gestoreCredenziali.validaCredenzialiStudent(username,password)!=null)
     	   return true;
 
-       if(GestoreCredenziali.validaCredenzialiProfessore(username,password)!=null)
+       if(gestoreCredenziali.validaCredenzialProf(username,password)!=null)
     	   return true;
 
-       if(GestoreCredenziali.validaCredenzialiSegreteria(username,password)!=null)
+       if(gestoreCredenziali.validaCredenzialiSegreteria(username,password)!=false)
     	   return true;
         
 

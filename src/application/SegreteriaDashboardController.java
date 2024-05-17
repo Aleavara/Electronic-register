@@ -12,7 +12,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import scuola.Classe;
-import scuola.GestoreCredenziali;
 import scuola.Segreteria;
 import scuola.Studente;
 
@@ -44,15 +43,23 @@ public class SegreteriaDashboardController implements Initializable {
 
     private Segreteria segreteria;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
+    public SegreteriaDashboardController() {
     
     }
     
+    public void setSegreteria(Segreteria segreteria) {
+        this.segreteria = segreteria;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    
+    }
+    
+    
     public void faccioIo() {
         if (segreteria != null) {
-            classeComboBox.setItems(FXCollections.observableArrayList(Segreteria.getListaClassi()));
+            classeComboBox.setItems(FXCollections.observableArrayList(segreteria.getListaClassi()));
         } else {
             showAlert(Alert.AlertType.ERROR, "Errore", "Impossibile caricare la lista delle classi.");
         }
@@ -101,10 +108,5 @@ public class SegreteriaDashboardController implements Initializable {
         classeComboBox.setValue(null);
         usernameField.clear();
         passwordField.clear();
-    }
-
-    public void setSegreteria(Segreteria segreteria) {
-        this.segreteria = segreteria;
-        
     }
 }

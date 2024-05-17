@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="application.CreaProfessoreController"
+      spacing="10" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Creazione nuovo Professore" />
+
+    <GridPane>
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+        </rowConstraints>
+        
+        <Label text="Nome:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="txtNome" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <Label text="Cognome:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="txtCognome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Indirizzo:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="txtIndirizzo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label text="Codice Fiscale:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="txtCodiceFiscale" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <Label text="Data di Nascita:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <DatePicker fx:id="datepickerDataNascita" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+        <Label text="Materia:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <TextField fx:id="txtMateria" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+        <Label text="Seleziona le classi:" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2" />
+        <VBox fx:id="vboxClassi" GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.columnSpan="2">
+            <!-- Le CheckBox per le classi verranno aggiunte dinamicamente qui -->
+        </VBox>
+
+        <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+        <TextField fx:id="txtUsername" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+        <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+        <TextField fx:id="txtPassword" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    </GridPane>
+
+    <Button text="Crea Professore" onAction="#creaProfessore" />
+</VBox>

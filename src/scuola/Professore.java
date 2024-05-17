@@ -18,13 +18,23 @@ public class Professore extends Persona implements Serializable{
 super(nome, cognome, indirizzo, codiceFiscale, dataNascita);
 this.materia = materia;
 this.classi = classi;
+for(Classe c : classi) {
+	c.aggiungiProfessore(this);
+}
 this.orarioSettimanale = new Classe[7][6];
 orarioSettimanale[1][2]=new Classe("f");
 orarioSettimanale[2][1]= new Classe("3b");
 GestoreCredenziali.aggiungiProfessore(this);
 
 }
-    public void aggiungiClasse(int giorno, int ora, Classe classe) {
+    public Professore(Professore obi) {
+    	super(obi.getNome(), obi.getCognome(), obi.getIndirizzo(), obi.getCodiceFiscale(), obi.getDataNascita());
+        this.materia=obi.getMateria();
+        this.classi=obi.getClassi();
+        this.orarioSettimanale=obi.getOrarioSettimanale();
+        GestoreCredenziali.aggiungiProfessore(this);
+    }
+	public void aggiungiClasse(int giorno, int ora, Classe classe) {
         if (giorno < 0 || giorno > 6 || ora < 0 || ora > 5) {
             System.out.println("Giorno o ora non validi.");
             return;

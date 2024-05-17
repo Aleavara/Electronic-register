@@ -42,10 +42,10 @@ public class ProfessorDashboardController {
 
     public void setProfessore(Professore professore) {
         this.professore = professore;
-        updateView();
+        
     }
 
-    private void updateView() {
+    public void updateView() {
         welcomeLabel.setText("Docente: " + professore.getNome() + professore.getCognome());
         matricolaLabel.setText("Numero Matricola: " + professore.getnMatricola());
 
