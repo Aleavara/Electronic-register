@@ -1,12 +1,50 @@
+.text-white {
+    -fx-fill: white;
+}
+
 .text-area-rounded {
-    -fx-background-radius: 10px; /* Riduci il raggio per un effetto di stondamento meno pronunciato */
-    -fx-border-radius: 10px; /* Aggiungi anche il bordo stondato */
-    -fx-border-color: #e0cc55; /* Colore del bordo blu */
-    -fx-border-width: 1px; /* Spessore del bordo */
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
 }
+
 .anchor-pane {
-    -fx-background-color: #0000FF; /* Colore blu */
+    -fx-background-color: #36342e;
 }
+.chart-title {
+    -fx-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+
+
+
+/* student_dashboard.css */
+
+/* Stile per l'etichetta dell'asse Y */
+.axis-label .axis-label {
+    -fx-text-fill: white;
+}
+
+/* Stile per i tick (numeri) dell'asse Y */
+.axis-label .axis-tick-mark {
+    -fx-tick-label-fill: white;
+}
+
+
 .root {
-    -fx-background-color: linear-gradient(to bottom, #0000FF, #FFFFFF); /* Sfondo sfumato da blu a bianco */
+    -fx-background-color: #262521;
+}
+
+/* Stile personalizzato per il bottone */
+.custom-button {
+    -fx-background-color: white;
+   
+    -fx-font-size: 10px; /* Dimensione del font più piccola */
+    -fx-font-weight: bold; /* Testo in grassetto */
+    -fx-border-color: black; /* Aggiungi un bordo nero, se necessario */
+  
+    -fx-background-radius: 10px; /* Riduzione del raggio per angoli meno arrotondati */
 }

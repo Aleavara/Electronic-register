@@ -17,6 +17,10 @@ import scuola.Professore;
 import scuola.Segreteria;
 import scuola.Studente;
 
+/**
+ * Controller per la finestra di esempio.
+ * Questa classe gestisce l'interazione dell'utente con la finestra e le azioni associate ai controlli.
+ */
 public class SampleController {
     
     @FXML
@@ -33,12 +37,17 @@ public class SampleController {
     
     private StudenteService studenteService;
 
-    
+    /**
+     * Imposta il servizio per il recupero delle informazioni sugli studenti.
+     * @param studenteService Il servizio per il recupero delle informazioni sugli studenti.
+     */
     public void setStudenteService(StudenteService studenteService) {
         this.studenteService = studenteService;
     }
 
-    
+    /**
+     * Metodo di inizializzazione del controller.
+     */
     @FXML
     private void initialize() {
         outputLabel.setText("");
@@ -51,9 +60,12 @@ public class SampleController {
         }
     }
     
+    /**
+     * Visualizza gli impegni dello studente per la data selezionata.
+     */
     @FXML
     private void visualizzaImpegni() {
-    	Studente studente = studenteService.getStudente();
+        Studente studente = studenteService.getStudente();
         LocalDate data = dataPicker.getValue();
         if (data != null) {
             List<String> impegni = studente.getImpegni(data);
@@ -72,9 +84,12 @@ public class SampleController {
         }
     }
     
+    /**
+     * Aggiunge un nuovo impegno per lo studente per la data selezionata.
+     */
     @FXML
     private void aggiungiImpegno() {
-    	Studente studente = studenteService.getStudente();
+        Studente studente = studenteService.getStudente();
         LocalDate data = dataPicker.getValue();
         String impegno = impegnoTextField.getText();
         if (data != null && !impegno.isEmpty()) {
@@ -84,8 +99,4 @@ public class SampleController {
             outputLabel.setText("Seleziona una data e inserisci un impegno.");
         }
     }
-    
-
-    
-
 }

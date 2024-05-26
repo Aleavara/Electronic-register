@@ -7,17 +7,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class GestoreCredenziali implements Serializable{
-    private static Map<Studente, Credenziali> credenzialiStudenti;
-    private static Map<Professore, Credenziali> credenzialiProf;
+
     private Credenziali credenzialiSeg;
-    private  Map<Studente, Credenziali> credenzialiStudent=credenzialiStudenti;
-    private  Map<Professore, Credenziali> credenzialProf=credenzialiProf;
- 
+    private  Map<Studente, Credenziali> credenzialiStudent;
+    private  Map<Professore, Credenziali> credenzialProf;
     private static final long serialVersionUID = 1;
 
     public GestoreCredenziali() {
-        credenzialiStudenti = new HashMap<>();
-        credenzialiProf = new HashMap<>();
+        credenzialiStudent = new HashMap<>();
+        credenzialProf = new HashMap<>();
  
        
     }
@@ -66,7 +64,7 @@ public class GestoreCredenziali implements Serializable{
 
 
 
-    
+    //this
     public void setCredenzialiStudent(Studente studente, String username, String password) {
         boolean credenzialiDuplicati = false;
         for (Credenziali credenziali : credenzialiStudent.values()) {
@@ -77,16 +75,17 @@ public class GestoreCredenziali implements Serializable{
         }
         if (!credenzialiDuplicati) {
             credenzialiStudent.put(studente, new Credenziali("s" + username, password));
+            if (credenzialiStudent.containsKey(studente)) {
+              //  System.out.println("Lo studente è già presente. Aggiornamento delle credenziali.");
+                credenzialiStudent.put(studente, new Credenziali("s" + username, password));
+            } 
+            
         } else {
             System.out.println("Credenziali duplicate: username e password già utilizzati.");
         }
     }
-
-
-    public static Credenziali getCredenzialiStudente(Studente studente) {
-        return credenzialiStudenti.get(studente);
-    }
     
+    //this
     public void setCredenzialProf(Professore professore, String username, String password) {
         boolean credenzialiDuplicati = false;
         for (Credenziali credenziali : credenzialProf.values()) {
@@ -101,17 +100,52 @@ public class GestoreCredenziali implements Serializable{
             System.out.println("Credenziali duplicate: username e password già utilizzati.");
         }
     }
-
-    public static Studente validaCredenzialiStudente(String username, String password) {
-        for (Map.Entry<Studente, Credenziali> entry : credenzialiStudenti.entrySet()) {
-            Studente studente = entry.getKey();
-            Credenziali credenziali = entry.getValue();
-            if (credenziali.getUsername().equals(username) && credenziali.getPassword().equals(password)) {
-                return studente;
+    
+    
+    public void setCredenzialiStudent(Studente studente, Credenziali cred) {
+        boolean credenzialiDuplicati = false;
+        for (Credenziali credenziali : credenzialiStudent.values()) {
+            if (credenziali.equals(cred)) {
+                credenzialiDuplicati = true;
+                break;
             }
         }
-        return null; 
+        if (!credenzialiDuplicati) {
+            credenzialiStudent.put(studente, cred);
+        } else {
+            System.out.println("Credenziali duplicate: username e password già utilizzati.");
+        }
     }
+
+
+
+    
+   public Credenziali getCredenzialStudente(Studente studente) {
+        return credenzialiStudent.get(studente);}
+    
+    
+    public  Credenziali getCredenzialProfessore(Professore professore) {
+        return credenzialProf.get(professore);
+    }
+    
+
+    
+    public void setCredenzialProf(Professore professore, Credenziali cred) {
+        boolean credenzialiDuplicati = false;
+        for (Credenziali credenziali : credenzialProf.values()) {
+            if (credenziali.equals(cred) ) {
+                credenzialiDuplicati = true;
+                break;
+            }
+        }
+        if (!credenzialiDuplicati) {
+            credenzialProf.put(professore, cred);
+        } else {
+            System.out.println("Credenziali duplicate: username e password già utilizzati.");
+        }
+    }
+
+
     
     public Studente validaCredenzialiStudent(String username, String password) {
         for (Map.Entry<Studente, Credenziali> entry : credenzialiStudent.entrySet()) {
@@ -125,53 +159,27 @@ public class GestoreCredenziali implements Serializable{
     }
 
 
-    public static void setCredenzialiProfessore(Professore professore, String username, String password) {
-        boolean credenzialiDuplicati = false;
-        for (Credenziali credenziali : credenzialiProf.values()) {
-            if (credenziali.getUsername().equals("p" + username) && credenziali.getPassword().equals(password)) {
-                credenzialiDuplicati = true;
-                break;
-            }
-        }
-        if (!credenzialiDuplicati) {
-            credenzialiProf.put(professore, new Credenziali("p" + username, password));
-        } else {
-            System.out.println("Credenziali duplicate: username e password già utilizzati.");
-        }
-    }
 
 
-
-    public static Credenziali getCredenzialiProfessore(Professore professore) {
-        return credenzialiProf.get(professore);
-    }
-
-    public static Professore validaCredenzialiProfessore(String username, String password) {
-        for (Entry<Professore, Credenziali> entry : credenzialiProf.entrySet()) {
-            Professore professore = (Professore) entry.getKey();
-            Credenziali credenziali = entry.getValue();
-            if (credenziali.getUsername().equals(username) && credenziali.getPassword().equals(password)) {
-                return professore;
-            }
-        }
-        return null; 
-    }
+    
 
 
 
 
 
-    public static void aggiungiStudente(Studente studente) {
-        if (credenzialiStudenti != null) {
-            credenzialiStudenti.put(studente, new Credenziali("", "")); // Inizializza le credenziali con valori vuoti
+
+
+    public  void aggiungiStudente(Studente studente) {
+        if (credenzialiStudent != null) {
+            credenzialiStudent.put(studente, new Credenziali("", "")); // Inizializza le credenziali con valori vuoti
         } else {
             System.err.println("La mappa credenzialiStudenti non è stata inizializzata.");
         }
     }
 
-    public static void aggiungiProfessore(Professore professore) {
-        if (credenzialiProf != null) {
-            credenzialiProf.put(professore, new Credenziali("", "")); // Inizializza le credenziali con valori vuoti
+    public  void aggiungiProfessore(Professore professore) {
+        if (credenzialProf != null) {
+            credenzialProf.put(professore, new Credenziali("", "")); // Inizializza le credenziali con valori vuoti
         } else {
             System.err.println("La mappa credenzialiProf non è stata inizializzata.");
         }
@@ -202,8 +210,8 @@ public class GestoreCredenziali implements Serializable{
                          .append("\n");
         }
         
-       stringBuilder.append("\nCredenziali segreteria:\n");
-        stringBuilder.append("username: ").append(credenzialiSeg.getUsername()).append("\n password: ").append(credenzialiSeg.getPassword());        
+     //  stringBuilder.append("\nCredenziali segreteria:\n");
+      //  stringBuilder.append("username: ").append(credenzialiSeg.getUsername()).append("\n password: ").append(credenzialiSeg.getPassword());        
   
         
         return stringBuilder.toString();
@@ -220,5 +228,8 @@ public class GestoreCredenziali implements Serializable{
 	public void setCredenzialiSeg(Credenziali credenzialiSeg) {
 		this.credenzialiSeg = credenzialiSeg;
 	}
+	
+
+	
 
 }

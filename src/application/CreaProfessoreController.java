@@ -20,6 +20,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+/**
+ * Controller per la creazione di un nuovo professore.
+ * 
+ * @autore Alessio Avarapattù
+ */
 public class CreaProfessoreController implements Initializable {
 
     @FXML
@@ -50,12 +55,22 @@ public class CreaProfessoreController implements Initializable {
     private TextField txtPassword;
 
     private Segreteria segreteria;
-    private Map<CheckBox, Classe> checkBoxClasseMap = new HashMap<>(); 
+    private Map<CheckBox, Classe> checkBoxClasseMap = new HashMap<>();
+
+    /**
+     * Metodo di inizializzazione chiamato automaticamente dopo il caricamento del file FXML.
+     * 
+     * @param location  La posizione utilizzata per risolvere il percorso relativo dell'oggetto radice, o null se il percorso non è noto.
+     * @param resources Le risorse utilizzate per localizzare l'oggetto radice, o null se l'oggetto radice non è stato localizzato.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        // Metodo di inizializzazione vuoto, può essere utilizzato per configurazioni iniziali
     }
-    
+
+    /**
+     * Popola la VBox con le CheckBox per le classi disponibili.
+     */
     @FXML
     public void faccioIo() {
         List<Classe> listaClassi = segreteria.getListaClassi();
@@ -65,11 +80,19 @@ public class CreaProfessoreController implements Initializable {
             checkBoxClasseMap.put(checkBox, classe); // Associa la classe alla CheckBox
         }
     }
-    
+
+    /**
+     * Imposta l'oggetto Segreteria per questo controller.
+     *
+     * @param segreteria L'istanza di Segreteria da impostare.
+     */
     public void setSegreteria(Segreteria segreteria) {
-    	this.segreteria=segreteria;
+        this.segreteria = segreteria;
     }
 
+    /**
+     * Gestisce il clic sul pulsante per creare un nuovo professore.
+     */
     @FXML
     void creaProfessore() {
         String nome = txtNome.getText();
@@ -81,31 +104,38 @@ public class CreaProfessoreController implements Initializable {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
 
-        // Verifica che tutti i campi obbligatori siano compilati
-        if (nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() || codiceFiscale.isEmpty() ||
-            dataNascita == null || materia.isEmpty() || username.isEmpty() || password.isEmpty()) {
+        if (nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() || codiceFiscale.isEmpty() || dataNascita == null
+                || materia.isEmpty() || username.isEmpty() || password.isEmpty()) {
             showAlert(AlertType.WARNING, "Campi Mancanti", "Per favore, compila tutti i campi.");
             return;
         }
 
         try {
-            // Creazione della lista di classi selezionate
             List<Classe> classiSelezionate = new ArrayList<>();
             for (Map.Entry<CheckBox, Classe> entry : checkBoxClasseMap.entrySet()) {
                 CheckBox checkBox = entry.getKey();
                 if (checkBox.isSelected()) {
-                    classiSelezionate.add(entry.getValue()); // Aggiungi la classe esistente
+                    classiSelezionate.add(entry.getValue());
                 }
             }
 
-            // Creazione del professore
-            segreteria.aggiungiProfessore(nome, cognome, indirizzo, codiceFiscale, dataNascita, materia, classiSelezionate, username, password);
+            Professore p = new Professore(nome, cognome, indirizzo, codiceFiscale, dataNascita, materia,
+                    classiSelezionate);
+            segreteria.aggiungiProf(p, username, password);
             showAlert(AlertType.INFORMATION, "Successo", "Professore aggiunto con successo.");
 
         } catch (Exception e) {
             showAlert(AlertType.ERROR, "Errore", "Si è verificato un errore durante la creazione del professore.");
         }
     }
+
+    /**
+     * Mostra un messaggio di avviso.
+     *
+     * @param alertType Il tipo di avviso da mostrare.
+     * @param title     Il titolo dell'avviso.
+     * @param message   Il messaggio dell'avviso.
+     */
     private void showAlert(AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

@@ -15,6 +15,10 @@ import scuola.Classe;
 import scuola.Segreteria;
 import scuola.Studente;
 
+/**
+ * Controller per la dashboard della segreteria.
+ * Gestisce l'interazione dell'utente con la finestra e le azioni associate ai controlli.
+ */
 public class SegreteriaDashboardController implements Initializable {
     
     @FXML
@@ -43,20 +47,32 @@ public class SegreteriaDashboardController implements Initializable {
 
     private Segreteria segreteria;
 
+    /**
+     * Metodo costruttore della classe.
+     */
     public SegreteriaDashboardController() {
     
     }
     
+    /**
+     * Imposta l'istanza della Segreteria.
+     * @param segreteria L'istanza della segreteria da impostare.
+     */
     public void setSegreteria(Segreteria segreteria) {
         this.segreteria = segreteria;
     }
 
+    /**
+     * Metodo di inizializzazione del controller.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     
     }
     
-    
+    /**
+     * Metodo per popolare la ComboBox delle classi.
+     */
     public void faccioIo() {
         if (segreteria != null) {
             classeComboBox.setItems(FXCollections.observableArrayList(segreteria.getListaClassi()));
@@ -65,6 +81,9 @@ public class SegreteriaDashboardController implements Initializable {
         }
     }
 
+    /**
+     * Gestisce l'evento del clic sul pulsante "Crea Studente".
+     */
     @FXML
     private void creaStudenteButtonClicked() {
         String nome = nomeField.getText();
@@ -83,14 +102,21 @@ public class SegreteriaDashboardController implements Initializable {
         } else {
             // Crea lo studente utilizzando la segreteria
             segreteria.creaStudente(nome, cognome, indirizzo, codiceFiscale, dataNascita, selectedClasse, username, password);
+       
             // Mostra un messaggio di successo
             showAlert(Alert.AlertType.INFORMATION, "Successo", "Studente creato con successo.");
-            System.out.println(selectedClasse.getSezione());
+            
             // Pulisce i campi del form dopo la creazione dello studente
             clearFields();
         }
     }
 
+    /**
+     * Mostra un alert con il tipo specificato, il titolo e il contenuto forniti.
+     * @param type Il tipo di alert.
+     * @param title Il titolo dell'alert.
+     * @param content Il contenuto dell'alert.
+     */
     private void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -99,6 +125,9 @@ public class SegreteriaDashboardController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Pulisce tutti i campi del form.
+     */
     private void clearFields() {
         nomeField.clear();
         cognomeField.clear();

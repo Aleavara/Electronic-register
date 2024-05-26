@@ -2,18 +2,34 @@ package application;
 
 import scuola.Studente;
 
+/**
+ * Servizio per gestire le informazioni dello studente.
+ */
 public class StudenteService {
 
-    private static Studente studente;
+    private Studente studente;
 
+    /**
+     * Costruttore per inizializzare il servizio con uno studente.
+     * @param s Lo studente da impostare
+     */
     public StudenteService(Studente s) {
-    	this.studente=s;
+        this.studente = s;
     }
-    public static Studente getStudente() {
+
+    /**
+     * Restituisce lo studente attualmente impostato nel servizio.
+     * @return Lo studente attualmente impostato
+     */
+    public Studente getStudente() {
         return studente;
     }
 
-    public static void setStudente(Studente nuovoStudente) {
+    /**
+     * Imposta lo studente nel servizio.
+     * @param nuovoStudente Il nuovo studente da impostare
+     */
+    public void setStudente(Studente nuovoStudente) {
         studente = nuovoStudente;
     }
 }

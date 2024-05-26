@@ -1,20 +1,27 @@
 package application;
+
+import java.io.IOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Map;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import scuola.Classe;
 import scuola.Studente;
+import scuola.Voto;
 
 public class StudentDashboardController {
 
@@ -24,39 +31,54 @@ public class StudentDashboardController {
     @FXML
     private TextArea compitiAssegnatiTextArea;
 
-   
-    private StudenteService studenteService;
-    
     @FXML
     private TextArea impegniTextArea;
-    
+
+    @FXML
+    private TextArea bachecaTextArea;
+
     @FXML
     private Text mediaText;
 
-    // Metodo per mostrare i prossimi impegni
+    @FXML
+    private LineChart<Number, Number> votiLineChart;
+
+    @FXML
+    private NumberAxis xAxis;
+
+    @FXML
+    private NumberAxis yAxis;
+
+    @FXML
+    private Text studentNameText;
+
+    @FXML
+    private Text studentClassText;
+
+    @FXML
+    private Text studentIDText;
+
+    private StudenteService studenteService;
+
     private void mostraProssimiImpegni() {
-    	Studente studente = studenteService.getStudente();
+        Studente studente = studenteService.getStudente();
         if (studente != null) {
-            // Ottenere la data corrente
             LocalDate oggi = LocalDate.now();
-            
-            // Ottenere i prossimi impegni dal calendario dello studente
-            List<String> prossimiImpegni = studente.getImpegni(oggi);
-            
-            // Aggiungere i prossimi impegni al TextArea
+            Map<LocalDate, List<String>> calendario = studente.getCalendario();
             impegniTextArea.clear();
-            prossimiImpegni.forEach(impegno -> {
-                impegniTextArea.appendText(impegno + "\n");
-            });
+            calendario.entrySet().stream()
+                .filter(entry -> !entry.getKey().isBefore(oggi)) // Filtra solo gli impegni futuri
+                .forEach(entry -> {
+                    impegniTextArea.appendText("Data: " + entry.getKey() + "\n");
+                    entry.getValue().forEach(impegno -> impegniTextArea.appendText("- " + impegno + "\n"));
+                    impegniTextArea.appendText("\n");
+                });
         }
     }
-    
 
-
-    // Metodo chiamato durante l'inizializzazione del controller
     public void initialize() {
-        // Disabilita la modifica del TextArea
         compitiAssegnatiTextArea.setEditable(false);
+        bachecaTextArea.setEditable(false); // Add this line for the bulletin board TextArea
     }
 
     public void setStudenteService(StudenteService studenteService) {
@@ -64,72 +86,168 @@ public class StudentDashboardController {
         aggiornaRiempimentoBarra();
         mostraCompitiAssegnati();
         mostraProssimiImpegni();
+        mostraBacheca();
+        popolaLineChart();
+
+        // Aggiungi questo codice per popolare le informazioni dello studente
+        Studente studente = studenteService.getStudente();
+        if (studente != null) {
+            studentNameText.setText(studente.getNome() + " " + studente.getCognome());
+            studentClassText.setText(studente.getClasse().toString());
+            studentIDText.setText(String.valueOf(studente.getnMatricola()));
+        }
     }
 
-    // Metodo per aggiornare il riempimento della barra in base alla media generale dello studente
     private void aggiornaRiempimentoBarra() {
         Studente studente = studenteService.getStudente();
-        
         if (studente != null && studente.getMediaGenerale() != null) {
             double media = studente.getMediaGenerale();
             fillBar.setProgress(media / 10.0);
-            
-            // Imposta il colore della barra di riempimento in base alla media dello studente
+
             Color color;
             if (media < 6.0) {
-                color = Color.RED; // Voto basso, colore rosso
+                color = Color.RED;
             } else if (media < 8.0) {
-                color = Color.ORANGE; // Voto medio, colore arancione
+                color = Color.ORANGE;
             } else {
-                color = Color.GREEN; // Voto alto, colore verde
+                color = Color.GREEN;
             }
-            // Applica il colore alla barra di riempimento
             fillBar.setStyle("-fx-accent: " + color.toString().replace("0x", "#"));
-            
-            // Aggiorna il testo della media dello studente
             mediaText.setText(String.format("%.2f", media));
         }
     }
 
-    // Metodo per mostrare i prossimi compiti assegnati
     private void mostraCompitiAssegnati() {
-    	Studente studente = studenteService.getStudente();
+        Studente studente = studenteService.getStudente();
         if (studente != null && studente.getClasse() != null) {
             Classe classe = studente.getClasse();
-            // Ottenere i prossimi compiti assegnati dalla classe dello studente
-            // Supponiamo che il formato dei compiti assegnati sia una mappa con LocalDate come chiave e lista di stringhe come valore
             Map<LocalDate, List<String>> compitiAssegnati = classe.getCompitiAssegnati();
-            // Aggiungere i compiti assegnati al TextArea
             compitiAssegnati.forEach((data, compiti) -> {
                 compitiAssegnatiTextArea.appendText("Data: " + data + "\n");
-                compiti.forEach(compito -> {
-                    compitiAssegnatiTextArea.appendText("- " + compito + "\n");
-                });
+                compiti.forEach(compito -> compitiAssegnatiTextArea.appendText("- " + compito + "\n"));
                 compitiAssegnatiTextArea.appendText("\n");
             });
         }
     }
-    
+
+    private void mostraBacheca() {
+        Studente studente = studenteService.getStudente();
+        if (studente != null && studente.getClasse() != null) {
+            Classe classe = studente.getClasse();
+            Map<LocalDate, List<String>> bacheca = classe.getBacheca();
+            bacheca.forEach((data, note) -> {
+                bachecaTextArea.appendText("Data: " + data + "\n");
+                note.forEach(nota -> bachecaTextArea.appendText("- " + nota + "\n"));
+                bachecaTextArea.appendText("\n");
+            });
+        }
+    }
+
+    private void popolaLineChart() {
+        Studente studente = studenteService.getStudente();
+        if (studente != null) {
+            XYChart.Series<Number, Number> serieVoti = new XYChart.Series<>();
+            XYChart.Series<Number, Number> serieMedia = new XYChart.Series<>();
+            serieVoti.setName("Voti");
+            serieMedia.setName("Media Generale");
+
+            Map<String, List<Voto>> voti = studente.getVoti();
+            if (voti.isEmpty()) {
+                return;
+            }
+
+            LocalDate startDate = null;
+            double mediaTotale = 0.0;
+            int countVoti = 0;
+
+            for (List<Voto> listaVoti : voti.values()) {
+                for (Voto voto : listaVoti) {
+                    LocalDate date = voto.getDataInserimento();
+                    if (startDate == null || date.isBefore(startDate)) {
+                        startDate = date;
+                    }
+                    long dateEpoch = date.atStartOfDay(ZoneId.systemDefault()).toEpochSecond();
+                    long dateDifference = (dateEpoch - startDate.atStartOfDay(ZoneId.systemDefault()).toEpochSecond()) / (24 * 60 * 60);
+                    serieVoti.getData().add(new XYChart.Data<>(dateDifference, voto.getVoto()));
+                    mediaTotale += voto.getVoto();
+                    countVoti++;
+
+                    // Calcola la media per ogni voto aggiunto e aggiungila alla serie della media
+                    if (countVoti > 0) {
+                        double media = mediaTotale / countVoti;
+                        serieMedia.getData().add(new XYChart.Data<>(dateDifference, media));
+                    }
+                }
+            }
+
+            votiLineChart.getData().addAll(serieVoti, serieMedia);
+
+            // Nascondi i numeri sull'asse X
+            votiLineChart.getXAxis().setTickLabelsVisible(false);
+        }
+    }
+
     @FXML
     private void handleButtonClick(ActionEvent event) {
         try {
-            // Carica la nuova scena dal file FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/calendarioAmm.fxml"));
             Parent root = loader.load();
-            
-            // Ottieni il controller della nuova scena
             CalendarController controller = loader.getController();
-            LocalDate date = LocalDate.of(2024, 5, 10);
-            this.studenteService.getStudente().aggiungiImpegno(date, "uagliò");
-            // Passa lo studente al controller
+      
+
             controller.setStudente(this.studenteService.getStudente());
             controller.drawCalendar();
-            
-            // Crea una nuova finestra per la nuova scena
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleChartTitleClick(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/votiStudente.fxml"));
+            Parent root = loader.load();
+            VotiStudenteController controller = loader.getController();
+            controller.setStudenteService(this.studenteService);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleCompitiAssegnatiClick(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/compitiAssegnati_dasboard.fxml"));
+            Parent root = loader.load();
+            CompitiAssegnatiController controller = loader.getController();
+            controller.setClasse(this.studenteService.getStudente().getClasse());
+            Scene scene = new Scene(root, 400, 700);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleBachecaClick(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/bacheca_dashboard.fxml"));
+            Parent root = loader.load();
+            BachecaController controller = loader.getController();
+            controller.setClasse(this.studenteService.getStudente().getClasse());
+            Scene scene = new Scene(root, 400, 700);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -7,24 +7,24 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SegreteriaDashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SegreteriaDashboardController" style="-fx-background-color: black;">
     <children>
-        <Label layoutX="32.0" layoutY="45.0" text="Nome:" />
-        <TextField fx:id="nomeField" layoutX="109.0" layoutY="41.0" />
-        <Label layoutX="32.0" layoutY="85.0" text="Cognome:" />
-        <TextField fx:id="cognomeField" layoutX="109.0" layoutY="81.0" />
-        <Label layoutX="32.0" layoutY="125.0" text="Indirizzo:" />
-        <TextField fx:id="indirizzoField" layoutX="109.0" layoutY="121.0" />
-        <Label layoutX="32.0" layoutY="165.0" text="Codice Fiscale:" />
-        <TextField fx:id="codiceFiscaleField" layoutX="109.0" layoutY="161.0" />
-        <Label layoutX="32.0" layoutY="205.0" text="Data di Nascita:" />
-        <DatePicker fx:id="dataNascitaPicker" layoutX="137.0" layoutY="201.0" />
-        <Label layoutX="32.0" layoutY="245.0" text="Classe:" />
-        <ComboBox fx:id="classeComboBox" layoutX="109.0" layoutY="241.0" prefWidth="150.0" />
-        <Label layoutX="32.0" layoutY="285.0" text="Username:" />
-        <TextField fx:id="usernameField" layoutX="109.0" layoutY="281.0" />
-        <Label layoutX="32.0" layoutY="325.0" text="Password:" />
-        <TextField fx:id="passwordField" layoutX="109.0" layoutY="321.0" />
-        <Button layoutX="258.0" layoutY="366.0" mnemonicParsing="false" onAction="#creaStudenteButtonClicked" text="Crea Studente" />
+        <Label layoutX="32.0" layoutY="45.0" text="Nome:" textFill="WHITE" style="-fx-font-weight: bold;" />
+        <TextField fx:id="nomeField" layoutX="200.0" layoutY="41.0" />
+        <Label layoutX="32.0" layoutY="85.0" text="Cognome:" textFill="WHITE" style="-fx-font-weight: bold;" />
+        <TextField fx:id="cognomeField" layoutX="200.0" layoutY="81.0" />
+        <Label layoutX="32.0" layoutY="125.0" text="Indirizzo:" textFill="WHITE" style="-fx-font-weight: bold;" />
+        <TextField fx:id="indirizzoField" layoutX="200.0" layoutY="121.0" />
+        <Label layoutX="32.0" layoutY="165.0" text="Codice Fiscale:" textFill="WHITE" style="-fx-font-weight: bold;" />
+        <TextField fx:id="codiceFiscaleField" layoutX="200.0" layoutY="161.0" />
+        <Label layoutX="32.0" layoutY="205.0" text="Data di Nascita:" textFill="WHITE" style="-fx-font-weight: bold;" />
+        <DatePicker fx:id="dataNascitaPicker" layoutX="200.0" layoutY="201.0" />
+        <Label layoutX="32.0" layoutY="245.0" text="Classe:" textFill="WHITE" style="-fx-font-weight: bold;" />
+        <ComboBox fx:id="classeComboBox" layoutX="200.0" layoutY="241.0" prefWidth="150.0" />
+        <Label layoutX="32.0" layoutY="285.0" text="Username:" textFill="WHITE" style="-fx-font-weight: bold;" />
+        <TextField fx:id="usernameField" layoutX="200.0" layoutY="281.0" />
+        <Label layoutX="32.0" layoutY="325.0" text="Password:" textFill="WHITE" style="-fx-font-weight: bold;" />
+        <TextField fx:id="passwordField" layoutX="200.0" layoutY="321.0" />
+        <Button layoutX="258.0" layoutY="366.0" mnemonicParsing="false" onAction="#creaStudenteButtonClicked" text="Crea Studente" style="-fx-background-color: white; -fx-text-fill: black;" />
     </children>
 </AnchorPane>

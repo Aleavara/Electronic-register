@@ -12,22 +12,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import scuola.Studente;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import scuola.Studente;
-
+/**
+ * Controller per la gestione del calendario.
+ * Autore: alessioavarappattu
+ */
 public class CalendarController implements Initializable {
 
-    ZonedDateTime dateFocus;
-    ZonedDateTime today;
+    private ZonedDateTime dateFocus;
+    private ZonedDateTime today;
 
     @FXML
     private Text year;
@@ -38,19 +40,35 @@ public class CalendarController implements Initializable {
     @FXML
     private FlowPane calendar;
 
-    private Studente studente; // Aggiunto riferimento allo studente
+    private Studente studente; 
 
+    /**
+     * Imposta lo studente per il quale visualizzare il calendario.
+     *
+     * @param studente Lo studente di cui visualizzare il calendario.
+     */
     public void setStudente(Studente studente) {
         this.studente = studente;
     }
 
+    /**
+     * Inizializza il controller. Imposta la data di oggi e la data di focus.
+     *
+     * @param url L'URL utilizzato per risolvere il percorso del file FXML.
+     * @param resourceBundle Il pacchetto di risorse utilizzato per localizzare l'applicazione.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateFocus = ZonedDateTime.now();
         today = ZonedDateTime.now();
-    //    drawCalendar();
+        // drawCalendar();
     }
 
+    /**
+     * Gestisce l'azione per andare indietro di un mese nel calendario.
+     *
+     * @param event L'evento di azione.
+     */
     @FXML
     void backOneMonth(ActionEvent event) {
         dateFocus = dateFocus.minusMonths(1);
@@ -58,17 +76,30 @@ public class CalendarController implements Initializable {
         drawCalendar();
     }
 
+    /**
+     * Gestisce l'azione per andare avanti di un mese nel calendario.
+     *
+     * @param event L'evento di azione.
+     */
     @FXML
     void forwardOneMonth(ActionEvent event) {
         dateFocus = dateFocus.plusMonths(1);
         calendar.getChildren().clear();
         drawCalendar();
     }
-    
+
+    /**
+     * Metodo per impostare lo studente e aggiornare il calendario.
+     *
+     * @param studente Lo studente di cui visualizzare il calendario.
+     */
     void faccioIo(Studente studente) {
-    	this.studente=studente;
+        this.studente = studente;
     }
 
+    /**
+     * Disegna il calendario per il mese corrente.
+     */
     public void drawCalendar() {
         year.setText(String.valueOf(dateFocus.getYear()));
         month.setText(String.valueOf(dateFocus.getMonth()));
@@ -79,7 +110,6 @@ public class CalendarController implements Initializable {
         double spacingH = calendar.getHgap();
         double spacingV = calendar.getVgap();
 
-        // Ottieni gli impegni dello studente per il mese corrente
         Map<LocalDate, List<String>> impegniStudente = studente.getCalendario();
 
         int monthMaxDate = dateFocus.getMonth().maxLength();
@@ -97,6 +127,10 @@ public class CalendarController implements Initializable {
                 rectangle.setWidth(rectangleWidth);
                 double rectangleHeight = (calendarHeight / 6) - strokeWidth - spacingV;
                 rectangle.setHeight(rectangleHeight);
+
+                rectangle.setArcWidth(15.0);
+                rectangle.setArcHeight(15.0);
+
                 stackPane.getChildren().add(rectangle);
 
                 int calculatedDate = (j + 1) + (7 * i);
@@ -108,7 +142,6 @@ public class CalendarController implements Initializable {
                         date.setTranslateY(textTranslationY);
                         stackPane.getChildren().add(date);
 
-                        // Verifica se ci sono impegni per la data corrente e li aggiunge al rettangolo
                         List<String> impegni = impegniStudente.get(LocalDate.of(dateFocus.getYear(), dateFocus.getMonth(), currentDate));
                         if (impegni != null && !impegni.isEmpty()) {
                             for (String impegno : impegni) {
@@ -125,6 +158,12 @@ public class CalendarController implements Initializable {
             }
         }
     }
+
+    /**
+     * Gestisce l'azione per aggiungere impegni al calendario.
+     *
+     * @param event L'evento di azione.
+     */
     @FXML
     void aggiungiImpegni(ActionEvent event) {
         try {

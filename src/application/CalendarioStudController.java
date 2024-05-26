@@ -10,6 +10,10 @@ import scuola.Studente;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Controller per la gestione del calendario degli impegni di uno studente.
+ * Autore: alessioavarappattu
+ */
 public class CalendarioStudController {
 
     @FXML
@@ -20,21 +24,28 @@ public class CalendarioStudController {
 
     private Studente studente;
 
+    /**
+     * Imposta lo studente per il quale visualizzare e gestire il calendario degli impegni.
+     *
+     * @param studente Lo studente di cui visualizzare e gestire il calendario.
+     */
     public void setStudente(Studente studente) {
         this.studente = studente;
         aggiornaCalendario();
     }
 
+    /**
+     * Aggiorna il calendario visualizzato nella GridPane con gli impegni dello studente.
+     * Pulisce la GridPane e aggiunge i giorni del mese corrente con i rispettivi impegni.
+     */
     private void aggiornaCalendario() {
         gridCalendario.getChildren().clear();
         LocalDate dataCorrente = LocalDate.now();
         int giornoInizioMese = 1;
         int giorniMese = dataCorrente.lengthOfMonth();
 
-        // Imposta il nome del mese
         lblNomeMese.setText(dataCorrente.getMonth().toString());
 
-        // Popola il calendario con i giorni del mese e gli impegni dello studente
         for (int i = 0; i < giorniMese; i++) {
             LocalDate data = LocalDate.of(dataCorrente.getYear(), dataCorrente.getMonth(), giornoInizioMese);
             List<String> impegni = studente.getImpegni(data);
@@ -42,7 +53,6 @@ public class CalendarioStudController {
             quadratoGiorno.setFill(Color.LIGHTGRAY);
             gridCalendario.add(quadratoGiorno, i % 7, i / 7);
 
-            // Aggiungi impegni al quadrato del giorno
             StringBuilder testoImpegni = new StringBuilder();
             for (String impegno : impegni) {
                 testoImpegni.append(impegno).append("\n");
@@ -52,6 +62,11 @@ public class CalendarioStudController {
             giornoInizioMese++;
         }
     }
+
+    /**
+     * Mostra il mese precedente nel calendario.
+     * Imposta la data del calendario dello studente al mese precedente e aggiorna il calendario.
+     */
     @FXML
     private void mostraMesePrecedente() {
         LocalDate dataCorrente = LocalDate.now().minusMonths(1);
@@ -59,6 +74,10 @@ public class CalendarioStudController {
         aggiornaCalendario();
     }
 
+    /**
+     * Mostra il mese successivo nel calendario.
+     * Imposta la data del calendario dello studente al mese successivo e aggiorna il calendario.
+     */
     @FXML
     private void mostraMeseSuccessivo() {
         LocalDate dataCorrente = LocalDate.now().plusMonths(1);

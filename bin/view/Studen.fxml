@@ -1,47 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StudentDashboardController" stylesheets="application/student_dashboard.css">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="application/student_dashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StudentDashboardController">
    <children>
-      <Text layoutX="31.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La tua Media: " wrappingWidth="112.21630859375">
+      <!-- Informazioni dello studente -->
+      <AnchorPane layoutX="529.0" layoutY="13.0">
+         <children>
+        <Text fx:id="studentNameText" layoutX="120.0" layoutY="15.0" style="-fx-fill: white; -fx-font-weight: bold;" />
+        <Text fx:id="studentClassText" layoutX="120.0" layoutY="30.0" style="-fx-fill: white; -fx-font-weight: bold;" />
+        <Text fx:id="studentIDText" layoutX="172.0" layoutY="52.0" style="-fx-fill: white; -fx-font-weight: bold;" />
+            <Text fill="WHITE" layoutX="62.0" layoutY="15.0" text="Studente: " wrappingWidth="219.21826171875">
+               <font>
+                  <Font name="Cochin" size="13.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="62.0" layoutY="31.0" text="Classe: " wrappingWidth="181.3134765625">
+               <font>
+                  <Font name="Cochin" size="13.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="62.0" layoutY="51.0" text="Numero Matricola: " wrappingWidth="235.5908203125">
+               <font>
+                  <Font name="Cochin" size="13.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      
+      <!-- Rimani sui tuoi testi e altri controlli -->
+      <Text layoutX="31.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white" text="La tua Media: " wrappingWidth="112.21630859375">
          <font>
             <Font name="Malayalam MN Bold" size="13.0" />
          </font>
       </Text>
-      <!-- Barra di riempimento per la media dello studente -->
       <ProgressBar fx:id="fillBar" layoutX="31.0" layoutY="50.0" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
-      <!-- Etichetta per la media dello studente -->
-      <Text fx:id="mediaText" layoutX="150.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="112.21630859375">
+      <Text fx:id="mediaText" layoutX="150.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white" wrappingWidth="112.21630859375">
          <font>
             <Font name="Malayalam MN Bold" size="13.0" />
          </font>
       </Text>
-      <!-- Etichetta per i prossimi compiti assegnati -->
-      <Text layoutX="31.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prossimi compiti assegnati:">
+      <Text layoutX="31.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white"  onMouseClicked="#handleCompitiAssegnatiClick" text="Prossimi compiti assegnati:">
          <font>
             <Font name="Cochin" size="13.0" />
          </font>
       </Text>
-      <!-- TextArea per visualizzare i prossimi compiti assegnati -->
-<TextArea fx:id="compitiAssegnatiTextArea" layoutX="31.0" layoutY="100.0" prefHeight="200.0" prefWidth="250.0" wrapText="true" styleClass="text-area-rounded" />      <!-- Etichetta per i prossimi impegni -->
-      <Text layoutX="321.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prossimi impegni:">
+      <TextArea fx:id="compitiAssegnatiTextArea" layoutX="31.0" layoutY="100.0" prefHeight="150.0" prefWidth="226.0" styleClass="text-area-rounded" wrapText="true" />
+      
+      <Text layoutX="264.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white"  onMouseClicked="#handleBachecaClick" text="Bacheca:">
          <font>
             <Font name="Cochin" size="13.0" />
          </font>
       </Text>
-      <!-- TextArea per visualizzare i prossimi impegni -->
-<TextArea fx:id="impegniTextArea" editable="false" layoutX="321.0" layoutY="100.0" prefHeight="200.0" prefWidth="250.0" wrapText="true" styleClass="text-area-rounded" />
-      <!-- Bottone per passare alla nuova scena -->
-      <Button fx:id="button" layoutX="418.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="27.0" prefWidth="152.0" text="Visualizza e aggiungi" textFill="#8a2727">
+      <TextArea fx:id="bachecaTextArea" layoutX="264.0" layoutY="100.0" prefHeight="150.0" prefWidth="226.0" styleClass="text-area-rounded" wrapText="true" />
+      
+      <Text layoutX="500.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white" text="Prossimi impegni:">
          <font>
-            <Font name="Chalkboard Bold" size="13.0" />
+            <Font name="Cochin" size="13.0" />
+         </font>
+      </Text>
+      <TextArea fx:id="impegniTextArea" editable="false" layoutX="500.0" layoutY="100.0" prefHeight="150.0" prefWidth="226.0" styleClass="text-area-rounded" wrapText="true" />
+      
+      <Button fx:id="button" layoutX="606.0" layoutY="73.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="17.0" prefWidth="120.0" styleClass="custom-button" text="Visualizza e aggiungi">
+         <font>
+            <Font name="Chalkboard Bold" size="11.0" />
          </font>
       </Button>
+      <!-- Contenitore VBox per il titolo e il LineChart -->
+      <VBox alignment="CENTER" layoutX="31.0" layoutY="260.0" prefHeight="250.0" prefWidth="700.0" spacing="10.0">
+<Text styleClass="chart-title" text="Il tuo andamento >" onMouseClicked="#handleChartTitleClick" />         <LineChart fx:id="votiLineChart" prefHeight="200.0" prefWidth="700.0">
+            <xAxis>
+               <NumberAxis fx:id="xAxis" />
+            </xAxis>
+            <yAxis>
+               <NumberAxis fx:id="yAxis" label="Voto" styleClass="axis-label">
+                  <tickLabelFont>
+                     <Font name="Avenir Heavy" size="8.0" />
+                  </tickLabelFont>
+               </NumberAxis>
+            </yAxis>
+         </LineChart>
+      </VBox>
    </children>
 </AnchorPane>

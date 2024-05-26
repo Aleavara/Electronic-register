@@ -1,46 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="397.0" prefWidth="504.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProfessorDashboardController">
-    <Label fx:id="welcomeLabel" layoutX="20" layoutY="20" />
-    <Label fx:id="matricolaLabel" layoutX="20" layoutY="60" />
-    <TableView fx:id="orarioTable" layoutX="20" layoutY="100" prefHeight="400.0" prefWidth="484.0">
-        <columns>
-            <TableColumn fx:id="lunediColumn" text="Lunedì">
-                <cellValueFactory>
-                    <PropertyValueFactory property="lunedi" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="martediColumn" text="Martedì">
-                <cellValueFactory>
-                    <PropertyValueFactory property="martedi" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="mercolediColumn" text="Mercoledì">
-                <cellValueFactory>
-                    <PropertyValueFactory property="mercoledi" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="giovediColumn" text="Giovedì">
-                <cellValueFactory>
-                    <PropertyValueFactory property="giovedi" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="venerdiColumn" text="Venerdì">
-                <cellValueFactory>
-                    <PropertyValueFactory property="venerdi" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="sabatoColumn" text="Sabato">
-                <cellValueFactory>
-                    <PropertyValueFactory property="sabato" />
-                </cellValueFactory>
-            </TableColumn>
-        </columns>
-    </TableView>
+<AnchorPane prefHeight="850.0" prefWidth="800.0" style="-fx-background-color: #1d241e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProfessorDashboardController">
+    <children>
+        <!-- Professor Information -->
+        <AnchorPane layoutX="529.0" layoutY="13.0">
+            <children>
+                <Label fx:id="welcomeLabel" layoutX="120.0" layoutY="15.0" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+                <Label fx:id="classesLabel" layoutX="120.0" layoutY="30.0" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+                <Label fx:id="matricolaLabel" layoutX="120.0" layoutY="52.0" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+                <Label layoutX="62.0" layoutY="15.0" style="-fx-text-fill: white;" text="Docente: " />
+                <Label layoutX="62.0" layoutY="31.0" style="-fx-text-fill: white;" text="Classi: " />
+                <Label layoutX="62.0" layoutY="51.0" style="-fx-text-fill: white;" text="Numero Matricola: " />
+            </children>
+        </AnchorPane>
+
+        <!-- Main Content Area -->
+        <VBox layoutX="20" layoutY="100" spacing="20.0">
+            <children>
+                <!-- Timetable Table -->
+                <HBox spacing="20.0">
+                    <TableView fx:id="orarioTable" prefHeight="400.0" prefWidth="484.0">
+                        <columns>
+                            <TableColumn fx:id="lunediColumn" text="Lunedì" />
+                            <TableColumn fx:id="martediColumn" text="Martedì" />
+                            <TableColumn fx:id="mercolediColumn" text="Mercoledì" />
+                            <TableColumn fx:id="giovediColumn" text="Giovedì" />
+                            <TableColumn fx:id="venerdiColumn" text="Venerdì" />
+                            <TableColumn fx:id="sabatoColumn" text="Sabato" />
+                        </columns>
+                    </TableView>
+
+                    <!-- Aggiungi Elementi Section -->
+<VBox prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: black; -fx-background-radius: 10; -fx-border-radius: 10; -fx-padding: 10;">
+    <children>
+        <Label style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" text="Aggiungi" />
+        <Label style="-fx-text-fill: white;" text="Seleziona una data:" textAlignment="CENTER" />
+        <DatePicker fx:id="datePicker" />
+        <Label style="-fx-text-fill: white;" text="Seleziona una categoria:" />
+        <ChoiceBox fx:id="categoryChoiceBox">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="bacheca" />
+                    <String fx:value="compiti assegnati" />
+                    <String fx:value="promemoria" />
+                </FXCollections>
+            </items>
+        </ChoiceBox>
+        <Label style="-fx-text-fill: white;" text="Seleziona le classi:" />
+        <VBox fx:id="classCheckBoxVBox" />
+        <TextField fx:id="inputTextField" promptText="Inserisci elemento">
+                        <VBox.margin>
+                           <Insets top="10.0" />
+                        </VBox.margin></TextField>
+        <Button alignment="CENTER" onAction="#aggiungiElemento" prefHeight="29.0" prefWidth="77.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-border-radius: 15;" text="Aggiungi" textAlignment="CENTER">
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+        </Button>
+        <Label style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" text="Aggiungi voto">
+                        <VBox.margin>
+                           <Insets top="10.0" />
+                        </VBox.margin></Label>
+
+        <!-- Aggiungi Voto Button -->
+        <Button alignment="CENTER" onAction="#aggiungiVoto" prefHeight="29.0" prefWidth="100.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-border-radius: 20;" text="Aggiungi Voto" textAlignment="CENTER" textFill="#512525">
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+        </Button>
+    </children>
+</VBox>
+                </HBox>
+
+                <!-- Sections for Bacheca, Compiti, and Promemoria -->
+                <HBox prefHeight="287.0" prefWidth="754.0" spacing="20.0">
+                    <!-- Bacheca VBox -->
+                    <VBox fx:id="bachecaVBox" prefHeight="0.0" prefWidth="225.0" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ccc;" />
+
+                    <!-- Compiti Assegnati VBox -->
+                    <VBox fx:id="compitiVBox" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ccc;" />
+
+                    <!-- Promemoria VBox -->
+                    <VBox fx:id="promemoriaVBox" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ccc;" />
+                </HBox>
+            </children>
+        </VBox>
+      <Label layoutX="294.0" layoutY="31.0" prefHeight="33.0" prefWidth="206.0" text="Bentornato!" textFill="#e1e1e1">
+         <font>
+            <Font name="SansSerif Bold" size="29.0" />
+         </font>
+      </Label>
+    </children>
 </AnchorPane>

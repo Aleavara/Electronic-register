@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -6,77 +9,62 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 
 <BorderPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ClasseViewController">
     <top>
-        <Label fx:id="classeLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+        <HBox alignment="center" style="-fx-padding: 10; -fx-margin-left: 55;">
+            <Label fx:id="classeLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+        </HBox>
     </top>
     <center>
-        <VBox spacing="10">
-            <BorderPane>
-                <top>
-                    <Label text="Bacheca" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                </top>
-                <center>
-                    <VBox fx:id="bachecaVBox" />
-                </center>
-            </BorderPane>
-            <BorderPane>
-                <top>
-                    <Label text="Compiti Assegnati" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                </top>
-                <center>
-                    <VBox fx:id="compitiVBox" />
-                </center>
-            </BorderPane>
-            <BorderPane>
-                <top>
-                    <Label text="Promemoria" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                </top>
-                <center>
-                    <VBox fx:id="promemoriaVBox" />
-                </center>
-            </BorderPane>
-            <BorderPane>
-                <top>
-                    <Label text="Lista Professori" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                </top>
-                <center>
-                    <VBox fx:id="professoriVBox" />
-                </center>
-            </BorderPane>
-            <BorderPane>
-                <top>
-                    <Label text="Lista Studenti" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                </top>
-                <center>
-                    <VBox fx:id="studentiVBox" />
-                </center>
-            </BorderPane>
+        <VBox spacing="20" style="-fx-padding: 10;">
+            <HBox spacing="20">
+                <StackPane style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ccc; -fx-padding: 10; -fx-pref-width: 250;">
+                    <VBox alignment="TOP_CENTER" spacing="10">
+                        <Label onMouseClicked="#mostraBacheca" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Bacheca" />
+                        <VBox fx:id="bachecaVBox" />
+                    </VBox>
+                </StackPane>
+                <StackPane style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ccc; -fx-padding: 10; -fx-pref-width: 250;">
+                    <VBox alignment="TOP_CENTER" spacing="10">
+                        <Label onMouseClicked="#mostraCompitiAssegnati" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Compiti Assegnati" />
+                        <VBox fx:id="compitiVBox" />
+                    </VBox>
+                </StackPane>
+                <StackPane style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ccc; -fx-padding: 10; -fx-pref-width: 250;">
+                    <VBox alignment="TOP_CENTER" spacing="10">
+                        <Label onMouseClicked="#mostraPromemoria" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Promemoria" />
+                        <VBox fx:id="promemoriaVBox" />
+                    </VBox>
+                </StackPane>
+                <VBox fx:id="menuNero" alignment="TOP_CENTER" spacing="10" style="-fx-background-color: black; -fx-background-radius: 10; -fx-border-radius: 10; -fx-padding: 10; -fx-pref-width: 250;">
+                    <Label style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" text="Aggiungi" />
+                    <Label style="-fx-text-fill: white;" text="Seleziona una data:" textAlignment="CENTER" />
+                    <DatePicker fx:id="datePicker" />
+                    <Label style="-fx-text-fill: white;" text="Seleziona una categoria:" />
+                    <ChoiceBox fx:id="categoryChoiceBox">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="bacheca" />
+                                <String fx:value="compiti assegnati" />
+                                <String fx:value="promemoria" />
+                            </FXCollections>
+                        </items>
+                    </ChoiceBox>
+                    <TextField fx:id="inputTextField" promptText="Inserisci elemento" />
+                    <Button onAction="#aggiungiElemento" style="-fx-background-color: white; -fx-text-fill: black; -fx-border-radius: 15;" text="Aggiungi" />
+                </VBox>
+            </HBox>
+            <VBox spacing="10">
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Lista Professori" />
+                <VBox fx:id="professoriVBox" />
+            </VBox>
+            <VBox spacing="10">
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Lista Studenti" />
+                <VBox fx:id="studentiVBox" />
+            </VBox>
         </VBox>
     </center>
-    <right>
-        <VBox spacing="10">
-            <Label text="Seleziona una data:" />
-            <DatePicker fx:id="datePicker" />
-            <Label text="Seleziona una categoria:" />
-            <ChoiceBox fx:id="categoryChoiceBox">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="bacheca" />
-                        <String fx:value="compiti assegnati" />
-                        <String fx:value="promemoria" />
-                    </FXCollections>
-                </items>
-            </ChoiceBox>
-            <TextField fx:id="inputTextField" promptText="Inserisci elemento" />
-            <Button text="Aggiungi" onAction="#aggiungiElemento" />
-            
-            <Button text="Aggiungi studente" onAction="#aggiungiStudenteButtonClicked" />
-            
-        </VBox>
-    </right>
 </BorderPane>
