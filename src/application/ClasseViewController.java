@@ -136,26 +136,46 @@ public class ClasseViewController {
 	 */
 	@FXML
 	private void populateProfessoriList() {
-		professoriVBox.getChildren().clear();
-		List<Professore> professori = classe.getProfessori();
-		professori.forEach(professore -> {
-			HBox professoreBox = new HBox(10);
-			Label professoreLabel = new Label(professore.getNome() + " " + professore.getCognome());
-			Button deleteButton = new Button("Elimina");
-			deleteButton.setStyle("-fx-background-color: black; -fx-text-fill: white;");
-			deleteButton.setOnAction(event -> {
-				classe.rimuoviProfessore(professore); // Metodo che rimuove il professore dalla classe
-				updateLabels();
-			});
-			professoreBox.getChildren().addAll(professoreLabel, deleteButton);
+	    professoriVBox.getChildren().clear();
+	    List<Professore> professori = classe.getProfessori();
+	    professori.forEach(professore -> {
+	        HBox professoreBox = new HBox(10);
+	        Label professoreLabel = new Label(professore.getNome() + " " + professore.getCognome());
+	        Button deleteButton = new Button("Elimina");
+	        deleteButton.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+	        deleteButton.setOnAction(event -> {
+	            classe.rimuoviProfessore(professore); // Metodo che rimuove il professore dalla classe
+	            updateLabels();
+	        });
 
-			// Aggiungi il gestore di eventi per il clic sul label del professore
-			professoreLabel.setOnMouseClicked(event -> {
-				mostraDettagliProfessore(professore);
-			});
+	        Button modificaOrarioButton = new Button("Modifica Orario");
+	        modificaOrarioButton.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+	        modificaOrarioButton.setOnAction(event -> {
+	            mostraModificaOrarioProfessore(professore);
+	        });
 
-			professoriVBox.getChildren().add(professoreBox);
-		});
+	        professoreBox.getChildren().addAll(professoreLabel, deleteButton, modificaOrarioButton);
+
+	        professoriVBox.getChildren().add(professoreBox);
+	    });
+	}
+	
+	private void mostraModificaOrarioProfessore(Professore professore) {
+	    try {
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/riempiOrario.fxml"));
+	        Parent root = loader.load();
+	        
+	        RiempiOrarioController controller = loader.getController();
+	        controller.setProfessore(professore);
+	        
+	        Scene scene = new Scene(root);
+	        Stage stage = new Stage();
+	        stage.setScene(scene);
+	        stage.setTitle("Modifica Orario Professore");
+	        stage.show();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 	}
 
 	/**

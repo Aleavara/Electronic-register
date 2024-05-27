@@ -115,7 +115,7 @@ public class Professore extends Persona implements Serializable {
 		List<Voto> votiData = voti.getOrDefault(data.toString(), null);
 		if (votiData != null) {
 			for (Voto v : votiData) {
-				if (v.getProfInserente().equals(this)) {
+				if (v.getProfInserente().equals(this)&&v.getDataInserimento().equals(data)&&v.getVoto().equals(voto)) {
 					System.out.println("Il professore ha già inserito un voto per questa data.");
 					return;
 				}
@@ -125,6 +125,7 @@ public class Professore extends Persona implements Serializable {
 			voti.put(data.toString(), votiData);
 		}
 		votiData.add(new Voto(data, voto, this));
+		studente.calcolaMediaGenerale();
 		System.out.println(
 				"Voto aggiunto con successo per lo studente " + studente.getNome() + " " + studente.getCognome());
 	}
@@ -153,6 +154,14 @@ public class Professore extends Persona implements Serializable {
 
 	public String toString() {
 		return "nome" + this.getNome();
+	}
+	
+	public void aggiungiClassee(int giorno, int ora, Classe classe) {
+	    if (giorno < 0 || giorno > 6 || ora < 0 || ora > 5) {
+	        System.out.println("Giorno o ora non validi.");
+	        return;
+	    }
+	    orarioSettimanale[giorno][ora] = classe;
 	}
 
 }

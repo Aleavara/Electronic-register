@@ -185,9 +185,9 @@ public class Main extends Application {
 			controller.setProfessore(professore);
 			controller.updateView();
 			Scene scene = new Scene(root);
-			Stage stage = new Stage();
-			stage.setScene(scene);
-			stage.show();
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Dashboard Professore");
+			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -226,25 +226,6 @@ public class Main extends Application {
 			Scene studentScene = new Scene(root);
 			primaryStage.setScene(studentScene);
 			primaryStage.setTitle("Dashboard Studente");
-			primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void showClasseDashboard(Classe classe) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/class_dashboard.fxml"));
-			Parent root = loader.load();
-
-			ClasseViewController controller = loader.getController();
-			controller.setClasse(classe);
-
-			controller.updateLabels();
-
-			Scene classeScene = new Scene(root);
-			primaryStage.setScene(classeScene);
-			primaryStage.setTitle("Dashboard Classe");
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();

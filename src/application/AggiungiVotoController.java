@@ -3,10 +3,12 @@ package application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import scuola.Classe;
 import scuola.Professore;
 import scuola.Studente;
+import scuola.Voto;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
 /**
  * Controller per la finestra di aggiunta voto.
  * 
- * @author Alessioavarappattu
+ * author Alessioavarappattu
  */
 public class AggiungiVotoController {
 
@@ -26,6 +28,9 @@ public class AggiungiVotoController {
 
     @FXML
     private TextField votoTextField;
+
+    @FXML
+    private DatePicker dataVotoPicker;
 
     @FXML
     private Button aggiungiVotoButton;
@@ -46,7 +51,6 @@ public class AggiungiVotoController {
      * Metodo di inizializzazione del controller.
      */
     private void initialize() {
-
         List<Classe> classi = professore.getClassi();
         classeChoiceBox.getItems().addAll(classi);
 
@@ -68,9 +72,10 @@ public class AggiungiVotoController {
         Classe classeSelezionata = classeChoiceBox.getValue();
         Studente studenteSelezionato = studenteChoiceBox.getValue();
         String votoText = votoTextField.getText();
+        LocalDate dataVoto = dataVotoPicker.getValue();
 
-        if (classeSelezionata == null || studenteSelezionato == null || votoText.isEmpty()) {
-            System.out.println("Per favore, seleziona una classe, uno studente e inserisci un voto.");
+        if (classeSelezionata == null || studenteSelezionato == null || votoText.isEmpty() || dataVoto == null) {
+            System.out.println("Per favore, seleziona una classe, uno studente, inserisci un voto e seleziona una data.");
             return;
         }
 
@@ -82,7 +87,9 @@ public class AggiungiVotoController {
             return;
         }
 
-        LocalDate data = LocalDate.now();
-        professore.aggiungiVoto(studenteSelezionato, data, voto);
+        Voto nuovoVoto = new Voto(dataVoto,voto, this.professore);
+       // studenteSelezionato.aggiungiVoto(this.professore.getMateria(), nuovoVoto);
+        this.professore.aggiungiVoto(studenteSelezionato, dataVoto, voto);
+        System.out.println("Voto aggiunto con successo.");
     }
 }

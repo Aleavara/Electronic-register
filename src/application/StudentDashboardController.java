@@ -98,10 +98,12 @@ public class StudentDashboardController {
         }
     }
 
-    private void aggiornaRiempimentoBarra() {
+    public void aggiornaRiempimentoBarra() {
         Studente studente = studenteService.getStudente();
+        
         if (studente != null && studente.getMediaGenerale() != null) {
             double media = studente.getMediaGenerale();
+            
             fillBar.setProgress(media / 10.0);
 
             Color color;

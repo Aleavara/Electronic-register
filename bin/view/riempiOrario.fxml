@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RiempiOrarioController">
+    <children>
+        <GridPane layoutX="14.0" layoutY="14.0" hgap="10" vgap="10">
+            <children>
+                <Label text="Orario Settimanale" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="7" />
+                <Label text="Ora" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label text="Lunedì" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="Martedì" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Label text="Mercoledì" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Label text="Giovedì" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                <Label text="Venerdì" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                <Label text="Sabato" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                
+                <!-- Repeat these blocks for each hour slot (up to 6) -->
+                <Label text="1ª Ora" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <ChoiceBox fx:id="lunediOra1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <ChoiceBox fx:id="martediOra1" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <ChoiceBox fx:id="mercolediOra1" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <ChoiceBox fx:id="giovediOra1" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                <ChoiceBox fx:id="venerdiOra1" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                <ChoiceBox fx:id="sabatoOra1" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                
+                <Label text="2ª Ora" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <ChoiceBox fx:id="lunediOra2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <ChoiceBox fx:id="martediOra2" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <ChoiceBox fx:id="mercolediOra2" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                <ChoiceBox fx:id="giovediOra2" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                <ChoiceBox fx:id="venerdiOra2" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                <ChoiceBox fx:id="sabatoOra2" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                
+                <Label text="3ª Ora" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <ChoiceBox fx:id="lunediOra3" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <ChoiceBox fx:id="martediOra3" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <ChoiceBox fx:id="mercolediOra3" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                <ChoiceBox fx:id="giovediOra3" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                <ChoiceBox fx:id="venerdiOra3" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                <ChoiceBox fx:id="sabatoOra3" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                
+                <Label text="4ª Ora" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                <ChoiceBox fx:id="lunediOra4" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <ChoiceBox fx:id="martediOra4" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                <ChoiceBox fx:id="mercolediOra4" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                <ChoiceBox fx:id="giovediOra4" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                <ChoiceBox fx:id="venerdiOra4" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                <ChoiceBox fx:id="sabatoOra4" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                
+                <Label text="5ª Ora" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                <ChoiceBox fx:id="lunediOra5" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <ChoiceBox fx:id="martediOra5" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                <ChoiceBox fx:id="mercolediOra5" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                <ChoiceBox fx:id="giovediOra5" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                <ChoiceBox fx:id="venerdiOra5" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                <ChoiceBox fx:id="sabatoOra5" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+                
+                <Label text="6ª Ora" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                <ChoiceBox fx:id="lunediOra6" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                <ChoiceBox fx:id="martediOra6" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                <ChoiceBox fx:id="mercolediOra6" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                <ChoiceBox fx:id="giovediOra6" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+                <ChoiceBox fx:id="venerdiOra6" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+                <ChoiceBox fx:id="sabatoOra6" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+                
+                <Button text="Salva Orario" onAction="#salvaOrario" GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.columnSpan="7" />
+            </children>
+        </GridPane>
+    </children>
+</AnchorPane>

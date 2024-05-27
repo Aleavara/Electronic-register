@@ -71,7 +71,7 @@ public class VotiStudenteController {
                
                 Text votoText = new Text();
                 votoText.setFont(new Font(14));
-                votoText.setText("Inserito da: " + voto.getProfInserente().getNome() + " " + voto.getProfInserente().getCognome() + "\n" +
+                votoText.setText("Materia: "+ voto.getProfInserente().getMateria() + "\nInserito da: "+ voto.getProfInserente().getNome() + " " + voto.getProfInserente().getCognome() + "\n" +
                         "Il: " + voto.getDataInserimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n" +
                         "Voto: " + voto.getVoto());
                 votoText.setStyle("-fx-font-weight: bold");

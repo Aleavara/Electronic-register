@@ -96,7 +96,7 @@ public class ProfessorDashboardController {
      */
     public void updateView() {
         welcomeLabel.setText(professore.getNome() + " " + professore.getCognome());
-        matricolaLabel.setText("Matricola: " + professore.getnMatricola());
+        matricolaLabel.setText("			 " + professore.getnMatricola());
 
         StringBuilder classi = new StringBuilder("");
         for (Classe classe : professore.getClassi()) {

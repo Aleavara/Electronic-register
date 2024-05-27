@@ -23,6 +23,8 @@ public class Studente extends Persona implements Serializable {
     public Studente() {
         this.setnMatricola();
         this.voti = new HashMap<>();
+        
+       
     }
 
     /**
@@ -89,24 +91,32 @@ public class Studente extends Persona implements Serializable {
         this.voti = voti;
         calcolaMediaGenerale(); // Ricalcola la media quando i voti vengono impostati
     }
-
+   
     /**
      * Aggiunge un voto per lo studente e aggiorna la media generale.
      * @param materia La materia relativa al voto.
      * @param voto Il voto da aggiungere.
      */
+    /*
     public void aggiungiVoto(String materia, Voto voto) {
         if (!voti.containsKey(materia)) {
             voti.put(materia, new ArrayList<>());
         }
         voti.get(materia).add(voto);
         calcolaMediaGenerale();
+    }*/
+    
+    /**
+     * Aggiorna la media generale degli voti dello studente.
+     */
+    public void aggiornaMediaGenerale() {
+        this.mediaGenerale=calcolaMediaGenerale();
     }
 
     /**
      * Calcola la media generale degli voti dello studente.
      */
-    private void calcolaMediaGenerale() {
+    public double calcolaMediaGenerale() {
         int numeroVoti = 0;
         double sommaVoti = 0.0;
 
@@ -122,6 +132,8 @@ public class Studente extends Persona implements Serializable {
         } else {
             mediaGenerale = 0.0;
         }
+        
+        return mediaGenerale;
     }
 
     /**
