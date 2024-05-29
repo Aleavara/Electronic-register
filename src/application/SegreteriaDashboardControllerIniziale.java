@@ -9,11 +9,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import scuola.Classe;
 import scuola.Segreteria;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +43,7 @@ public class SegreteriaDashboardControllerIniziale {
      * Metodo di inizializzazione del controller.
      */
     public void initialize() {
-        // Configura la factory delle celle personalizzata per la ListView
+       
         classiListView.setCellFactory(new Callback<ListView<Classe>, ListCell<Classe>>() {
             @Override
             public ListCell<Classe> call(ListView<Classe> param) {
@@ -49,16 +51,16 @@ public class SegreteriaDashboardControllerIniziale {
             }
         });
 
-        // Abilita la selezione multipla nella ListView
+       
         classiListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        // Aggiungi un gestore di eventi per catturare il click destro sull'elemento della lista
+       
         classiListView.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.SECONDARY) { // Verifica se è stato cliccato il tasto destro
-                // Ottieni l'elemento selezionato
+              
                 Classe classeSelezionata = classiListView.getSelectionModel().getSelectedItem();
                 if (classeSelezionata != null) {
-                    // Esegui le azioni desiderate quando viene richiesto il menu contestuale sulla classe selezionata
+                  
                 }
             }
         });
@@ -163,4 +165,17 @@ public class SegreteriaDashboardControllerIniziale {
             }
         });
     }
+    @FXML
+    private void caricaStudentiDaFileClicked(MouseEvent event) throws Exception {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Scegli il file CSV degli studenti");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            segreteria.caricaStudentiDaCSV(selectedFile.getAbsolutePath());
+            updateLabels();
+        }
+    }
+    
+    
 }

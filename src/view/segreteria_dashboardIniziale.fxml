@@ -10,8 +10,9 @@
 
 <BorderPane prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SegreteriaDashboardControllerIniziale">
     <top>
-        <HBox alignment="CENTER" style="-fx-background-color: black; -fx-padding: 10;">
+        <HBox alignment="CENTER" spacing="20" style="-fx-background-color: black; -fx-padding: 10;">
             <Label style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" text="Segreteria" />
+            
         </HBox>
     </top>
     <center>
@@ -20,6 +21,7 @@
                 <Button onMouseClicked="#aggiungiStudentiAlPoloClicked" style="-fx-background-color: black; -fx-text-fill: white;" text="Aggiungi studenti al polo" />
                 <Button onMouseClicked="#aggiungiProfessoriClicked" style="-fx-background-color: black; -fx-text-fill: white;" text="Aggiungi professori" />
                 <Button onMouseClicked="#creaClasseClicked" style="-fx-background-color: black; -fx-text-fill: white;" text="Crea classe" />
+                <Button onMouseClicked="#caricaStudentiDaFileClicked" style="-fx-background-color: black; -fx-text-fill: white;" text="Carica studenti da file" />
                 <HBox alignment="CENTER_RIGHT"> <!-- Allineamento a destra -->
                     <Button onMouseClicked="#eliminaClasseClicked" style="-fx-background-color: black; -fx-text-fill: white;" text="Elimina classe" />
                 </HBox>
@@ -27,7 +29,7 @@
             <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Lista Classi in questa scuola" />
             <ScrollPane VBox.vgrow="ALWAYS">
                 <content>
-                    <ListView fx:id="classiListView" prefHeight="433.0" prefWidth="584.0" />
+                    <ListView fx:id="classiListView" prefHeight="1200.0" prefWidth="3600.0" />
                 </content>
             </ScrollPane>
         </VBox>

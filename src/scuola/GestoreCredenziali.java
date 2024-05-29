@@ -68,7 +68,7 @@ public class GestoreCredenziali implements Serializable{
     public void setCredenzialiStudent(Studente studente, String username, String password) {
         boolean credenzialiDuplicati = false;
         for (Credenziali credenziali : credenzialiStudent.values()) {
-            if (credenziali.getUsername().equals("s" + username) && credenziali.getPassword().equals(password)) {
+            if (credenziali.getUsername().equals("s" + username) ) {
                 credenzialiDuplicati = true;
                 break;
             }

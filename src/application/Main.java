@@ -56,8 +56,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 
-		List<Object> data = loadData("data.dat");
-		// data.clear();
+		List<Object> data =loadData("data.dat");
+				
+			//	
+		//data.clear();
 
 		// new ArrayList<Object>();
 
@@ -84,7 +86,7 @@ public class Main extends Application {
 							listaProfessori.add(p);
 							gestoreCredenziali.aggiungiProfessore(p);
 							gestoreCredenziali.setCredenzialProf(p, segreteria.getCredenzialiProf(p));
-							System.out.println(segreteria.getCredenzialiProf(p));
+							System.out.println("Professore:" +segreteria.getCredenzialiProf(p));
 						}
 					}
 				}
@@ -95,6 +97,20 @@ public class Main extends Application {
 				break;
 			}
 		}
+		
+		/* Classe classea = new Classe("4CIF"); Classe classeb= new Classe("5BIF");
+		  List<Classe> listaClassi = new ArrayList<>(); listaClassi.add(classeb);
+		  listaClassi.add(classea); Studente studente = new Studente("marco",
+		  "pollini", "Indirizzo", "CodiceFiscale", LocalDate.now(), classea);
+		  Professore professore = new Professore("Alessandro", "Baroni", "I",
+		  "Abroa1949j", LocalDate.now(),"Storia",listaClassi ); Segreteria seg = new
+		  Segreteria("se","se"); seg.aggiungiProf(professore, "alessandro.baroni",
+		  "alessandro"); seg.aggiungiStudente(studente, "marco.pollini", "marco");
+		  seg.aggiungiClasse(classeb); seg.aggiungiClasse(classea);
+		  
+		  data.add(seg);*/
+		
+	System.out.println("credenziali segreteria: "+ segreteria.getCredenziali());
 
 
 	primaryStage = stage;
@@ -126,24 +142,23 @@ public class Main extends Application {
 	}
 
 	private void showSegreteriaDashboard(Segreteria segreteria) {
-		try {
+	    try {
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/segreteria_dashboardIniziale.fxml"));
+	        Parent root = loader.load();
 
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/segreteria_dashboardIniziale.fxml"));
+	        SegreteriaDashboardControllerIniziale controller = loader.getController();
+	        controller.setSegreteria(segreteria);
+	        controller.updateLabels();
 
-			Parent root = loader.load();
+	        Scene segreteriaScene = new Scene(root, 800, 400); // Set scene size to 600x600
+	        primaryStage.setScene(segreteriaScene);
+	        primaryStage.setResizable(true);
+	        primaryStage.setTitle("Dashboard Segreteria");
+	        primaryStage.show();
 
-			SegreteriaDashboardControllerIniziale controller = loader.getController();
-			controller.setSegreteria(segreteria);
-			controller.updateLabels();
-
-			Scene SegreteriaScene = new Scene(root);
-			primaryStage.setScene(SegreteriaScene);
-			primaryStage.setTitle("Dashboard Segreteria");
-			primaryStage.show();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 	}
 
 	private void showStudentDashboard(Studente studente) {
@@ -230,8 +245,8 @@ public class Main extends Application {
 
 	    Label loginLabel = new Label("Log-in");
 	    loginLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: white;");
-	    loginGrid.add(loginLabel, 0, 0, 2, 1); // Posizionamento della scritta "Login" sopra il campo "Username"
-	    GridPane.setHalignment(loginLabel, HPos.CENTER); // Centrare la scritta "Login" nella griglia
+	    loginGrid.add(loginLabel, 0, 0, 2, 1); 
+	    GridPane.setHalignment(loginLabel, HPos.CENTER); 
 
 	    loginGrid.add(usernameField, 0, 1, 2, 1);
 	    loginGrid.add(passwordField, 0, 2, 2, 1);

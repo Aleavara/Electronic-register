@@ -1,7 +1,10 @@
 package scuola;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,8 +56,50 @@ public class Segreteria implements Serializable {
 		Studente studente = new Studente(nome, cognome, indirizzo, codiceFiscale, dataNascita, classe);
 		gestoreCredenziali.aggiungiStudente(studente);
 		gestoreCredenziali.setCredenzialiStudent(studente, username, password);
-		System.out.println(this.gestoreCredenziali.getCredenzialStudente(studente) + "sono io");
+
 	}
+	
+	
+    /**
+     * Carica studenti da un file CSV e li aggiunge alla gestione della segreteria.
+     * 
+     * @param csvFilePath Il percorso del file CSV.
+     * @throws Exception 
+     */
+    public void caricaStudentiDaCSV(String csvFilePath) throws Exception {
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            String line;
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split("\t");
+                if (values.length == 8) {
+                    String nome = values[0].trim();
+                    String cognome = values[1].trim();
+                    String indirizzo = values[2].trim();
+                    String codiceFiscale = values[3].trim();
+                    LocalDate dataNascita = null;
+                    try {
+                        dataNascita = LocalDate.parse(values[4].trim());
+                    } catch (DateTimeParseException e) {
+                        System.err.println("Formato data non valido per: " + values[4].trim());
+                        continue; // Skip this record and move to the next
+                    }
+                    String sezioneClasse = values[5].trim();
+                    String username = values[6].trim();
+                    String password = values[7].trim();
+
+                    Classe classe = trovaClassePerSezione(sezioneClasse);
+                    if (classe != null) {
+                        creaStudente(nome, cognome, indirizzo, codiceFiscale, dataNascita, classe, username, password);
+                    } else {
+                        throw new Exception("classe non trovata");
+                    }
+                } else {
+                    System.out.println("Riga malformata: " + line);
+                }
+            }
+        }
+    }
 
 	/**
 	 * Aggiunge uno studente alla gestione della segreteria.
@@ -162,6 +207,22 @@ public class Segreteria implements Serializable {
 	public Credenziali getCredenzialiStud(Studente stud) {
 		return gestoreCredenziali.getCredenzialStudente(stud);
 	}
+	
+    /**
+     * Trova una classe per la sezione specificata.
+     * 
+     * @param sezione La sezione della classe.
+     * @return La classe corrispondente alla sezione, o null se non trovata.
+     */
+    private Classe trovaClassePerSezione(String sezione) {
+        for (Classe classe : listaClassi) {
+            if (classe.getSezione().equals(sezione)) {
+                return classe;
+            }
+        }
+        return null;
+    }
+    
 
 	public Credenziali getCredenzialiProf(Professore prof) {
 		return gestoreCredenziali.getCredenzialProfessore(prof);
@@ -177,5 +238,9 @@ public class Segreteria implements Serializable {
 
 	public Studente validaCredenzialiStudent(String username, String password) {
 		return this.gestoreCredenziali.validaCredenzialiStudent(username, password);
+	}
+	
+	public Credenziali getCredenziali() {
+		return this.credenziali;
 	}
 }
