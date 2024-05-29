@@ -59,8 +59,14 @@ public class BachecaController {
         bachecaVBox.getChildren().clear();
         bacheca.forEach((data, list) -> {
             VBox entryBox = new VBox(10);
-            entryBox.setStyle("-fx-background-color: white;" + "-fx-background-radius: 10;" + "-fx-border-radius: 10;"
-                    + "-fx-border-color: #ccc;" + "-fx-border-width: 1;" + "-fx-padding: 10;" + "-fx-spacing: 5;");
+            entryBox.setStyle("-fx-background-color: white;" +
+                    "-fx-background-radius: 10;" +
+                    "-fx-border-radius: 10;" +
+                    "-fx-border-color: #ccc;" +
+                    "-fx-border-width: 1;" +
+                    "-fx-padding: 10;" +
+                    "-fx-spacing: 5;");
+            entryBox.setMaxWidth(Double.MAX_VALUE);  // Permette al riquadro di espandersi
 
             Label dateLabel = new Label("Per il: " + data.toString());
             dateLabel.setStyle("-fx-font-weight: bold;");
@@ -68,7 +74,11 @@ public class BachecaController {
 
             list.forEach(item -> {
                 HBox itemBox = new HBox(10);
+                itemBox.setMaxWidth(Double.MAX_VALUE);  // Permette all'HBox di espandersi
+
                 Label itemLabel = new Label(item);
+                itemLabel.setMaxWidth(Double.MAX_VALUE);  // Permette all'etichetta di espandersi
+                itemLabel.setWrapText(true);
 
                 Region spacer = new Region();
                 HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -83,7 +93,7 @@ public class BachecaController {
                     updateBacheca();
                 });
 
-                HBox.setMargin(deleteButton, new Insets(-28, 0, 0, -50)); 
+                HBox.setMargin(deleteButton, new Insets(-28, 0, 0, -50));
                 itemBox.getChildren().addAll(itemLabel, spacer, deleteButton);
                 itemBox.setAlignment(Pos.CENTER_LEFT);
                 entryBox.getChildren().add(itemBox);
@@ -92,4 +102,5 @@ public class BachecaController {
             bachecaVBox.getChildren().add(entryBox);
         });
     }
+
 }

@@ -10,84 +10,86 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="application/student_dashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StudentDashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="701.0" prefWidth="777.0" stylesheets="application/student_dashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StudentDashboardController">
    <children>
       <!-- Informazioni dello studente -->
-      <AnchorPane layoutX="529.0" layoutY="13.0">
+      <AnchorPane layoutX="481.0" layoutY="15.0" prefHeight="80.0" prefWidth="250.0" styleClass="anchor-pane">
          <children>
-        <Text fx:id="studentNameText" layoutX="120.0" layoutY="15.0" style="-fx-fill: white; -fx-font-weight: bold;" />
-        <Text fx:id="studentClassText" layoutX="120.0" layoutY="30.0" style="-fx-fill: white; -fx-font-weight: bold;" />
-        <Text fx:id="studentIDText" layoutX="172.0" layoutY="52.0" style="-fx-fill: white; -fx-font-weight: bold;" />
-            <Text fill="WHITE" layoutX="62.0" layoutY="15.0" text="Studente: " wrappingWidth="219.21826171875">
+            <Text fx:id="studentNameText" layoutX="120.0" layoutY="15.0" style="-fx-font-weight: bold;" styleClass="text-white" />
+            <Text fx:id="studentClassText" layoutX="120.0" layoutY="35.0" style="-fx-font-weight: bold;" styleClass="text-white" />
+            <Text fx:id="studentIDText" layoutX="120.0" layoutY="55.0" style="-fx-font-weight: bold;" styleClass="text-white" />
+            <Text layoutX="10.0" layoutY="30.0" styleClass="text-white" text="Studente: " wrappingWidth="100.0">
                <font>
                   <Font name="Cochin" size="13.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="62.0" layoutY="31.0" text="Classe: " wrappingWidth="181.3134765625">
+            <Text layoutX="10.0" layoutY="50.0" styleClass="text-white" text="Classe: " wrappingWidth="100.0">
                <font>
                   <Font name="Cochin" size="13.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="62.0" layoutY="51.0" text="Numero Matricola: " wrappingWidth="235.5908203125">
+            <Text layoutX="10.0" layoutY="70.0" styleClass="text-white" text="Matricola: " wrappingWidth="100.0">
                <font>
                   <Font name="Cochin" size="13.0" />
                </font>
             </Text>
          </children>
       </AnchorPane>
-      
-      <!-- Rimani sui tuoi testi e altri controlli -->
-      <Text layoutX="31.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white" text="La tua Media: " wrappingWidth="112.21630859375">
+
+      <!-- Altri controlli -->
+      <Text layoutX="31.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" text="La tua Media: " wrappingWidth="112.21630859375">
          <font>
             <Font name="Malayalam MN Bold" size="13.0" />
          </font>
       </Text>
-      <ProgressBar fx:id="fillBar" layoutX="31.0" layoutY="50.0" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
-      <Text fx:id="mediaText" layoutX="150.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white" wrappingWidth="112.21630859375">
+      <ProgressBar fx:id="fillBar" layoutX="31.0" layoutY="50.0" prefHeight="10.0" prefWidth="200.0" progress="0.0" styleClass="progress-bar" />
+      <Text fx:id="mediaText" layoutX="150.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" wrappingWidth="112.21630859375">
          <font>
             <Font name="Malayalam MN Bold" size="13.0" />
          </font>
       </Text>
-      <Text layoutX="31.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white"  onMouseClicked="#handleCompitiAssegnatiClick" text="Prossimi compiti assegnati:">
+      <Text layoutX="31.0" layoutY="148.0" onMouseClicked="#handleCompitiAssegnatiClick" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" text="compiti assegnati:">
          <font>
             <Font name="Cochin" size="13.0" />
          </font>
       </Text>
-      <TextArea fx:id="compitiAssegnatiTextArea" layoutX="31.0" layoutY="100.0" prefHeight="150.0" prefWidth="226.0" styleClass="text-area-rounded" wrapText="true" />
+      <TextArea fx:id="compitiAssegnatiTextArea" layoutX="30.0" layoutY="165.0" prefHeight="150.0" prefWidth="226.0" styleClass="text-area-rounded" wrapText="true" />
       
-      <Text layoutX="264.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white"  onMouseClicked="#handleBachecaClick" text="Bacheca:">
+      <Text layoutX="268.0" layoutY="148.0" onMouseClicked="#handleBachecaClick" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" text="Bacheca:">
          <font>
             <Font name="Cochin" size="13.0" />
          </font>
       </Text>
-      <TextArea fx:id="bachecaTextArea" layoutX="264.0" layoutY="100.0" prefHeight="150.0" prefWidth="226.0" styleClass="text-area-rounded" wrapText="true" />
+      <TextArea fx:id="bachecaTextArea" layoutX="268.0" layoutY="165.0" prefHeight="150.0" prefWidth="226.0" styleClass="text-area-rounded" wrapText="true" />
       
-      <Text layoutX="500.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-white" text="Prossimi impegni:">
+      <Text layoutX="500.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" text=" impegni:">
          <font>
             <Font name="Cochin" size="13.0" />
          </font>
       </Text>
-      <TextArea fx:id="impegniTextArea" editable="false" layoutX="500.0" layoutY="100.0" prefHeight="150.0" prefWidth="226.0" styleClass="text-area-rounded" wrapText="true" />
+      <TextArea fx:id="impegniTextArea" editable="false" layoutX="500.0" layoutY="165.0" prefHeight="150.0" prefWidth="226.0" styleClass="text-area-rounded" wrapText="true" />
       
-      <Button fx:id="button" layoutX="606.0" layoutY="73.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="17.0" prefWidth="120.0" styleClass="custom-button" text="Visualizza e aggiungi">
+      <Button fx:id="button" layoutX="572.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="21.0" prefWidth="154.0" styleClass="custom-button" text="Visualizza e aggiungi">
          <font>
             <Font name="Chalkboard Bold" size="11.0" />
          </font>
       </Button>
+      
       <!-- Contenitore VBox per il titolo e il LineChart -->
       <VBox alignment="CENTER" layoutX="31.0" layoutY="260.0" prefHeight="250.0" prefWidth="700.0" spacing="10.0">
-<Text styleClass="chart-title" text="Il tuo andamento >" onMouseClicked="#handleChartTitleClick" />         <LineChart fx:id="votiLineChart" prefHeight="200.0" prefWidth="700.0">
-            <xAxis>
-               <NumberAxis fx:id="xAxis" />
-            </xAxis>
-            <yAxis>
-               <NumberAxis fx:id="yAxis" label="Voto" styleClass="axis-label">
-                  <tickLabelFont>
-                     <Font name="Avenir Heavy" size="8.0" />
-                  </tickLabelFont>
-               </NumberAxis>
-            </yAxis>
-         </LineChart>
+         <Text onMouseClicked="#handleChartTitleClick" styleClass="chart-title" text="Il tuo andamento &gt;" />
       </VBox>
+      <LineChart fx:id="votiLineChart" layoutX="39.0" layoutY="437.0" prefHeight="200.0" prefWidth="700.0">
+         <xAxis>
+            <NumberAxis fx:id="xAxis" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="yAxis" label="Voto" styleClass="axis-label">
+               <tickLabelFont>
+                  <Font name="Avenir Heavy" size="8.0" />
+               </tickLabelFont>
+            </NumberAxis>
+         </yAxis>
+      </LineChart>
    </children>
 </AnchorPane>

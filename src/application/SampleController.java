@@ -35,14 +35,14 @@ public class SampleController {
     @FXML
     private TextField impegnoTextField;
     
-    private StudenteService studenteService;
+    private Studente studente;
 
     /**
      * Imposta il servizio per il recupero delle informazioni sugli studenti.
      * @param studenteService Il servizio per il recupero delle informazioni sugli studenti.
      */
-    public void setStudenteService(StudenteService studenteService) {
-        this.studenteService = studenteService;
+    public void setStudenteService(Studente studenteService) {
+        this.studente = studenteService;
     }
 
     /**
@@ -65,7 +65,7 @@ public class SampleController {
      */
     @FXML
     private void visualizzaImpegni() {
-        Studente studente = studenteService.getStudente();
+        
         LocalDate data = dataPicker.getValue();
         if (data != null) {
             List<String> impegni = studente.getImpegni(data);
@@ -89,7 +89,7 @@ public class SampleController {
      */
     @FXML
     private void aggiungiImpegno() {
-        Studente studente = studenteService.getStudente();
+    
         LocalDate data = dataPicker.getValue();
         String impegno = impegnoTextField.getText();
         if (data != null && !impegno.isEmpty()) {

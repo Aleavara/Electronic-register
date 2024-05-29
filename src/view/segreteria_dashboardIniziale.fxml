@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SegreteriaDashboardControllerIniziale">
+<BorderPane prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SegreteriaDashboardControllerIniziale">
     <top>
         <HBox alignment="CENTER" style="-fx-background-color: black; -fx-padding: 10;">
             <Label style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" text="Segreteria" />
@@ -15,15 +17,19 @@
     <center>
         <VBox alignment="CENTER" spacing="10">
             <HBox alignment="CENTER" spacing="20" style="-fx-padding: 10;">
-                <Button onMouseClicked="#aggiungiStudentiAlPoloClicked" text="Aggiungi studenti al polo" style="-fx-background-color: black; -fx-text-fill: white;" />
-                <Button onMouseClicked="#aggiungiProfessoriClicked" text="Aggiungi professori" style="-fx-background-color: black; -fx-text-fill: white;" />
-                <Button onMouseClicked="#creaClasseClicked" text="Crea classe" style="-fx-background-color: black; -fx-text-fill: white;" />
+                <Button onMouseClicked="#aggiungiStudentiAlPoloClicked" style="-fx-background-color: black; -fx-text-fill: white;" text="Aggiungi studenti al polo" />
+                <Button onMouseClicked="#aggiungiProfessoriClicked" style="-fx-background-color: black; -fx-text-fill: white;" text="Aggiungi professori" />
+                <Button onMouseClicked="#creaClasseClicked" style="-fx-background-color: black; -fx-text-fill: white;" text="Crea classe" />
                 <HBox alignment="CENTER_RIGHT"> <!-- Allineamento a destra -->
-                    <Button onMouseClicked="#eliminaClasseClicked" text="Elimina classe" style="-fx-background-color: black; -fx-text-fill: white;" />
+                    <Button onMouseClicked="#eliminaClasseClicked" style="-fx-background-color: black; -fx-text-fill: white;" text="Elimina classe" />
                 </HBox>
             </HBox>
             <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Lista Classi in questa scuola" />
-            <ListView fx:id="classiListView" />
+            <ScrollPane VBox.vgrow="ALWAYS">
+                <content>
+                    <ListView fx:id="classiListView" prefHeight="433.0" prefWidth="584.0" />
+                </content>
+            </ScrollPane>
         </VBox>
     </center>
 </BorderPane>

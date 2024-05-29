@@ -1,9 +1,9 @@
 package application;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import scuola.Classe;
 import scuola.Professore;
@@ -13,11 +13,6 @@ import scuola.Voto;
 import java.time.LocalDate;
 import java.util.List;
 
-/**
- * Controller per la finestra di aggiunta voto.
- * 
- * author Alessioavarappattu
- */
 public class AggiungiVotoController {
 
     @FXML
@@ -35,21 +30,16 @@ public class AggiungiVotoController {
     @FXML
     private Button aggiungiVotoButton;
 
+    @FXML
+    private Label statusLabel;
+
     private Professore professore;
 
-    /**
-     * Imposta il professore corrente.
-     * 
-     * @param professore Il professore corrente
-     */
     public void setProfessore(Professore professore) {
         this.professore = professore;
         initialize();
     }
 
-    /**
-     * Metodo di inizializzazione del controller.
-     */
     private void initialize() {
         List<Classe> classi = professore.getClassi();
         classeChoiceBox.getItems().addAll(classi);
@@ -65,9 +55,6 @@ public class AggiungiVotoController {
         aggiungiVotoButton.setOnAction(event -> aggiungiVoto());
     }
 
-    /**
-     * Metodo per aggiungere un voto.
-     */
     private void aggiungiVoto() {
         Classe classeSelezionata = classeChoiceBox.getValue();
         Studente studenteSelezionato = studenteChoiceBox.getValue();
@@ -75,7 +62,7 @@ public class AggiungiVotoController {
         LocalDate dataVoto = dataVotoPicker.getValue();
 
         if (classeSelezionata == null || studenteSelezionato == null || votoText.isEmpty() || dataVoto == null) {
-            System.out.println("Per favore, seleziona una classe, uno studente, inserisci un voto e seleziona una data.");
+            statusLabel.setText("Per favore, seleziona una classe, uno studente, inserisci un voto e seleziona una data.");
             return;
         }
 
@@ -83,13 +70,12 @@ public class AggiungiVotoController {
         try {
             voto = Double.parseDouble(votoText);
         } catch (NumberFormatException e) {
-            System.out.println("Il voto deve essere un numero.");
+            statusLabel.setText("Il voto deve essere un numero.");
             return;
         }
 
-        Voto nuovoVoto = new Voto(dataVoto,voto, this.professore);
-       // studenteSelezionato.aggiungiVoto(this.professore.getMateria(), nuovoVoto);
+        Voto nuovoVoto = new Voto(dataVoto, voto, this.professore);
         this.professore.aggiungiVoto(studenteSelezionato, dataVoto, voto);
-        System.out.println("Voto aggiunto con successo.");
+        statusLabel.setText("Voto aggiunto con successo.");
     }
 }

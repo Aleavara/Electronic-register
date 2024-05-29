@@ -92,9 +92,9 @@ public class StudentDashboardController {
         // Aggiungi questo codice per popolare le informazioni dello studente
         Studente studente = studenteService.getStudente();
         if (studente != null) {
-            studentNameText.setText(studente.getNome() + " " + studente.getCognome());
-            studentClassText.setText(studente.getClasse().toString());
-            studentIDText.setText(String.valueOf(studente.getnMatricola()));
+            studentNameText.setText("\n" + studente.getNome() + " " + studente.getCognome());
+            studentClassText.setText("\n" + studente.getClasse().toString());
+            studentIDText.setText("\n" +String.valueOf(studente.getnMatricola()));
         }
     }
 
@@ -196,7 +196,7 @@ public class StudentDashboardController {
             Parent root = loader.load();
             CalendarController controller = loader.getController();
       
-
+        
             controller.setStudente(this.studenteService.getStudente());
             controller.drawCalendar();
             Stage stage = new Stage();

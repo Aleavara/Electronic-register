@@ -6,10 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import scuola.Studente;
@@ -144,10 +147,18 @@ public class CalendarController implements Initializable {
 
                         List<String> impegni = impegniStudente.get(LocalDate.of(dateFocus.getYear(), dateFocus.getMonth(), currentDate));
                         if (impegni != null && !impegni.isEmpty()) {
-                            for (String impegno : impegni) {
-                                Text impegnoText = new Text(impegno);
-                                stackPane.getChildren().add(impegnoText);
-                            }
+                        	for (String impegno : impegni) {
+                        	    Text impegnoText = new Text(impegno);
+                        	    double maxWidth = rectangleWidth - 10; // Larghezza massima del testo
+                        	    impegnoText.setWrappingWidth(maxWidth);
+                        	    impegnoText.setFont(Font.font("Arial", FontWeight.BOLD, 12)); // Regolazione del font e della dimensione del testo
+                        	    
+                        	    // Imposta il tooltip per visualizzare il testo completo quando si passa sopra con il mouse
+                        	    Tooltip tooltip = new Tooltip(impegno);
+                        	    Tooltip.install(impegnoText, tooltip);
+                        	    
+                        	    stackPane.getChildren().add(impegnoText);
+                        	}
                         }
                     }
                     if (today.getYear() == dateFocus.getYear() && today.getMonth() == dateFocus.getMonth() && today.getDayOfMonth() == currentDate) {
@@ -159,6 +170,7 @@ public class CalendarController implements Initializable {
         }
     }
 
+
     /**
      * Gestisce l'azione per aggiungere impegni al calendario.
      *
@@ -169,9 +181,17 @@ public class CalendarController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/sample.fxml"));
             Parent root = loader.load();
+          
+            SampleController controller = loader.getController();
+      
+        
+            controller.setStudenteService(studente);
+            
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
+            
+      
         } catch (IOException e) {
             e.printStackTrace();
         }

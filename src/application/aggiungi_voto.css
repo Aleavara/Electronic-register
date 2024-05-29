@@ -1,0 +1,33 @@
+.root {
+    -fx-background-color: black; /* Colore di sfondo nero */
+}
+
+.title-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white; /* Colore del testo bianco */
+}
+
+.status-label {
+    -fx-text-fill: #2ECC71; /* Colore del testo verde per conferma */
+}
+
+#aggiungiVotoButton {
+    -fx-background-color: #2E86C1; /* Colore di sfondo del pulsante */
+    -fx-text-fill: white; /* Colore del testo del pulsante */
+    -fx-padding: 10px 20px;
+    -fx-font-size: 14px;
+    -fx-border-radius: 20px;
+}
+
+#aggiungiVotoButton:hover {
+    -fx-background-color: #3498DB; /* Colore di sfondo del pulsante al passaggio del mouse */
+}
+
+.label {
+    -fx-text-fill: white;
+}
+
+.choice-box .label {
+    -fx-text-fill: black; /* Colore del testo nero */
+}

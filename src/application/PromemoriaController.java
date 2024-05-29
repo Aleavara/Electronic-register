@@ -1,8 +1,3 @@
-/**
- * Controller per la visualizzazione e la gestione del promemoria nella GUI.
- * Questa classe gestisce l'aggiornamento e il popolamento del promemoria nella VBox specificata.
- * Autore: Alessio Avarappattu
- */
 package application;
 
 import javafx.fxml.FXML;
@@ -20,6 +15,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Controller per la visualizzazione e la gestione del promemoria nella GUI.
+ * Questa classe gestisce l'aggiornamento e il popolamento del promemoria nella VBox specificata.
+ * Autore: Alessio Avarappattu
+ */
 public class PromemoriaController {
     @FXML
     private VBox promemoriaVBox;
@@ -30,7 +30,7 @@ public class PromemoriaController {
      * Metodo di inizializzazione del controller.
      */
     public void initialize() {
-       
+        // Metodo di inizializzazione vuoto, può essere utilizzato per configurazioni iniziali
     }
 
     /**
@@ -68,6 +68,7 @@ public class PromemoriaController {
                 "-fx-padding: 10;" +
                 "-fx-spacing: 5;"
             );
+            entryBox.setMaxWidth(Double.MAX_VALUE);  // Permette al riquadro di espandersi
 
             // Aggiungi la riga "per il:" con la data
             Label dateLabel = new Label("Per il: " + data.toString());
@@ -77,7 +78,11 @@ public class PromemoriaController {
             // Aggiungi i promemoria con il pulsante "Elimina"
             list.forEach(item -> {
                 HBox itemBox = new HBox(10);
+                itemBox.setMaxWidth(Double.MAX_VALUE);  // Permette all'HBox di espandersi
+
                 Label itemLabel = new Label(item);
+                itemLabel.setMaxWidth(Double.MAX_VALUE);  // Permette all'etichetta di espandersi
+                itemLabel.setWrapText(true);
 
                 // Crea uno spazio vuoto che cresce per spingere il pulsante a destra
                 Region spacer = new Region();

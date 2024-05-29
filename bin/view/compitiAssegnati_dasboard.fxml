@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -10,6 +11,8 @@
         </VBox>
     </top>
     <center>
-        <VBox fx:id="compitiAssegnatiVBox" spacing="10" style="-fx-padding: 10;" />
+        <ScrollPane fitToWidth="true">
+            <VBox fx:id="compitiAssegnatiVBox" spacing="10" style="-fx-padding: 10;" />
+        </ScrollPane>
     </center>
 </BorderPane>

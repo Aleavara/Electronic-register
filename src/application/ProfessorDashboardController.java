@@ -224,7 +224,7 @@ public class ProfessorDashboardController {
         AggiungiVotoController controller = loader.getController();
         controller.setProfessore(professore);
         Stage stage = new Stage();
-        stage.setScene(new Scene(root, 300, 230));
+        stage.setScene(new Scene(root, 300, 270));
         stage.show();
     }
 }

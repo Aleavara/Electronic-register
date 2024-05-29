@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import scuola.Classe;
@@ -140,25 +142,33 @@ public class ClasseViewController {
 	    List<Professore> professori = classe.getProfessori();
 	    professori.forEach(professore -> {
 	        HBox professoreBox = new HBox(10);
+	        professoreBox.setStyle("-fx-padding: 10; -fx-border-radius: 10; -fx-border-color: #ccc; -fx-background-radius: 10; -fx-background-color: white;");
+
 	        Label professoreLabel = new Label(professore.getNome() + " " + professore.getCognome());
+	        professoreLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
+	        HBox.setHgrow(professoreLabel, Priority.ALWAYS);
+	        professoreLabel.setMaxWidth(Double.MAX_VALUE);
+
 	        Button deleteButton = new Button("Elimina");
-	        deleteButton.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+	        deleteButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-padding: 5 10;");
 	        deleteButton.setOnAction(event -> {
-	            classe.rimuoviProfessore(professore); // Metodo che rimuove il professore dalla classe
+	            classe.rimuoviProfessore(professore);
 	            updateLabels();
 	        });
 
 	        Button modificaOrarioButton = new Button("Modifica Orario");
-	        modificaOrarioButton.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+	        modificaOrarioButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-padding: 5 10;");
 	        modificaOrarioButton.setOnAction(event -> {
 	            mostraModificaOrarioProfessore(professore);
 	        });
 
 	        professoreBox.getChildren().addAll(professoreLabel, deleteButton, modificaOrarioButton);
-
+	        VBox.setMargin(professoreBox, new Insets(0, 0, 10, 0));
 	        professoriVBox.getChildren().add(professoreBox);
 	    });
 	}
+
+
 	
 	private void mostraModificaOrarioProfessore(Professore professore) {
 	    try {
@@ -184,27 +194,36 @@ public class ClasseViewController {
 	 */
 	@FXML
 	private void populateStudentiList() {
-		studentiVBox.getChildren().clear();
-		List<Studente> studenti = classe.getStudenti();
-		studenti.forEach(studente -> {
-			HBox studenteBox = new HBox(10);
-			Label studenteLabel = new Label(studente.getNome() + " " + studente.getCognome());
-			Button deleteButton = new Button("Elimina");
-			deleteButton.setStyle("-fx-background-color: black; -fx-text-fill: white;");
-			deleteButton.setOnAction(event -> {
-				classe.rimuoviStudente(studente); // Metodo che rimuove lo studente dalla classe
-				updateLabels();
-			});
-			studenteBox.getChildren().addAll(studenteLabel, deleteButton);
+	    studentiVBox.getChildren().clear();
+	    List<Studente> studenti = classe.getStudenti();
+	    studenti.forEach(studente -> {
+	        HBox studenteBox = new HBox(10);
+	        studenteBox.setStyle("-fx-padding: 10; -fx-border-radius: 10; -fx-border-color: #ccc; -fx-background-radius: 10; -fx-background-color: white;");
 
-			// Aggiungi il gestore di eventi per il clic sul label dello studente
-			studenteLabel.setOnMouseClicked(event -> {
-				mostraDettagliStudente(studente);
-			});
+	        Label studenteLabel = new Label(studente.getNome() + " " + studente.getCognome());
+	        studenteLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
+	        HBox.setHgrow(studenteLabel, Priority.ALWAYS);
+	        studenteLabel.setMaxWidth(Double.MAX_VALUE);
 
-			studentiVBox.getChildren().add(studenteBox);
-		});
+	        Button deleteButton = new Button("Elimina");
+	        deleteButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-padding: 5 10;");
+	        deleteButton.setOnAction(event -> {
+	            classe.rimuoviStudente(studente);
+	            updateLabels();
+	        });
+
+	        studenteBox.getChildren().addAll(studenteLabel, deleteButton);
+
+	        // Aggiungi il gestore di eventi per il clic sul label dello studente
+	        studenteLabel.setOnMouseClicked(event -> {
+	            mostraDettagliStudente(studente);
+	        });
+	        VBox.setMargin(studenteBox, new Insets(0, 0, 10, 0));
+	        studentiVBox.getChildren().add(studenteBox);
+	    });
 	}
+
+
 
 	/**
 	 * Mostra i dettagli di un professore in una nuova finestra.
@@ -300,7 +319,7 @@ public class ClasseViewController {
 	@FXML
 	private void mostraCompitiAssegnati() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/compitiAssegnati_dashboard.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/compitiAssegnati_dasboard.fxml"));
 			Parent root = loader.load();
 			CompitiAssegnatiController controller = loader.getController();
 			controller.setClasse(classe);
@@ -329,7 +348,7 @@ public class ClasseViewController {
 
 			Stage stage = new Stage();
 			stage.setScene(scene);
-			stage.setResizable(false); // Impedisce il ridimensionamento della finestra
+			
 			stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();

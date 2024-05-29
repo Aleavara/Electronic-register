@@ -4,11 +4,32 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RiempiOrarioController">
     <children>
-        <GridPane layoutX="14.0" layoutY="14.0" hgap="10" vgap="10">
+        <GridPane layoutX="14.0" layoutY="14.0" hgap="10" vgap="10" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="14.28" />
+                <ColumnConstraints percentWidth="14.28" />
+                <ColumnConstraints percentWidth="14.28" />
+                <ColumnConstraints percentWidth="14.28" />
+                <ColumnConstraints percentWidth="14.28" />
+                <ColumnConstraints percentWidth="14.28" />
+                <ColumnConstraints percentWidth="14.28" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+            </rowConstraints>
             <children>
                 <Label text="Orario Settimanale" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="7" />
                 <Label text="Ora" GridPane.columnIndex="0" GridPane.rowIndex="1" />
@@ -67,9 +88,8 @@
                 <ChoiceBox fx:id="giovediOra6" GridPane.columnIndex="4" GridPane.rowIndex="7" />
                 <ChoiceBox fx:id="venerdiOra6" GridPane.columnIndex="5" GridPane.rowIndex="7" />
                 <ChoiceBox fx:id="sabatoOra6" GridPane.columnIndex="6" GridPane.rowIndex="7" />
-                
-                <Button text="Salva Orario" onAction="#salvaOrario" GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.columnSpan="7" />
             </children>
         </GridPane>
+        <Button text="Salva Orario" onAction="#salvaOrario" style="-fx-background-color: black; -fx-text-fill: white;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
     </children>
 </AnchorPane>

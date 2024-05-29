@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -9,11 +10,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AggiungiVotoController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AggiungiVotoController" stylesheets="application/aggiungi_voto.css">
+ 
     <children>
         <VBox alignment="CENTER" spacing="20.0">
             <children>
-                <Label text="Aggiungi Voto" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                <Label text="Aggiungi Voto" styleClass="title-label" />
                 <HBox spacing="10.0">
                     <Label text="Seleziona la classe:" />
                     <ChoiceBox fx:id="classeChoiceBox" prefWidth="150.0" />
@@ -30,7 +32,8 @@
                     <Label text="Seleziona la data:" />
                     <DatePicker fx:id="dataVotoPicker" />
                 </HBox>
-                <Button fx:id="aggiungiVotoButton" text="Aggiungi Voto" style="-fx-background-color: #333; -fx-text-fill: white; -fx-padding: 10px 20px; -fx-font-size: 14px; -fx-border-radius: 20px;" />
+                <Button fx:id="aggiungiVotoButton" text="Aggiungi Voto" />
+                <Label fx:id="statusLabel" styleClass="status-label" />
             </children>
         </VBox>
     </children>

@@ -1,0 +1,54 @@
+.main-pane {
+    -fx-background-color: #f2fafc;
+    -fx-padding: 10;
+}
+
+.header-box {
+    -fx-background-color: #4CAF50;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+}
+
+
+
+
+.nav-button {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #4CAF50;
+    -fx-font-size: 16px;
+    -fx-padding: 5 10;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border-color: #4CAF50;
+    -fx-border-width: 1px;
+}
+
+.add-button {
+    -fx-background-color: #ff9800;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-padding: 5 10;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+
+
+
+.year-text {
+    -fx-fill: #ffffff;
+    -fx-font-size: 22px;
+}
+
+.month-text {
+    -fx-fill: #ffffff;
+    -fx-font-size: 22px;
+}
+
+
+
+
+
+
+

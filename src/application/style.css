@@ -1,0 +1,46 @@
+.root {
+    -fx-background-color: #333333;
+}
+
+#topBox {
+    -fx-background-color: #444444;
+}
+
+.label {
+    -fx-text-fill: white;
+}
+
+.text-field, .password-field {
+    -fx-background-color: #555555;
+    -fx-text-fill: white;
+    -fx-font-family: "Sans Serif";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.button {
+    -fx-background-color: #777777;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-background-color: #888888;
+}
+
+.button:pressed {
+    -fx-background-color: #666666;
+}
+
+.check-box {
+    -fx-text-fill: white;
+}
+
+.check-box .box {
+    -fx-background-color: #555555;
+}
+
+.check-box .box:selected {
+    -fx-background-color: #777777;
+}
