@@ -39,25 +39,7 @@ public class Segreteria implements Serializable {
 		listaClassi = new ArrayList<>(getListaClassi());
 	}
 
-	/**
-	 * Crea uno studente e lo aggiunge alla gestione della segreteria.
-	 * 
-	 * @param nome          Il nome dello studente.
-	 * @param cognome       Il cognome dello studente.
-	 * @param indirizzo     L'indirizzo dello studente.
-	 * @param codiceFiscale Il codice fiscale dello studente.
-	 * @param dataNascita   La data di nascita dello studente.
-	 * @param classe        La classe dello studente.
-	 * @param username      Il nome utente dello studente.
-	 * @param password      La password dello studente.
-	 */
-	public void creaStudente(String nome, String cognome, String indirizzo, String codiceFiscale, LocalDate dataNascita,
-			Classe classe, String username, String password) {
-		Studente studente = new Studente(nome, cognome, indirizzo, codiceFiscale, dataNascita, classe);
-		gestoreCredenziali.aggiungiStudente(studente);
-		gestoreCredenziali.setCredenzialiStudent(studente, username, password);
 
-	}
 	
 	
     /**
@@ -66,40 +48,70 @@ public class Segreteria implements Serializable {
      * @param csvFilePath Il percorso del file CSV.
      * @throws Exception 
      */
-    public void caricaStudentiDaCSV(String csvFilePath) throws Exception {
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
-            String line;
-            br.readLine();
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split("\t");
-                if (values.length == 8) {
-                    String nome = values[0].trim();
-                    String cognome = values[1].trim();
-                    String indirizzo = values[2].trim();
-                    String codiceFiscale = values[3].trim();
-                    LocalDate dataNascita = null;
-                    try {
-                        dataNascita = LocalDate.parse(values[4].trim());
-                    } catch (DateTimeParseException e) {
-                        System.err.println("Formato data non valido per: " + values[4].trim());
-                        continue; // Skip this record and move to the next
-                    }
-                    String sezioneClasse = values[5].trim();
-                    String username = values[6].trim();
-                    String password = values[7].trim();
+	  public void caricaStudentiDaCSV(String csvFilePath) throws Exception {
+	        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+	            String line;
+	            br.readLine();
+	            while ((line = br.readLine()) != null) {
+	                String[] values = line.split("\t");
+	                if (values.length == 8) {
+	                    // Gestione studente
+	                    String nome = values[0].trim();
+	                    String cognome = values[1].trim();
+	                    String indirizzo = values[2].trim();
+	                    String codiceFiscale = values[3].trim();
+	                    LocalDate dataNascita = null;
+	                    try {
+	                        dataNascita = LocalDate.parse(values[4].trim());
+	                    } catch (DateTimeParseException e) {
+	                        System.err.println("Formato data non valido per: " + values[4].trim());
+	                        continue; // Skip this record and move to the next
+	                    }
+	                    String sezioneClasse = values[5].trim();
+	                    String username = values[6].trim();
+	                    String password = values[7].trim();
 
-                    Classe classe = trovaClassePerSezione(sezioneClasse);
-                    if (classe != null) {
-                        creaStudente(nome, cognome, indirizzo, codiceFiscale, dataNascita, classe, username, password);
-                    } else {
-                        throw new Exception("classe non trovata");
-                    }
-                } else {
-                    System.out.println("Riga malformata: " + line);
-                }
-            }
-        }
-    }
+	                    Classe classe = trovaClassePerSezione(sezioneClasse);
+	                    if (classe != null) {
+	                        creaStudente(nome, cognome, indirizzo, codiceFiscale, dataNascita, classe, username, password);
+	                    } else {
+	                        throw new Exception("classe non trovata");
+	                    }
+	                } else if (values.length == 9) {
+	                    // Gestione professore
+	                    String nome = values[0].trim();
+	                    String cognome = values[1].trim();
+	                    String indirizzo = values[2].trim();
+	                    String codiceFiscale = values[3].trim();
+	                    LocalDate dataNascita = null;
+	                    try {
+	                        dataNascita = LocalDate.parse(values[4].trim());
+	                    } catch (DateTimeParseException e) {
+	                        System.err.println("Formato data non valido per: " + values[4].trim());
+	                        continue; // Skip this record and move to the next
+	                    }
+	                    String[] sezioniClassi = values[5].trim().split(",");
+	                    String username = values[6].trim();
+	                    String password = values[7].trim();
+	                    String materie = values[8].trim();
+
+	                    List<Classe> classi = new ArrayList<>();
+	                    for (String sezioneClasse : sezioniClassi) {
+	                        Classe classe = trovaClassePerSezione(sezioneClasse.trim());
+	                        if (classe != null) {
+	                            classi.add(classe);
+	                        } else {
+	                            throw new Exception("classe non trovata: " + sezioneClasse.trim());
+	                        }
+	                    }
+
+	                    aggiungiProfessore(nome, cognome, indirizzo, codiceFiscale, dataNascita, materie, classi, username, password);
+	                } else {
+	                    System.out.println("Riga malformata: " + line);
+	                }
+	            }
+	        }
+	    }
 
 	/**
 	 * Aggiunge uno studente alla gestione della segreteria.
@@ -113,25 +125,119 @@ public class Segreteria implements Serializable {
 		this.gestoreCredenziali.setCredenzialiStudent(stud, username, pw);
 	}
 
-	/**
-	 * Aggiunge un professore alla gestione della segreteria.
-	 * 
-	 * @param nome          Il nome del professore.
-	 * @param cognome       Il cognome del professore.
-	 * @param indirizzo     L'indirizzo del professore.
-	 * @param codiceFiscale Il codice fiscale del professore.
-	 * @param dataNascita   La data di nascita del professore.
-	 * @param materia       La materia insegnata dal professore.
-	 * @param classi        Le classi insegnate dal professore.
-	 * @param username      Il nome utente del professore.
-	 * @param password      La password del professore.
-	 */
-	public void aggiungiProfessore(String nome, String cognome, String indirizzo, String codiceFiscale,
-			LocalDate dataNascita, String materia, List<Classe> classi, String username, String password) {
-		Professore prof = new Professore(nome, cognome, indirizzo, codiceFiscale, dataNascita, materia, classi);
-		gestoreCredenziali.aggiungiProfessore(prof);
-		gestoreCredenziali.setCredenzialProf(prof, username, password);
-	}
+    /**
+     * Crea uno studente e lo aggiunge alla gestione della segreteria.
+     * 
+     * @param nome          Il nome dello studente.
+     * @param cognome       Il cognome dello studente.
+     * @param indirizzo     L'indirizzo dello studente.
+     * @param codiceFiscale Il codice fiscale dello studente.
+     * @param dataNascita   La data di nascita dello studente.
+     * @param classe        La classe dello studente.
+     * @param username      Il nome utente dello studente.
+     * @param password      La password dello studente.
+     * @throws Exception Se esiste già uno studente con lo stesso codice fiscale o nome e cognome.
+     */
+    public void creaStudente(String nome, String cognome, String indirizzo, String codiceFiscale, LocalDate dataNascita,
+                             Classe classe, String username, String password) throws Exception {
+        if (!isStudentePresente(nome, cognome, codiceFiscale)) {
+        	Studente studente = new Studente(nome, cognome, indirizzo, codiceFiscale, dataNascita, classe);
+            gestoreCredenziali.aggiungiStudente(studente);
+            gestoreCredenziali.setCredenzialiStudent(studente, username, password);
+        }
+
+        
+    }
+
+    /**
+     * Aggiunge un professore alla gestione della segreteria.
+     * 
+     * @param nome          Il nome del professore.
+     * @param cognome       Il cognome del professore.
+     * @param indirizzo     L'indirizzo del professore.
+     * @param codiceFiscale Il codice fiscale del professore.
+     * @param dataNascita   La data di nascita del professore.
+     * @param materia       La materia insegnata dal professore.
+     * @param classi        Le classi insegnate dal professore.
+     * @param username      Il nome utente del professore.
+     * @param password      La password del professore.
+     * @throws Exception Se esiste già un professore con lo stesso codice fiscale o nome e cognome.
+     */
+    public void aggiungiProfessore(String nome, String cognome, String indirizzo, String codiceFiscale,
+                                   LocalDate dataNascita, String materia, List<Classe> classi, String username, String password) throws Exception {
+        if (!isProfessorePresente(nome, cognome, codiceFiscale)) {
+            Professore prof = new Professore(nome, cognome, indirizzo, codiceFiscale, dataNascita, materia, classi);
+            gestoreCredenziali.aggiungiProfessore(prof);
+            gestoreCredenziali.setCredenzialProf(prof, username, password);
+        }
+
+
+    }
+
+	
+    /**
+     * Controlla se un codice fiscale è già presente tra gli studenti o i professori.
+     * 
+     * @param codiceFiscale Il codice fiscale da controllare.
+     * @param tipo          Il tipo di persona da controllare ("studente" o "professore").
+     * @return true se il codice fiscale è presente, false altrimenti.
+     */
+    private boolean isCodiceFiscalePresente(String codiceFiscale, String tipo) {
+        for (Classe classe : listaClassi) {
+            if (tipo.equals("studente")) {
+                for (Studente studente : classe.getStudenti()) {
+                    if (studente.getCodiceFiscale().equals(codiceFiscale)) {
+                        return true;
+                    }
+                }
+            } else if (tipo.equals("professore")) {
+                for (Professore professore : classe.getProfessori()) {
+                    if (professore.getCodiceFiscale().equals(codiceFiscale)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * Controlla se uno studente con lo stesso nome, cognome o codice fiscale è già presente.
+     * 
+     * @param nome          Il nome dello studente.
+     * @param cognome       Il cognome dello studente.
+     * @param codiceFiscale Il codice fiscale dello studente.
+     * @return true se uno studente con lo stesso nome, cognome o codice fiscale è già presente, altrimenti false.
+     */
+    private boolean isStudentePresente(String nome, String cognome, String codiceFiscale) {
+        for (Classe classe : listaClassi) {
+            for (Studente studente : classe.getStudenti()) {
+                if (studente.getNome().equals(nome) && studente.getCognome().equals(cognome) || studente.getCodiceFiscale().equals(codiceFiscale)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Controlla se un professore con lo stesso nome, cognome o codice fiscale è già presente.
+     * 
+     * @param nome          Il nome del professore.
+     * @param cognome       Il cognome del professore.
+     * @param codiceFiscale Il codice fiscale del professore.
+     * @return true se un professore con lo stesso nome, cognome o codice fiscale è già presente, altrimenti false.
+     */
+    private boolean isProfessorePresente(String nome, String cognome, String codiceFiscale) {
+        for (Classe classe : listaClassi) {
+            for (Professore professore : classe.getProfessori()) {
+                if (professore.getNome().equals(nome) && professore.getCognome().equals(cognome) || professore.getCodiceFiscale().equals(codiceFiscale)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 	/**
 	 * Aggiunge un professore alla gestione della segreteria.

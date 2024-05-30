@@ -61,6 +61,21 @@ public class GestoreCredenziali implements Serializable{
         }
         return null; 
     }
+    
+    public void setCredenzialiStudent(Studente studente, Credenziali cred) {
+        boolean credenzialiDuplicati = false;
+        for (Credenziali credenziali : credenzialiStudent.values()) {
+            if (credenziali.equals(cred)) {
+                credenzialiDuplicati = true;
+                break;
+            }
+        }
+        if (!credenzialiDuplicati) {
+            credenzialiStudent.put(studente, cred);
+        } else {
+            System.out.println("Credenziali duplicate: username e password già utilizzati.");
+        }
+    }
 
 
 
@@ -102,20 +117,7 @@ public class GestoreCredenziali implements Serializable{
     }
     
     
-    public void setCredenzialiStudent(Studente studente, Credenziali cred) {
-        boolean credenzialiDuplicati = false;
-        for (Credenziali credenziali : credenzialiStudent.values()) {
-            if (credenziali.equals(cred)) {
-                credenzialiDuplicati = true;
-                break;
-            }
-        }
-        if (!credenzialiDuplicati) {
-            credenzialiStudent.put(studente, cred);
-        } else {
-            System.out.println("Credenziali duplicate: username e password già utilizzati.");
-        }
-    }
+
 
 
 

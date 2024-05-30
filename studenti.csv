@@ -1,41 +1,41 @@
-nome	cognome	indirizzo	codice fiscale	data nascita	classe	username	password
-Giulio	Rossi	via dei rossi	rfjerpjo	2009-11-02	4CIF	giulio.rossi	giulio
-Marta	Bianchi	via dei cini	jipij	2007-10-05	4CIF	marta.bianchi	marta
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
+nome	cognome	indirizzo	codice fiscale	data nascita	classe	username	password	materia
+Giulio	Rossi	via dei rossi	rfjerpjo	2009-11-02	4CIF	giulio.rossi	giulio	
+Marta	Bianchi	via dei cini	jipij	2007-10-05	4CIF	marta.bianchi	marta	
+Francesco	Franconi	via dei franchi	jiojhi	1966-06-16	4CIF,5BIF	francesco.franconi	francesco	geografia
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								

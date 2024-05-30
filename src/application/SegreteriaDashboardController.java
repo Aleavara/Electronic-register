@@ -83,9 +83,10 @@ public class SegreteriaDashboardController implements Initializable {
 
     /**
      * Gestisce l'evento del clic sul pulsante "Crea Studente".
+     * @throws Exception 
      */
     @FXML
-    private void creaStudenteButtonClicked() {
+    private void creaStudenteButtonClicked() throws Exception {
         String nome = nomeField.getText();
         String cognome = cognomeField.getText();
         String indirizzo = indirizzoField.getText();

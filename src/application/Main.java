@@ -59,7 +59,7 @@ public class Main extends Application {
 		List<Object> data =loadData("data.dat");
 				
 			//	
-		//data.clear();
+	//data.clear();
 
 		// new ArrayList<Object>();
 

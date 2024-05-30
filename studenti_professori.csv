@@ -1,0 +1,201 @@
+nome	cognome	indirizzo	codice fiscale	data nascita	classe	username	password	materia
+Mario	Romano	995 Antonio Street	0453303628052491	2020-07-08	3BET	mario.romano	mario	
+Luigi	Colombo	6 Roberto Street	6088281723531671	2019-02-27	1ASP	luigi.colombo	luigi	
+Marco	Bianco	788 Alessandro Street	8930227864773856	2019-01-03	5AET	marco.bianco	marco	
+Francesco	Ferrari	858 Davide Street	6850186644623062	2020-01-01	5BIF	francesco.ferrari	francesco	
+Roberto	Colombo	768 Antonio Street	8375392239294350	2021-10-02	4CIF	roberto.colombo	roberto	
+Paolo	Rossi	639 Roberto Street	7613622773098741	2019-12-25	5BIF	paolo.rossi	paolo	
+Giovanni	Russo	698 Roberto Street	2014091625964380	2020-10-14	5BIF	giovanni.russo	giovanni	
+Francesco	Ferrari	150 Francesco Street	7930856068349677	2023-08-11	5BIF	francesco.ferrari	francesco	
+Mario	Ricci	629 Davide Street	2312826415282859	2019-04-13	4CIF	mario.ricci	mario	
+Antonio	Bianco	681 Giovanni Street	4312533770478599	2022-04-04	2ODA	antonio.bianco	antonio	
+Antonio	Ricci	556 Mario Street	5868751503305661	2020-04-28	2ODA	antonio.ricci	antonio	
+Giovanni	Russo	845 Luigi Street	4073982350448232	2021-10-29	3BET	giovanni.russo	giovanni	
+Alessandro	Ferrari	634 Roberto Street	4056268410615411	2024-04-05	1ASP	alessandro.ferrari	alessandro	
+Roberto	Bianchi	947 Davide Street	1478968171162811	2022-09-09	5AET	roberto.bianchi	roberto	
+Luigi	Verdi	565 Marco Street	8609889051369282	2021-01-31	3BET	luigi.verdi	luigi	
+Marco	Russo	728 Francesco Street	8335186759663937	2020-08-14	5BIF	marco.russo	marco	
+Mario	Ferrari	210 Luigi Street	4281460952360455	2018-07-20	5AET	mario.ferrari	mario	
+Antonio	Ferrari	883 Alessandro Street	0213626925065402	2019-10-06	1ASP	antonio.ferrari	antonio	
+Paolo	Bianchi	594 Marco Street	1623180251288689	2022-08-05	3ATM	paolo.bianchi	paolo	
+Mario	Romano	473 Antonio Street	2004953911505090	2019-09-05	2ODA	mario.romano	mario	
+Roberto	Romano	14 Mario Street	0530697505157854	2019-11-30	5AET	roberto.romano	roberto	
+Giovanni	Ricci	865 Roberto Street	0886261732248181	2022-12-01	5AET	giovanni.ricci	giovanni	
+Roberto	Bianchi	997 Marco Street	1142250057484462	2023-05-25	1ASP	roberto.bianchi	roberto	
+Luigi	Verdi	747 Giovanni Street	5501588084504118	2024-04-26	3ATM	luigi.verdi	luigi	
+Roberto	Romano	424 Giovanni Street	9117929002439976	2020-11-21	5BIF	roberto.romano	roberto	
+Marco	Ricci	906 Alessandro Street	9593527533349677	2019-05-02	3ATM	marco.ricci	marco	
+Giovanni	Ferrari	424 Mario Street	0490048008479059	2019-10-13	1ASP	giovanni.ferrari	giovanni	
+Marco	Colombo	510 Paolo Street	5518588872507115	2023-03-07	2ODA	marco.colombo	marco	
+Paolo	Bianco	52 Alessandro Street	2095932466423857	2023-02-18	4CIF	paolo.bianco	paolo	
+Mario	Bianchi	360 Davide Street	2891197440658455	2021-12-12	2ODA	mario.bianchi	mario	
+Giovanni	Verdi	643 Francesco Street	1493797847907005	2022-10-18	5AET	giovanni.verdi	giovanni	
+Francesco	Ferrari	528 Alessandro Street	3008571453711778	2022-08-28	5BIF	francesco.ferrari	francesco	
+Paolo	Esposito	340 Paolo Street	2717583669162225	2020-04-02	5BIF	paolo.esposito	paolo	
+Francesco	Romano	32 Marco Street	7716043430986232	2022-10-01	2ODA	francesco.romano	francesco	
+Davide	Russo	575 Luigi Street	4068867334398871	2023-07-29	1ASP	davide.russo	davide	
+Francesco	Russo	344 Roberto Street	3690035885054984	2019-10-29	5AET	francesco.russo	francesco	
+Alessandro	Rossi	616 Paolo Street	9865452783828430	2024-01-10	4CIF	alessandro.rossi	alessandro	
+Antonio	Ricci	653 Paolo Street	1930457387734735	2018-10-10	4CIF	antonio.ricci	antonio	
+Antonio	Russo	828 Alessandro Street	6246627378921954	2018-06-07	2AET	antonio.russo	antonio	
+Giovanni	Verdi	56 Davide Street	4857682131920057	2019-10-31	2AET	giovanni.verdi	giovanni	
+Mario	Russo	842 Giovanni Street	9401133785934584	2018-08-30	3ATM	mario.russo	mario	
+Luigi	Romano	4 Mario Street	3007597339738296	2018-11-20	5AET	luigi.romano	luigi	
+Giovanni	Esposito	944 Luigi Street	3362080856913369	2018-12-21	5AET	giovanni.esposito	giovanni	
+Mario	Ferrari	937 Davide Street	1448176860171085	2019-08-10	1ASP	mario.ferrari	mario	
+Giovanni	Romano	189 Antonio Street	9375672078373495	2022-06-09	2ODA	giovanni.romano	giovanni	
+Marco	Ferrari	877 Roberto Street	3015296464231552	2020-05-27	2ODA	marco.ferrari	marco	
+Alessandro	Romano	668 Roberto Street	4957303555270908	2024-04-16	1ASP	alessandro.romano	alessandro	
+Marco	Russo	397 Roberto Street	2350479097799701	2020-01-25	1ASP	marco.russo	marco	
+Mario	Russo	924 Mario Street	4161420139003576	2018-11-18	5AET	mario.russo	mario	
+Mario	Colombo	17 Alessandro Street	5936687635689882	2023-02-13	2ODA	mario.colombo	mario	
+Davide	Bianchi	118 Francesco Street	7708355469726131	2021-05-18	1ASP	davide.bianchi	davide	
+Alessandro	Bianchi	473 Davide Street	0852216988964647	2019-10-06	5AET	alessandro.bianchi	alessandro	
+Davide	Russo	177 Davide Street	6721779525477215	2021-11-21	1ASP	davide.russo	davide	
+Roberto	Colombo	613 Francesco Street	5243335532468252	2020-12-27	5BIF	roberto.colombo	roberto	
+Alessandro	Romano	858 Francesco Street	8965723822744669	2021-10-31	3ATM	alessandro.romano	alessandro	
+Paolo	Verdi	371 Davide Street	8305040995831115	2019-10-11	3BET	paolo.verdi	paolo	
+Antonio	Ricci	144 Roberto Street	2829393868692444	2020-02-24	4CIF	antonio.ricci	antonio	
+Francesco	Colombo	818 Davide Street	6333394086697952	2021-01-03	5BIF	francesco.colombo	francesco	
+Giovanni	Ferrari	579 Mario Street	3461929283720033	2021-05-02	5BIF	giovanni.ferrari	giovanni	
+Antonio	Esposito	427 Roberto Street	1226866285435393	2023-05-22	1ASP	antonio.esposito	antonio	
+Antonio	Russo	656 Francesco Street	9505523491401211	2022-06-18	3ATM	antonio.russo	antonio	
+Francesco	Colombo	584 Alessandro Street	3545886456087993	2018-07-15	2ODA	francesco.colombo	francesco	
+Alessandro	Rossi	780 Luigi Street	8217323251773112	2022-09-30	2AET	alessandro.rossi	alessandro	
+Antonio	Romano	83 Francesco Street	3686595221930249	2021-06-13	2AET	antonio.romano	antonio	
+Marco	Bianchi	420 Marco Street	8263107417959667	2021-07-07	3BET	marco.bianchi	marco	
+Paolo	Colombo	377 Marco Street	9972545305288982	2020-10-10	3ATM	paolo.colombo	paolo	
+Paolo	Verdi	758 Giovanni Street	8048874871788754	2022-05-04	5AET	paolo.verdi	paolo	
+Giovanni	Verdi	618 Giovanni Street	5589593767984215	2020-07-31	2AET	giovanni.verdi	giovanni	
+Roberto	Bianchi	412 Paolo Street	0850219575465668	2020-11-18	3ATM	roberto.bianchi	roberto	
+Antonio	Ferrari	130 Giovanni Street	7937334503627055	2022-11-28	4CIF	antonio.ferrari	antonio	
+Antonio	Verdi	163 Marco Street	0737014584641637	2019-02-13	5BIF	antonio.verdi	antonio	
+Antonio	Rossi	569 Mario Street	5886709957769373	2021-04-13	2AET	antonio.rossi	antonio	
+Mario	Bianco	46 Davide Street	6475055137830403	2020-05-03	3ATM	mario.bianco	mario	
+Roberto	Bianco	484 Luigi Street	0806781874056752	2020-10-06	1ASP	roberto.bianco	roberto	
+Luigi	Bianco	19 Mario Street	5574745785164319	2022-11-16	3BET	luigi.bianco	luigi	
+Davide	Ferrari	362 Roberto Street	9081631298544148	2022-11-28	5BIF	davide.ferrari	davide	
+Marco	Verdi	0 Luigi Street	4450504989774358	2022-03-14	2ODA	marco.verdi	marco	
+Mario	Rossi	497 Antonio Street	2400388718448936	2019-03-11	5AET	mario.rossi	mario	
+Luigi	Romano	894 Luigi Street	5601838801760204	2020-07-24	4CIF	luigi.romano	luigi	
+Giovanni	Romano	454 Marco Street	2873325676715592	2022-06-05	1ASP	giovanni.romano	giovanni	
+Davide	Bianco	820 Paolo Street	7336604008822266	2020-06-26	5BIF	davide.bianco	davide	
+Mario	Colombo	796 Mario Street	3384499849595103	2022-08-30	2AET	mario.colombo	mario	
+Roberto	Russo	364 Luigi Street	0476696670976454	2023-09-29	4CIF	roberto.russo	roberto	
+Giovanni	Verdi	241 Antonio Street	7437070121128099	2021-10-18	2ODA	giovanni.verdi	giovanni	
+Giovanni	Bianchi	152 Giovanni Street	5547580967715285	2021-02-08	3ATM	giovanni.bianchi	giovanni	
+Antonio	Esposito	495 Giovanni Street	2204850071580306	2022-02-25	1ASP	antonio.esposito	antonio	
+Paolo	Bianco	872 Alessandro Street	6735787024860327	2019-11-07	2ODA	paolo.bianco	paolo	
+Luigi	Verdi	465 Roberto Street	7251932998183757	2023-09-26	3ATM	luigi.verdi	luigi	
+Luigi	Ricci	509 Giovanni Street	6807657090267976	2023-05-14	1ASP	luigi.ricci	luigi	
+Alessandro	Ferrari	992 Francesco Street	9795774485367782	2022-06-12	1ASP	alessandro.ferrari	alessandro	
+Francesco	Ricci	127 Antonio Street	6804714671503892	2023-02-05	2AET	francesco.ricci	francesco	
+Alessandro	Romano	733 Francesco Street	1480989724258174	2020-04-10	3ATM	alessandro.romano	alessandro	
+Davide	Ferrari	261 Davide Street	8720624570638279	2023-10-01	3BET	davide.ferrari	davide	
+Roberto	Bianchi	866 Antonio Street	8284903605313371	2018-06-11	5BIF	roberto.bianchi	roberto	
+Francesco	Romano	52 Luigi Street	7250657212432257	2020-10-09	1ASP	francesco.romano	francesco	
+Luigi	Russo	343 Mario Street	7273334947368747	2024-05-21	4CIF	luigi.russo	luigi	
+Davide	Ricci	398 Roberto Street	3818690355534671	2020-12-16	5AET	davide.ricci	davide	
+Marco	Russo	393 Francesco Street	2152349404855612	2019-03-19	2ODA	marco.russo	marco	
+Mario	Rossi	131 Marco Street	0616829556508537	2021-10-30	2ODA	mario.rossi	mario	
+Mario	Romano	345 Francesco Street	8088254426725539	2020-09-28	3BET	mario.romano	mario	
+Davide	Bianco	953 Francesco Street	0140793514409609	2022-08-07	5BIF	davide.bianco	davide	
+Luigi	Ferrari	35 Francesco Street	8776556239017545	2023-08-25	5AET	luigi.ferrari	luigi	
+Giovanni	Ricci	519 Marco Street	9677234068499445	2022-03-10	5BIF	giovanni.ricci	giovanni	
+Luigi	Ferrari	760 Luigi Street	2470790448537765	2023-08-10	2ODA	luigi.ferrari	luigi	
+Marco	Ferrari	433 Alessandro Street	0055611054825753	2022-06-29	5AET	marco.ferrari	marco	
+Mario	Verdi	281 Marco Street	1302420305519644	2019-02-15	5AET	mario.verdi	mario	
+Alessandro	Bianco	451 Paolo Street	4534749529707424	2024-03-27	3BET	alessandro.bianco	alessandro	
+Roberto	Colombo	140 Antonio Street	0549866104735782	2023-12-05	2AET	roberto.colombo	roberto	
+Marco	Esposito	540 Roberto Street	9208636487271347	2022-12-14	5BIF	marco.esposito	marco	
+Luigi	Verdi	736 Davide Street	2277117939624103	2019-11-29	3BET	luigi.verdi	luigi	
+Marco	Romano	964 Francesco Street	7974504517090764	2023-01-29	4CIF	marco.romano	marco	
+Roberto	Bianco	298 Luigi Street	9532433543900406	2018-10-15	1ASP	roberto.bianco	roberto	
+Giovanni	Bianchi	460 Mario Street	5024039652039224	2021-05-13	3ATM	giovanni.bianchi	giovanni	
+Alessandro	Bianchi	520 Paolo Street	9879947033560258	2024-04-17	1ASP	alessandro.bianchi	alessandro	
+Mario	Colombo	333 Paolo Street	3577526667609338	2019-06-24	5AET	mario.colombo	mario	
+Alessandro	Esposito	85 Paolo Street	3452208189559486	2024-05-14	2ODA	alessandro.esposito	alessandro	
+Giovanni	Bianco	221 Davide Street	7967456374026912	2019-10-19	3BET	giovanni.bianco	giovanni	
+Roberto	Romano	499 Paolo Street	3026483426709076	2021-09-18	3BET	roberto.romano	roberto	
+Luigi	Bianchi	236 Alessandro Street	4972189109900541	2022-12-14	5AET	luigi.bianchi	luigi	
+Davide	Esposito	358 Francesco Street	3590743342309164	2020-11-10	4CIF	davide.esposito	davide	
+Roberto	Bianco	770 Paolo Street	4487912821894868	2023-06-23	2ODA	roberto.bianco	roberto	
+Mario	Bianchi	886 Paolo Street	3665651926876214	2022-08-30	2ODA	mario.bianchi	mario	
+Francesco	Rossi	303 Francesco Street	5840984657098789	2021-09-24	2AET	francesco.rossi	francesco	
+Giovanni	Verdi	48 Paolo Street	1460949435826015	2022-02-24	1ASP	giovanni.verdi	giovanni	
+Marco	Ferrari	121 Luigi Street	2144358212361041	2021-03-17	1ASP	marco.ferrari	marco	
+Francesco	Bianco	681 Francesco Street	4973948898998840	2022-01-08	2ODA	francesco.bianco	francesco	
+Antonio	Colombo	710 Mario Street	7452560428701868	2019-10-27	2AET	antonio.colombo	antonio	
+Giovanni	Ricci	393 Alessandro Street	7954155872674794	2022-07-19	1ASP	giovanni.ricci	giovanni	
+Marco	Colombo	58 Davide Street	0806517833512564	2021-01-20	3ATM	marco.colombo	marco	
+Mario	Romano	559 Paolo Street	2941881005263468	2023-04-15	3BET	mario.romano	mario	
+Alessandro	Verdi	576 Mario Street	3952283112025143	2019-07-03	3BET	alessandro.verdi	alessandro	
+Mario	Ricci	397 Antonio Street	1792118630511523	2019-12-05	2AET	mario.ricci	mario	
+Antonio	Bianco	276 Antonio Street	6127088586952533	2019-02-05	2AET	antonio.bianco	antonio	
+Marco	Verdi	463 Roberto Street	2136987967612919	2018-07-23	5AET	marco.verdi	marco	
+Paolo	Colombo	407 Alessandro Street	9527294926511028	2020-08-19	1ASP	paolo.colombo	paolo	
+Giovanni	Esposito	680 Davide Street	1114074297393946	2022-05-28	3BET	giovanni.esposito	giovanni	
+Paolo	Ricci	891 Mario Street	4622939958339693	2022-02-11	3ATM	paolo.ricci	paolo	
+Davide	Russo	863 Francesco Street	4834361918404749	2021-09-22	5AET	davide.russo	davide	
+Davide	Verdi	822 Marco Street	0220118644733471	2021-09-03	2ODA	davide.verdi	davide	
+Francesco	Esposito	712 Paolo Street	5828805772915243	2020-06-05	2ODA	francesco.esposito	francesco	
+Marco	Bianco	551 Paolo Street	0015593328791816	2019-07-28	2ODA	marco.bianco	marco	
+Antonio	Bianchi	185 Alessandro Street	5875771181270321	2022-03-15	2AET	antonio.bianchi	antonio	
+Roberto	Verdi	765 Alessandro Street	7031627933134427	2021-01-25	5AET	roberto.verdi	roberto	
+Roberto	Rossi	777 Davide Street	8739254055725271	2021-05-30	1ASP	roberto.rossi	roberto	
+Marco	Ricci	824 Mario Street	0524163056937461	2024-03-30	1ASP	marco.ricci	marco	
+Paolo	Russo	327 Giovanni Street	8085010693258011	2021-05-07	3ATM	paolo.russo	paolo	
+Antonio	Bianchi	108 Francesco Street	6518537165623285	2019-08-12	2ODA	antonio.bianchi	antonio	
+Marco	Colombo	490 Marco Street	2786543908537036	2020-09-14	3ATM	marco.colombo	marco	
+Giovanni	Esposito	108 Luigi Street	0326809640880084	2023-09-22	5BIF	giovanni.esposito	giovanni	
+Roberto	Ferrari	987 Paolo Street	2184474556019478	2021-06-21	4CIF	roberto.ferrari	roberto	
+Antonio	Russo	25 Roberto Street	8572757108086640	1991-02-02	2ODA,2AET	antonio.russo	antonio	Fisica
+Antonio	Rossi	797 Marco Street	2831613518924609	1995-05-19	3BET,3ATM	antonio.rossi	antonio	Matematica
+Alessandro	Ferrari	312 Giovanni Street	5806532587469305	2009-07-25	2AET,2ODA	alessandro.ferrari	alessandro	Fisica
+Francesco	Colombo	670 Mario Street	2645869151030847	1990-10-03	2ODA,2AET	francesco.colombo	francesco	Inglese
+Antonio	Russo	515 Mario Street	4529719141626811	2014-04-09	2AET,4CIF	antonio.russo	antonio	Biologia
+Marco	Colombo	793 Mario Street	7747516063000558	2022-11-09	2ODA,5AET	marco.colombo	marco	Fisica
+Francesco	Ferrari	555 Roberto Street	2307530115945072	1993-10-03	2ODA,5AET	francesco.ferrari	francesco	Inglese
+Mario	Russo	625 Davide Street	2456234614772368	1997-10-07	3ATM,3ATM	mario.russo	mario	Chimica
+Antonio	Rossi	6 Alessandro Street	2341098807627952	1995-11-27	2ODA,3BET	antonio.rossi	antonio	Matematica
+Luigi	Colombo	117 Francesco Street	5330769206147720	2009-09-21	4CIF,4CIF	luigi.colombo	luigi	Inglese
+Luigi	Verdi	151 Paolo Street	0751476175797126	2017-08-22	2ODA,5BIF	luigi.verdi	luigi	Inglese
+Francesco	Esposito	101 Marco Street	3178133315688124	2014-06-22	1ASP,1ASP	francesco.esposito	francesco	Chimica
+Roberto	Russo	620 Davide Street	8428170162985723	1995-10-12	3BET,5AET	roberto.russo	roberto	Matematica
+Marco	Colombo	809 Mario Street	3816215219280994	1988-09-18	5AET,2ODA	marco.colombo	marco	Inglese
+Antonio	Ricci	100 Giovanni Street	4919379180883982	2007-12-02	5AET,2ODA	antonio.ricci	antonio	Inglese
+Davide	Romano	231 Alessandro Street	2459542211873092	2017-05-14	4CIF,1ASP	davide.romano	davide	Storia
+Giovanni	Romano	493 Paolo Street	8045960503446730	2002-05-11	2AET,3BET	giovanni.romano	giovanni	Geografia
+Davide	Verdi	50 Paolo Street	3736652228903754	2000-06-20	1ASP,1ASP	davide.verdi	davide	Storia
+Antonio	Esposito	945 Francesco Street	6257098477817397	2004-12-31	5BIF,2AET	antonio.esposito	antonio	Chimica
+Davide	Ferrari	191 Antonio Street	1904756672707132	1992-11-07	1ASP,5BIF	davide.ferrari	davide	Inglese
+Giovanni	Rossi	721 Roberto Street	6958762946878177	1989-12-21	1ASP,1ASP	giovanni.rossi	giovanni	Geografia
+Giovanni	Russo	48 Marco Street	7112437088559846	2018-10-17	4CIF,1ASP	giovanni.russo	giovanni	Chimica
+Antonio	Romano	464 Mario Street	4185359775204242	2003-06-25	2AET,3BET	antonio.romano	antonio	Matematica
+Mario	Bianchi	74 Roberto Street	7251979034513915	1995-05-24	1ASP,1ASP	mario.bianchi	mario	Matematica
+Luigi	Bianco	31 Paolo Street	8588518473583148	1992-08-24	5BIF,5AET	luigi.bianco	luigi	Matematica
+Giovanni	Bianchi	112 Alessandro Street	5267651350557759	2004-03-29	2ODA,2AET	giovanni.bianchi	giovanni	Chimica
+Roberto	Russo	27 Paolo Street	4874436473517118	2006-12-29	5AET,3ATM	roberto.russo	roberto	Inglese
+Luigi	Rossi	320 Giovanni Street	5228429958849154	2002-02-01	2ODA,4CIF	luigi.rossi	luigi	Fisica
+Paolo	Ricci	678 Davide Street	5439596905166068	2021-12-07	4CIF,3ATM	paolo.ricci	paolo	Fisica
+Francesco	Ricci	496 Alessandro Street	2279707079059741	2014-01-31	4CIF,2AET	francesco.ricci	francesco	Storia
+Marco	Romano	187 Alessandro Street	3631912179046573	2009-01-27	1ASP,2AET	marco.romano	marco	Storia
+Alessandro	Verdi	570 Giovanni Street	3054388995314497	2017-12-04	2ODA,5AET	alessandro.verdi	alessandro	Geografia
+Giovanni	Esposito	790 Roberto Street	8641840391977106	1992-02-20	5AET,3BET	giovanni.esposito	giovanni	Storia
+Roberto	Verdi	465 Roberto Street	6033496634551145	2005-08-21	4CIF,5AET	roberto.verdi	roberto	Matematica
+Paolo	Esposito	725 Paolo Street	3041086914278614	2013-03-04	2ODA,5BIF	paolo.esposito	paolo	Biologia
+Davide	Rossi	141 Davide Street	4886188412371012	2017-02-17	5BIF,3BET	davide.rossi	davide	Storia
+Roberto	Romano	194 Davide Street	1270552384915504	1995-08-03	4CIF,4CIF	roberto.romano	roberto	Geografia
+Francesco	Romano	42 Luigi Street	0425584993847315	2004-11-09	5BIF,3BET	francesco.romano	francesco	Chimica
+Francesco	Bianco	629 Davide Street	0328238662260253	2005-05-03	2AET,3ATM	francesco.bianco	francesco	Matematica
+Antonio	Russo	381 Roberto Street	8347433455454527	1993-12-20	3ATM,5AET	antonio.russo	antonio	Geografia
+Davide	Ricci	898 Giovanni Street	4802362082416322	1992-01-26	1ASP,5AET	davide.ricci	davide	Geografia
+Luigi	Russo	191 Mario Street	8604551905298029	2013-04-16	5AET,3BET	luigi.russo	luigi	Geografia
+Roberto	Colombo	706 Antonio Street	7338860464521848	2004-01-12	2ODA,4CIF	roberto.colombo	roberto	Matematica
+Roberto	Romano	688 Alessandro Street	2421847192493984	2015-01-14	5AET,3ATM	roberto.romano	roberto	Inglese
+Francesco	Verdi	939 Alessandro Street	4389081325067997	2004-12-18	5AET,1ASP	francesco.verdi	francesco	Storia
+Luigi	Bianchi	791 Francesco Street	1802124556701989	2008-06-06	4CIF,3ATM	luigi.bianchi	luigi	Fisica
+Luigi	Colombo	780 Alessandro Street	5125464299795107	2011-06-23	3ATM,5AET	luigi.colombo	luigi	Inglese
+Giovanni	Esposito	476 Antonio Street	7642453514382136	2024-01-11	4CIF,5BIF	giovanni.esposito	giovanni	Biologia
+Davide	Bianco	35 Mario Street	9903371728759324	1999-02-01	2ODA,3ATM	davide.bianco	davide	Matematica
+Giovanni	Colombo	436 Antonio Street	2117873661232358	2021-10-15	5BIF,5AET	giovanni.colombo	giovanni	Biologia
